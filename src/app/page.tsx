@@ -8,27 +8,50 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if this is a new visitor
-    const hasVisited = localStorage.getItem('hasVisited');
-    
-    if (!hasVisited) {
-      // This is a new visitor
-      setIsNewVisitor(true);
-      localStorage.setItem('hasVisited', 'true');
-      
-      // Get current visitor count and increment it
-      const currentCount = parseInt(localStorage.getItem('visitorCount') || '0');
-      const newCount = currentCount + 1;
-      localStorage.setItem('visitorCount', newCount.toString());
-      setVisitorCount(newCount);
-    } else {
-      // Returning visitor - just show the current count
-      const currentCount = parseInt(localStorage.getItem('visitorCount') || '0');
-      setVisitorCount(currentCount);
-    }
+    const trackVisitor = async () => {
+      try {
+        // Check if this is a new visitor (using sessionStorage for this session)
+        const hasVisitedThisSession = sessionStorage.getItem('hasVisitedThisSession');
+        
+        if (!hasVisitedThisSession) {
+          // This is a new visitor in this session
+          setIsNewVisitor(true);
+          sessionStorage.setItem('hasVisitedThisSession', 'true');
+          
+          // Increment the server-side visitor count
+          const response = await fetch('/api/visitors', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            setVisitorCount(data.count);
+          }
+        } else {
+          // Returning visitor in this session - just get the current count
+          const response = await fetch('/api/visitors', {
+            method: 'GET',
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            setVisitorCount(data.count);
+          }
+        }
+      } catch (error) {
+        console.error('Error tracking visitor:', error);
+        // Fallback to a default count
+        setVisitorCount(1);
+      }
 
-    // Trigger fade-in animation
-    setTimeout(() => setIsLoaded(true), 100);
+      // Trigger fade-in animation
+      setTimeout(() => setIsLoaded(true), 100);
+    };
+
+    trackVisitor();
   }, []);
 
   return (

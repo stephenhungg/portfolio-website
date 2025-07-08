@@ -8,7 +8,7 @@ export default function FuzzySchoolProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">fuzzy school</h1>
+        <h1 className="text-4xl font-bold mb-4">mybackpack</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.
         </p>
@@ -22,7 +22,7 @@ export default function FuzzySchoolProject() {
 
       <div className="prose prose-invert max-w-none">
         <p className="text-gray-400 leading-relaxed">
-          Fuzzy School is a comprehensive mobile application designed to help high school students manage their academic 
+          myBackpack is a comprehensive mobile application designed to help high school students manage their academic 
           journey and build professional networks. The app combines activity tracking, AI-powered feedback, and resume 
           building tools to prepare students for college and career success.
         </p>
