@@ -65,7 +65,7 @@ export default function Projects() {
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">april 2024</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold">fuzzy school</h2>
+                <h2 className="text-xl font-semibold">mybackpack</h2>
               </div>
               <p className="text-gray-400 mb-2 leading-relaxed">
                 professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.
