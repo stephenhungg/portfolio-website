@@ -10,12 +10,12 @@ export default function FuzzySchoolProject() {
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-4">mybackpack</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
-          Professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.
+          professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.
         </p>
       </div>
 
       <div className="flex gap-4 mb-8">
-        <a href="https://github.com/stephenhungg/Fuzzy-School" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
+        <a href="https://github.com/stephenhungg/myBackpack" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           GitHub →
         </a>
       </div>
