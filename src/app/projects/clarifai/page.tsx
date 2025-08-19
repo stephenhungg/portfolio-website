@@ -30,12 +30,12 @@ export default function ClarifaiProject() {
         <h2 className="text-xl font-semibold mt-8 mb-4">Key Features</h2>
         <ul className="text-gray-400 space-y-2">
           <li>• PDF Upload & Analysis: Upload research papers in PDF format for comprehensive AI-powered analysis</li>
-          <li>• Key Concept Extraction: Automatically identifies and extracts core concepts using Google's Gemini Flash</li>
+          <li>• Key Concept Extraction: Automatically identifies and extracts core concepts using Google&apos;s Gemini Flash</li>
           <li>• Agentic Video Generation: A LangChain agent uses Manim to generate high-quality, 3blue1brown-style animations</li>
           <li>• Self-Correcting Code Generation: The agent makes up to three attempts to generate and render Manim code</li>
           <li>• Intelligent Scene Splitting: AI intelligently splits complex concepts into multiple thematic scenes</li>
           <li>• Multi-Clip Video Stitching: Successfully rendered video clips are automatically stitched together using ffmpeg</li>
-          <li>• Real-time Logging: WebSocket connection provides streaming of the agent's entire process</li>
+          <li>• Real-time Logging: WebSocket connection provides streaming of the agent&apos;s entire process</li>
           <li>• AI-Powered Code Implementation: Generate functional Python code examples for any extracted concept</li>
         </ul>
 
