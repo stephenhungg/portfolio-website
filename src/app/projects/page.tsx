@@ -11,6 +11,23 @@ export default function Projects() {
       <div className="grid gap-6">
         <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">december 2024</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold">spotifytui</h2>
+              </div>
+              <p className="text-gray-400 mb-2 leading-relaxed">
+                beautiful and feature-rich terminal user interface for spotify built with python and textual, featuring playback control, playlist management, and lyrics display.
+              </p>
+              <a href="/projects/spotifytui" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
