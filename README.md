@@ -23,6 +23,7 @@ My personal portfolio built with Next.js, TypeScript, and Tailwind CSS.
 - Clarifai - AI research paper analyzer with video generation
 - VibeChain API - ML playlist recommendation API
 - SpotifyTUI - Terminal interface for Spotify
+- Vendi - Smart vending machine
 - Instephgram - Instagram-style full-stack app
 - 2D World Generator - Java world generator with ray tracing
 - Ngordnet - Word frequency analyzer
