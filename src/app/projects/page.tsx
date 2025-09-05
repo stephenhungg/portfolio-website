@@ -14,12 +14,12 @@ export default function Projects() {
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold">spotifytui</h2>
+                <h2 className="text-xl font-semibold">clarifai</h2>
               </div>
               <p className="text-gray-400 mb-2 leading-relaxed">
-                beautiful and feature-rich terminal user interface for spotify built with python and textual, featuring playback control, playlist management, and lyrics display.
+                web app that breaks down complex research papers into easy-to-understand concepts and creates 3blue1brown-style video explanations using ai.
               </p>
-              <a href="/projects/spotifytui" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+              <a href="/projects/clarifai" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
                 Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
               </a>
             </div>
@@ -48,20 +48,34 @@ export default function Projects() {
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold">clarifai</h2>
+                <h2 className="text-xl font-semibold">spotifytui</h2>
               </div>
               <p className="text-gray-400 mb-2 leading-relaxed">
-              web app that breaks down complex research papers into easy-to-understand concepts and creates 3blue1brown-style video explanations using gemini flash and manim (open source python library for creating mathematical animations).
+                beautiful and feature-rich terminal user interface for spotify built with python and textual, featuring playback control, playlist management, and lyrics display.
               </p>
-              <a href="/projects/clarifai" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+              <a href="/projects/spotifytui" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
                 Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
               </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="grid gap-6">
+        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">june 2025</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold">portfolio website</h2>
+              </div>
+              <p className="text-gray-400 mb-2 leading-relaxed">
+                modern, responsive portfolio website built with next.js and tailwind css, featuring project showcases, contact information, and clean design.
+              </p>
+              <a href="/projects/portfolio-website" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
         <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">april 2025</div>

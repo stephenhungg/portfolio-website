@@ -18,9 +18,6 @@ export default function VibeChainAPIProject() {
         <a href="https://github.com/stephenhungg/vibechain-api" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           GitHub →
         </a>
-        <a href="https://vibechain-psi.vercel.app" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
-          Live Demo →
-        </a>
       </div>
 
       <div className="prose prose-invert max-w-none">
