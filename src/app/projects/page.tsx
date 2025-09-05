@@ -62,23 +62,6 @@ export default function Projects() {
 
         <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
-            <div className="text-sm text-gray-500 w-20 flex-shrink-0">february 2025</div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold">vendi</h2>
-              </div>
-              <p className="text-gray-400 mb-2 leading-relaxed">
-                smart vending machine project for uc berkeley theta tau professional engineering fraternity alpha lambda class, integrating mechanical, electrical, and software systems with arduino control.
-              </p>
-              <a href="/projects/vendi" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
-                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
-          <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">june 2025</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
@@ -138,6 +121,23 @@ export default function Projects() {
                 ngram-based word frequency analyzer built using java replicating core features of google ngram viewer and princeton wordnet.
               </p>
               <a href="/projects/ngordnet" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">february 2025</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold">vendi</h2>
+              </div>
+              <p className="text-gray-400 mb-2 leading-relaxed">
+                smart vending machine project for uc berkeley theta tau professional engineering fraternity alpha lambda class, integrating mechanical, electrical, and software systems with arduino control.
+              </p>
+              <a href="/projects/vendi" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
                 Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
               </a>
             </div>
