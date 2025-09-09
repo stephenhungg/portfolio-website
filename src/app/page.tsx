@@ -18,7 +18,7 @@ export default function Home() {
           Stephen Hung
         </h1>
         <p className="text-lg sm:text-xl text-gray-400 mb-8 leading-relaxed fade-in">
-          Sophomore studying EECS at UC Berkeley. Passionate about full-stack development and ML/AI.
+          Sophomore studying <strong>EECS at UC Berkeley</strong>. Passionate about <strong>full-stack development</strong>, <strong>machine learning</strong>, and <strong>artificial intelligence</strong>.
         </p>
         <div className="flex gap-6 justify-center fade-in">
           <a href="/projects" className="text-sm hover:text-gray-400 transition-colors">Projects</a>
@@ -27,6 +27,16 @@ export default function Home() {
         <div className="mt-8 fade-in">
           <VisitorCount />
         </div>
+        
+        {/* Additional SEO content */}
+        <section className="mt-12 text-sm text-gray-500 fade-in">
+          <p>
+            Computer Science Student | Software Engineer | Machine Learning Enthusiast
+          </p>
+          <p className="mt-2">
+            Building innovative solutions with modern technologies
+          </p>
+        </section>
       </div>
     </main>
   );

@@ -15,6 +15,7 @@ My personal portfolio built with Next.js, TypeScript, and Tailwind CSS.
 
 - Next.js 14 + TypeScript
 - Tailwind CSS for styling
+- Upstash Redis for visitor count
 - Deployed on Vercel
 
 ## Projects
@@ -47,4 +48,6 @@ Open [http://localhost:3000](http://localhost:3000)
 
 - GitHub: [stephenhungg](https://github.com/stephenhungg)
 - LinkedIn: [stephen-h-hung](https://www.linkedin.com/in/stephen-h-hung/)
+- Instagram: [s______hh___](https://www.instagram.com/s______hh___/)
+- X: [stpnhh](https://x.com/stpnhh)
 - Email: stephenhung@berkeley.edu
