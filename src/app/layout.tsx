@@ -49,24 +49,24 @@ export default function RootLayout({
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://stephenhung.dev/" />
+        <meta property="og:url" content="https://stephenhung.me/" />
         <meta property="og:title" content="Stephen Hung - EECS Student at UC Berkeley | Full-Stack Developer" />
         <meta property="og:description" content="Sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects." />
-        <meta property="og:image" content="https://stephenhung.dev/og-image.jpg" />
+        <meta property="og:image" content="https://stephenhung.me/og-image.jpg" />
         <meta property="og:site_name" content="Stephen Hung Portfolio" />
         <meta property="og:locale" content="en_US" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://stephenhung.dev/" />
+        <meta property="twitter:url" content="https://stephenhung.me/" />
         <meta property="twitter:title" content="Stephen Hung - EECS Student at UC Berkeley" />
         <meta property="twitter:description" content="Full-stack developer and ML/AI enthusiast. Explore my portfolio of innovative projects and technical work." />
-        <meta property="twitter:image" content="https://stephenhung.dev/og-image.jpg" />
+        <meta property="twitter:image" content="https://stephenhung.me/og-image.jpg" />
         
         {/* Additional SEO */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#000000" />
-        <link rel="canonical" href="https://stephenhung.dev/" />
+        <link rel="canonical" href="https://stephenhung.me/" />
         
         {/* Structured Data */}
         <script
@@ -76,7 +76,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Stephen Hung",
-              "url": "https://stephenhung.dev",
+              "url": "https://stephenhung.me",
               "jobTitle": "EECS Student",
               "worksFor": {
                 "@type": "Organization",

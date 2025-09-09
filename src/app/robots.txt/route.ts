@@ -4,7 +4,7 @@ export async function GET() {
   const robots = `User-agent: *
 Allow: /
 
-Sitemap: https://stephenhung.dev/sitemap.xml`;
+Sitemap: https://stephenhung.me/sitemap.xml`;
 
   return new NextResponse(robots, {
     headers: {
