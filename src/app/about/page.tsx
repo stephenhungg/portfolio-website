@@ -8,11 +8,13 @@ export default function AboutPage() {
       <div className="max-w-3xl w-full mx-auto px-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
         <div className="mt-2 flex items-start gap-6">
-          <img
-            src="/images/headshot.jpg"
-            alt="Stephen Hung headshot"
-            className="w-28 h-28 rounded-full object-cover border border-white/10"
-          />
+          <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10">
+            <img
+              src="/images/headshot.jpg"
+              alt="Stephen Hung headshot"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
           <p className="text-gray-400 leading-relaxed">
             eecs @ uc berkeley • full‑stack & ml/ai developer • chino hills → berkeley. currently building with AI agents, scalable web apps, and whatever catches my interest.
           </p>
