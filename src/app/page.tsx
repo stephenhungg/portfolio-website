@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import VisitorCount from "../components/VisitorCount";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +23,9 @@ export default function Home() {
         <div className="flex gap-6 justify-center fade-in">
           <a href="/projects" className="text-sm hover:text-gray-400 transition-colors">Projects</a>
           <a href="/contact" className="text-sm hover:text-gray-400 transition-colors">Contact</a>
+        </div>
+        <div className="mt-8 fade-in">
+          <VisitorCount />
         </div>
       </div>
     </main>
