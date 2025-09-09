@@ -8,7 +8,7 @@ export default function AboutPage() {
       <div className="max-w-3xl w-full mx-auto px-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
         <div className="mt-2 flex items-start gap-6">
-          <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10">
+          <div className="w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
             <img
               src="/images/headshot.jpeg"
               alt="Stephen Hung headshot"
