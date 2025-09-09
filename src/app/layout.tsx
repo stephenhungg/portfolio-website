@@ -51,7 +51,7 @@ export default function RootLayout({
         <meta property="og:url" content="https://stephenhung.me/" />
         <meta property="og:title" content="Stephen Hung - EECS Student at UC Berkeley | Full-Stack Developer" />
         <meta property="og:description" content="Sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects." />
-        <meta property="og:image" content="https://stephenhung.me/og-image.jpg" />
+        <meta property="og:image" content="https://stephenhung.me/og" />
         <meta property="og:site_name" content="Stephen Hung Portfolio" />
         <meta property="og:locale" content="en_US" />
         
@@ -60,7 +60,7 @@ export default function RootLayout({
         <meta property="twitter:url" content="https://stephenhung.me/" />
         <meta property="twitter:title" content="Stephen Hung - EECS Student at UC Berkeley" />
         <meta property="twitter:description" content="Full-stack developer and ML/AI enthusiast. Explore my portfolio of innovative projects and technical work." />
-        <meta property="twitter:image" content="https://stephenhung.me/og-image.jpg" />
+        <meta property="twitter:image" content="https://stephenhung.me/og" />
         
         {/* Additional SEO */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
