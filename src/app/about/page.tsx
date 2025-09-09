@@ -10,7 +10,7 @@ export default function AboutPage() {
         <div className="mt-2 flex items-start gap-6">
           <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10">
             <img
-              src="/images/headshot.jpg"
+              src="/images/headshot.jpeg"
               alt="Stephen Hung headshot"
               className="w-full h-full object-cover object-center"
             />
