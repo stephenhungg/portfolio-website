@@ -27,6 +27,25 @@ export default function Home() {
         <div className="mt-8 fade-in">
           <VisitorCount />
         </div>
+
+        <section className="mt-14 text-left fade-in">
+          <h2 className="text-xl font-semibold mb-3">About</h2>
+          <p className="text-gray-400 leading-relaxed">
+            EECS @ UC Berkeley. I build full‑stack products with AI, scalable backends,
+            and clean, fast UIs. Recently: interning at OptiGenix training models for
+            clinical data extraction, shipping projects with LLMs, and exploring ML systems.
+          </p>
+          <div className="mt-4 grid gap-2 text-sm text-gray-400">
+            <div>• Full‑Stack & ML/AI Developer</div>
+            <div>• React, Node/Express, TypeScript, Python, TensorFlow/PyTorch</div>
+            <div>• Cloud: AWS, GCP, Docker; DB: Postgres, MongoDB</div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm">
+            <a href="/projects" className="underline underline-offset-4 hover:text-gray-300">See projects</a>
+            <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">GitHub</a>
+            <a href="https://linkedin.com/in/stephenhung" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">LinkedIn</a>
+          </div>
+        </section>
       </div>
     </main>
   );
