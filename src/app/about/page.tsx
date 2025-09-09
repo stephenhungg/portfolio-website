@@ -8,15 +8,13 @@ export default function AboutPage() {
       <div className="max-w-3xl w-full mx-auto px-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
         <p className="text-gray-400 leading-relaxed">
-          I’m Stephen Hung, an EECS student at UC Berkeley focused on building full‑stack
-          products with AI, scalable backends, and clean user experiences.
+          EECS @ UC Berkeley. I enjoy building full‑stack apps, working with ML/AI, and shipping simple, fast interfaces.
         </p>
 
         <div className="mt-8 grid gap-2 text-sm text-gray-300">
-          <div>• Full‑Stack & ML/AI Developer</div>
-          <div>• React, Next.js, Node/Express, TypeScript, Python</div>
-          <div>• ML: TensorFlow, PyTorch • Cloud: AWS, GCP, Docker</div>
-          <div>• DB: PostgreSQL, MongoDB</div>
+          <div>• Full‑stack development, ML/AI, and systems</div>
+          <div>• React, Next.js, TypeScript, Python</div>
+          <div>• Cloud + databases when needed</div>
         </div>
 
         <div className="mt-10 flex flex-wrap gap-4 text-sm">
@@ -24,14 +22,7 @@ export default function AboutPage() {
           <a href="/contact" className="underline underline-offset-4 hover:text-gray-300">Contact</a>
           <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">GitHub</a>
           <a href="https://linkedin.com/in/stephenhung" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">LinkedIn</a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 hover:bg-white/15 transition-colors"
-          >
-            Download Resume (PDF)
-          </a>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">Download Resume (PDF)</a>
         </div>
 
         <div className="mt-12 text-sm text-gray-500">
