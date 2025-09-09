@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -8,11 +9,14 @@ export default function AboutPage() {
       <div className="max-w-3xl w-full mx-auto px-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
         <div className="mt-2 flex items-start gap-6">
-          <div className="w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
-            <img
+          <div className="relative w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
+            <Image
               src="/images/headshot.jpeg"
               alt="Stephen Hung headshot"
-              className="w-full h-full object-cover object-center"
+              fill
+              sizes="112px"
+              className="object-cover object-center"
+              priority
             />
           </div>
           <p className="text-gray-400 leading-relaxed">
@@ -26,31 +30,32 @@ export default function AboutPage() {
           <div className="space-y-4">
             <div>
               <div className="flex items-baseline gap-2">
-                <span className="font-medium">Software Engineering Intern</span>
-                <span className="text-gray-400">@ OptiGenix</span>
+                <span className="font-medium">software engineering intern</span>
+                <span className="text-gray-400">@ optigenix</span>
                 <span className="text-xs text-gray-500">2025</span>
               </div>
               <ul className="mt-1 text-sm text-gray-300 list-disc pl-5 space-y-1">
-                <li>Trained AI models for clinical data extraction and evaluation.</li>
-                <li>Built scripts and pipelines to iterate on model performance.</li>
+                <li>trained ai models for clinical data extraction and evaluation</li>
+                <li>ml model training for optimized supplement recommendation</li>
               </ul>
             </div>
             <div>
               <div className="flex items-baseline gap-2">
-                <span className="font-medium">EECS Student</span>
-                <span className="text-gray-400">@ UC Berkeley</span>
-                <span className="text-xs text-gray-500">2024 — present</span>
+                <span className="font-medium">professional development chair</span>
+                <span className="text-gray-400">@ theta tau</span>
+                <span className="text-xs text-gray-500">2025</span>
               </div>
               <ul className="mt-1 text-sm text-gray-300 list-disc pl-5 space-y-1">
-                <li>Focus: full‑stack, ML/AI, and systems.</li>
-                <li>Projects: AI agents, scalable web apps, tooling.</li>
+                <li>organized workshops and events for professional development</li>
+                <li>resume, projects, and career advice for new members</li>
               </ul>
             </div>
+            
           </div>
         </section>
 
         <section className="mt-8">
-          <h2 className="text-lg font-semibold mb-2">When I'm not coding</h2>
+          <h2 className="text-lg font-semibold mb-2">When I’m not coding</h2>
           <p className="text-sm text-gray-300">
             league of legends • fashion • sf tech culture • geometry dash • edm • matcha
           </p>
