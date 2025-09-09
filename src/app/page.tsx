@@ -27,16 +27,6 @@ export default function Home() {
         <div className="mt-8 fade-in">
           <VisitorCount />
         </div>
-        
-        {/* Additional SEO content */}
-        <section className="mt-12 text-sm text-gray-500 fade-in">
-          <p>
-            Computer Science Student | Software Engineer | Machine Learning Enthusiast
-          </p>
-          <p className="mt-2">
-            Building innovative solutions with modern technologies
-          </p>
-        </section>
       </div>
     </main>
   );
