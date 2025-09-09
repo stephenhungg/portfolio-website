@@ -7,15 +7,22 @@ export default function AboutPage() {
     <main className="flex flex-col items-center justify-center min-h-[70vh] text-left">
       <div className="max-w-3xl w-full mx-auto px-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
-        <p className="text-gray-400 leading-relaxed">
-          eecs @ uc berkeley • full‑stack & ml/ai developer • chino hills → berkeley. currently building with AI agents, scalable web apps, and whatever catches my interest.
-        </p>
+        <div className="mt-2 flex items-start gap-6">
+          <img
+            src="/images/headshot.jpg"
+            alt="Stephen Hung headshot"
+            className="w-28 h-28 rounded-full object-cover border border-white/10"
+          />
+          <p className="text-gray-400 leading-relaxed">
+            eecs @ uc berkeley • full‑stack & ml/ai developer • chino hills → berkeley. currently building with AI agents, scalable web apps, and whatever catches my interest.
+          </p>
+        </div>
 
 
         <section className="mt-8">
           <h2 className="text-lg font-semibold mb-2">When I'm not coding</h2>
           <p className="text-sm text-gray-300">
-            league of legends (solo duo peak diamond, tft peak masters) • fashion • sf tech culture • geometry dash • edm • matcha
+            league of legends • fashion • sf tech culture • geometry dash • edm • matcha
           </p>
         </section>
 
