@@ -4,7 +4,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useEffect } from "react";
-import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
