@@ -24,6 +24,14 @@ export default function AboutPage() {
           <a href="/contact" className="underline underline-offset-4 hover:text-gray-300">Contact</a>
           <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">GitHub</a>
           <a href="https://linkedin.com/in/stephenhung" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">LinkedIn</a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 hover:bg-white/15 transition-colors"
+          >
+            Download Resume (PDF)
+          </a>
         </div>
 
         <div className="mt-12 text-sm text-gray-500">
