@@ -3,20 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { createNoise3D } from 'simplex-noise'
 
-interface Particle {
-  x: number
-  y: number
-  vx: number
-  vy: number
-  a: number
-  l: number
-  ttl: number
-  vc: number
-  r: number
-  g: number
-  b: number
-}
-
 class PropsArray {
   private data: Float32Array
   private propCount: number
@@ -53,12 +39,7 @@ class PropsArray {
   }
 }
 
-function createRenderingContext() {
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')!
-  const buffer = canvas.getContext('2d')!
-  return { buffer, ctx }
-}
+
 
 // Utility functions
 const TAU = Math.PI * 2
@@ -79,7 +60,7 @@ export default function ParticleBackground() {
   const particlesRef = useRef<PropsArray | null>(null)
   const bufferRef = useRef<CanvasRenderingContext2D | null>(null)
   const imageBufferRef = useRef<ImageData | null>(null)
-  const noiseRef = useRef<any>(null)
+  const noiseRef = useRef<ReturnType<typeof createNoise3D> | null>(null)
   const tickRef = useRef(0)
   const dimensionsRef = useRef({ width: 0, height: 0, centerx: 0, centery: 0 })
   const mouseRef = useRef({ x: 0, y: 0 })
@@ -99,13 +80,12 @@ export default function ParticleBackground() {
     const l = 0
     const ttl = 100 + rand(200)
     const vc = randIn(1, 10)
-    const a = 0
     const grayValue = (120 + rand(80)) | 0
     const r = grayValue
     const g = grayValue
     const b = grayValue
 
-    return [x, y, vx, vy, a, l, ttl, vc, r, g, b]
+    return [x, y, vx, vy, 0, l, ttl, vc, r, g, b]
   }
 
   const createParticles = () => {
@@ -118,6 +98,7 @@ export default function ParticleBackground() {
   }
 
   const updatePixelCoords = (x: number, y: number, vx: number, vy: number, vc: number): [number, number, number, number] => {
+    if (!noiseRef.current) return [x, y, vx, vy]
     const n = noiseRef.current(x * 0.0025, y * 0.00125, tickRef.current * 0.00025) * TAU * noiseSteps
     
     // Mouse interaction
@@ -162,7 +143,7 @@ export default function ParticleBackground() {
     
     imageBuffer.data.fill(0)
 
-    particles.forEach(([x, y, vx, vy, a, l, ttl, vc, r, g, b], index) => {
+    particles.forEach(([x, y, vx, vy, , l, ttl, vc, r, g, b], index) => {
       const i = 4 * ((x | 0) + (y | 0) * width)
       const [newL, newA] = updatePixelAlpha(l, ttl)
 
@@ -232,19 +213,19 @@ export default function ParticleBackground() {
     animationRef.current = requestAnimationFrame(render)
   }
 
-  const setup = () => {
-    noiseRef.current = createNoise3D()
-    resize()
-    createParticles()
-    render()
-  }
-
   useEffect(() => {
     if (!canvasRef.current) return
     
     // Create buffer canvas
     const bufferCanvas = document.createElement('canvas')
     bufferRef.current = bufferCanvas.getContext('2d')!
+    
+    const setup = () => {
+      noiseRef.current = createNoise3D()
+      resize()
+      createParticles()
+      render()
+    }
     
     setup()
     
