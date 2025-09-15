@@ -1,17 +1,21 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { useEffect } from "react";
 
+// Geist Sans font configuration
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Keep Inter as fallback
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -101,7 +105,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+        className={`${geistSans.variable} ${inter.variable} font-sans antialiased bg-black text-white`}
       >
         <nav className="w-full flex justify-center py-6">
           <div className="flex gap-8 text-sm">

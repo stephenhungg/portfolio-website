@@ -9,6 +9,24 @@ export default function Projects() {
       </p>
       
       <div className="grid gap-6">
+
+        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">september 2025</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold">crakd</h2>
+              </div>
+              <p className="text-gray-400 mb-2 leading-relaxed">
+                ensemble model-powered ai/ml system for talent identification, designed to identify &ldquo;cracked&rdquo; developers using hybrid quantitative and qualitative analysis.
+              </p>
+              <a href="/projects/crakd" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
         <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
@@ -163,4 +181,4 @@ export default function Projects() {
       </div>
     </main>
   );
-} 
+}

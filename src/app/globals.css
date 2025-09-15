@@ -8,14 +8,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), var(--font-inter);
+  --font-mono: var(--font-geist-sans), var(--font-inter);
+}
+
+/* Explicit font fallback for debugging */
+* {
+  font-family: var(--font-geist-sans), var(--font-inter), 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), 'Geist Sans', sans-serif;
   position: relative;
   overflow-x: hidden;
 }
@@ -64,6 +69,40 @@ main, nav {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  .responsive-text-xl {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  .responsive-text-5xl {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-text-xl {
+    font-size: 1.25rem;
+    line-height: 1.65;
+  }
+  .responsive-text-5xl {
+    font-size: 3.5rem;
+    line-height: 1.05;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-text-xl {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+  .responsive-text-5xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
 }
 
 /* Custom scrollbar */

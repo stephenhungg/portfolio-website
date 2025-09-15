@@ -38,15 +38,15 @@ export default function VisitorCount() {
 
   if (isLoading) {
     return (
-      <div className="text-sm text-gray-500 animate-pulse">
+      <div className="text-sm text-white animate-pulse" style={{textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 1px 6px rgba(0,0,0,0.9)'}}>
         Loading visitor count...
       </div>
     );
   }
 
   return (
-    <div className="text-sm text-gray-500">
-      <span className="font-mono">{count?.toLocaleString() || '0'}</span> visitors
+    <div className="text-sm text-white" style={{textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 1px 6px rgba(0,0,0,0.9)'}}>
+      <span className="font-mono text-white">{count?.toLocaleString() || '0'}</span> visitors
     </div>
   );
 }

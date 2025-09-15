@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col items-center justify-center min-h-[70vh] text-left">
       <div className="max-w-3xl w-full mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">About</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4">about</h1>
         <div className="mt-2 flex items-start gap-6">
           <div className="relative w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
             <Image
@@ -41,6 +41,17 @@ export default function AboutPage() {
             </div>
             <div>
               <div className="flex items-baseline gap-2">
+                <span className="font-medium">developer</span>
+                <span className="text-gray-400">@ cal blueprint</span>
+                <span className="text-xs text-gray-500">2025</span>
+              </div>
+              <ul className="mt-1 text-sm text-gray-300 list-disc pl-5 space-y-1">
+                <li>build web/mobile apps for nonprofits for social change</li>
+                <li>working on projects that connect communities with resources they need</li>
+              </ul>
+            </div>
+            <div>
+              <div className="flex items-baseline gap-2">
                 <span className="font-medium">professional development chair</span>
                 <span className="text-gray-400">@ theta tau</span>
                 <span className="text-xs text-gray-500">2025</span>
@@ -55,7 +66,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-8">
-          <h2 className="text-lg font-semibold mb-2">When I’m not coding</h2>
+          <h2 className="text-lg font-semibold mb-2">when I’m not coding</h2>
           <p className="text-sm text-gray-300">
             league of legends • fashion • sf tech culture • geometry dash • edm • matcha
           </p>
@@ -72,7 +83,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-12 text-sm text-gray-500">
-          Always down to collaborate on cool projects or chat about tech.
+          always down to collaborate on cool projects or chat about tech.
         </div>
 
         <div className="mt-6">
