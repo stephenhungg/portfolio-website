@@ -65,22 +65,41 @@ export default function ParticleBackground() {
   const dimensionsRef = useRef({ width: 0, height: 0, centerx: 0, centery: 0 })
   const mouseRef = useRef({ x: 0, y: 0 })
 
-  const particleCount = 8000
+  const particleCount = 22500
   const particleProps = ['x', 'y', 'vx', 'vy', 'a', 'l', 'ttl', 'vc', 'r', 'g', 'b']
-  const noiseSteps = 6
+  const noiseSteps = 8
 
   const createParticle = (): number[] => {
-    const { centerx, centery } = dimensionsRef.current
-    const theta = rand(TAU)
-    const rdist = randRange(250)
-    const x = centerx + rdist * cos(theta)
-    const y = centery + rdist * sin(theta)
+    const { width, height, centerx, centery } = dimensionsRef.current
+    
+    // Spawn particles from edges of screen
+    const edge = Math.floor(rand(4)) // 0=top, 1=right, 2=bottom, 3=left
+    let x, y
+    
+    switch(edge) {
+      case 0: // top edge
+        x = rand(width)
+        y = -50
+        break
+      case 1: // right edge
+        x = width + 50
+        y = rand(height)
+        break
+      case 2: // bottom edge
+        x = rand(width)
+        y = height + 50
+        break
+      default: // left edge
+        x = -50
+        y = rand(height)
+    }
+    
     const vx = 0
     const vy = 0
     const l = 0
-    const ttl = 100 + rand(200)
-    const vc = randIn(1, 10)
-    const grayValue = (120 + rand(80)) | 0
+    const ttl = 150 + rand(300)
+    const vc = randIn(3, 20)
+    const grayValue = (100 + rand(100)) | 0
     const r = grayValue
     const g = grayValue
     const b = grayValue
@@ -99,27 +118,56 @@ export default function ParticleBackground() {
 
   const updatePixelCoords = (x: number, y: number, vx: number, vy: number, vc: number): [number, number, number, number] => {
     if (!noiseRef.current) return [x, y, vx, vy]
-    const n = noiseRef.current(x * 0.0025, y * 0.00125, tickRef.current * 0.00025) * TAU * noiseSteps
+    const { width, height, centerx, centery } = dimensionsRef.current
     
-    // Mouse interaction
+    // Distance from center for spiral calculation
+    const dx = x - centerx
+    const dy = y - centery
+    const distFromCenter = Math.sqrt(dx * dx + dy * dy)
+    const angleFromCenter = Math.atan2(dy, dx)
+    
+    // Create spiral motion - particles spiral outward from center
+    const spiralForce = 0.8
+    const outwardForce = distFromCenter * 0.0008
+    const spiralAngle = angleFromCenter + (tickRef.current * 0.01) + (distFromCenter * 0.005)
+    
+    // Base spiral velocity
+    const spiralVx = cos(spiralAngle) * spiralForce + cos(angleFromCenter) * outwardForce
+    const spiralVy = sin(spiralAngle) * spiralForce + sin(angleFromCenter) * outwardForce
+    
+    // Add noise for organic movement
+    const n = noiseRef.current(x * 0.002, y * 0.002, tickRef.current * 0.0005) * TAU * noiseSteps
+    const noiseVx = cos(n) * vc * 0.3
+    const noiseVy = sin(n) * vc * 0.3
+    
+    // Mouse interaction - creates swirling vortex
     const { x: mouseX, y: mouseY } = mouseRef.current
-    const dx = mouseX - x
-    const dy = mouseY - y
-    const distance = Math.sqrt(dx * dx + dy * dy)
-    const maxDistance = 150
+    const mouseDx = mouseX - x
+    const mouseDy = mouseY - y
+    const mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy)
+    const maxMouseDistance = 200
     
-    if (distance < maxDistance) {
-      const force = (maxDistance - distance) / maxDistance
-      const angle = Math.atan2(dy, dx)
-      const mouseInfluence = force * 0.5
-      vx += cos(angle) * mouseInfluence
-      vy += sin(angle) * mouseInfluence
+    let mouseVx = 0, mouseVy = 0
+    if (mouseDistance < maxMouseDistance) {
+      const force = (maxMouseDistance - mouseDistance) / maxMouseDistance
+      const mouseAngle = Math.atan2(mouseDy, mouseDx)
+      // Create circular motion around mouse
+      const circularAngle = mouseAngle + Math.PI * 0.5
+      const mouseInfluence = force * 2.0
+      mouseVx = cos(circularAngle) * mouseInfluence
+      mouseVy = sin(circularAngle) * mouseInfluence
     }
     
-    vx = lerp(vx, cos(n) * vc, 0.015)
-    vy = lerp(vy, sin(n) * vc, 0.015)
+    // Combine all forces
+    const targetVx = spiralVx + noiseVx + mouseVx
+    const targetVy = spiralVy + noiseVy + mouseVy
+    
+    vx = lerp(vx, targetVx, 0.04)
+    vy = lerp(vy, targetVy, 0.04)
+    
     x += vx
     y += vy
+    
     return [x, y, vx, vy]
   }
 
@@ -129,11 +177,16 @@ export default function ParticleBackground() {
   }
 
   const outOfBounds = (x: number, y: number, width: number, height: number): boolean => {
-    return y < 1 || y > height - 1 || x < 1 || x > width - 1
+    // Allow particles to go further off-screen before resetting
+    const buffer = 100
+    return y < -buffer || y > height + buffer || x < -buffer || x > width + buffer
   }
 
   const fillPixel = (imageData: ImageData, i: number, [r, g, b, a]: number[]) => {
-    imageData.data.set([r, g, b, a], i)
+    // Ensure the pixel index is within bounds
+    if (i >= 0 && i < imageData.data.length - 3) {
+      imageData.data.set([r, g, b, a], i)
+    }
   }
 
   const updateParticles = () => {
@@ -144,13 +197,19 @@ export default function ParticleBackground() {
     imageBuffer.data.fill(0)
 
     particles.forEach(([x, y, vx, vy, , l, ttl, vc, r, g, b], index) => {
-      const i = 4 * ((x | 0) + (y | 0) * width)
       const [newL, newA] = updatePixelAlpha(l, ttl)
 
       if (newL < ttl && !outOfBounds(x, y, width, height)) {
         const [newX, newY, newVx, newVy] = updatePixelCoords(x, y, vx, vy, vc)
         particles.set([newX, newY, newVx, newVy, newA, newL, ttl, vc, r, g, b], index)
-        fillPixel(imageBuffer, i, [r, g, b, newA])
+        
+        // Only draw pixel if coordinates are within screen bounds
+        const pixelX = x | 0
+        const pixelY = y | 0
+        if (pixelX >= 0 && pixelX < width && pixelY >= 0 && pixelY < height) {
+          const i = 4 * (pixelX + pixelY * width)
+          fillPixel(imageBuffer, i, [r, g, b, newA])
+        }
       } else {
         resetParticle(index)
       }
