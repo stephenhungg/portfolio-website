@@ -74,7 +74,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-8 fade-in">
-          <h2 className="text-lg font-semibold mb-2">when I'm not coding</h2>
+          <h2 className="text-lg font-semibold mb-2">when I&apos;m not coding</h2>
           <p className="text-sm text-gray-300">
             league of legends • fashion • sf tech culture • geometry dash • edm • matcha
           </p>
