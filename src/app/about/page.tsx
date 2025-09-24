@@ -1,14 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function AboutPage() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger fade-in animation
+    setTimeout(() => setIsLoaded(true), 100);
+  }, []);
+
   return (
-    <main className="flex flex-col items-center justify-center min-h-[70vh] text-left">
+    <main className={`flex flex-col items-center justify-center min-h-[70vh] text-left transition-opacity duration-800 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       <div className="max-w-3xl w-full mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">about</h1>
-        <div className="mt-2 flex items-start gap-6">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 fade-in">about</h1>
+        <div className="mt-2 flex items-start gap-6 fade-in">
           <div className="relative w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
             <Image
               src="/images/headshot.jpeg"
@@ -25,7 +33,7 @@ export default function AboutPage() {
         </div>
 
 
-        <section className="mt-8">
+        <section className="mt-8 fade-in">
           <h2 className="text-lg font-semibold mb-2">Experience</h2>
           <div className="space-y-4">
             <div>
@@ -65,14 +73,14 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-8">
-          <h2 className="text-lg font-semibold mb-2">when I’m not coding</h2>
+        <section className="mt-8 fade-in">
+          <h2 className="text-lg font-semibold mb-2">when I'm not coding</h2>
           <p className="text-sm text-gray-300">
             league of legends • fashion • sf tech culture • geometry dash • edm • matcha
           </p>
         </section>
 
-        <div className="mt-10 flex flex-wrap gap-4 text-sm">
+        <div className="mt-10 flex flex-wrap gap-4 text-sm fade-in">
           <a href="/projects" className="underline underline-offset-4 hover:text-gray-300">Projects</a>
           <a href="/contact" className="underline underline-offset-4 hover:text-gray-300">Contact</a>
           <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">GitHub</a>
@@ -82,11 +90,11 @@ export default function AboutPage() {
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gray-300">Resume (PDF)</a>
         </div>
 
-        <div className="mt-12 text-sm text-gray-500">
+        <div className="mt-12 text-sm text-gray-500 fade-in">
           always down to collaborate on cool projects or chat about tech.
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 fade-in">
           <Link href="/" className="text-sm hover:text-gray-300">← Back to Home</Link>
         </div>
       </div>

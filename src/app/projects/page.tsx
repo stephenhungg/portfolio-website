@@ -10,7 +10,7 @@ export default function Projects() {
       
       <div className="grid gap-6">
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">september 2025</div>
             <div className="flex-1">
@@ -27,7 +27,7 @@ export default function Projects() {
           </div>
         </div>
         
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
@@ -44,7 +44,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
@@ -61,7 +61,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">august 2025</div>
             <div className="flex-1">
@@ -78,7 +78,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">june 2025</div>
             <div className="flex-1">
@@ -94,7 +94,7 @@ export default function Projects() {
             </div>
           </div>
         </div>
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">april 2025</div>
             <div className="flex-1">
@@ -111,7 +111,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">april 2025</div>
             <div className="flex-1">
@@ -128,7 +128,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">march 2025</div>
             <div className="flex-1">
@@ -145,7 +145,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">february 2025</div>
             <div className="flex-1">
@@ -162,7 +162,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+        <div className="p-6 rounded-lg glassmorphic-card fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">april 2024</div>
             <div className="flex-1">

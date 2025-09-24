@@ -3,7 +3,7 @@
 import { Inter } from "next/font/google";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Navigation from "../components/Navigation";
 import { useEffect } from "react";
 
 // Geist Sans font configuration
@@ -107,14 +107,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${inter.variable} font-sans antialiased bg-black text-white`}
       >
-        <nav className="w-full flex justify-center py-6">
-          <div className="flex gap-8 text-sm">
-            <Link href="/" className="hover:text-gray-400 transition-colors">Home</Link>
-            <Link href="/about" className="hover:text-gray-400 transition-colors">About</Link>
-            <Link href="/projects" className="hover:text-gray-400 transition-colors">Projects</Link>
-            <Link href="/contact" className="hover:text-gray-400 transition-colors">Contact</Link>
-          </div>
-        </nav>
+        <Navigation />
         {children}
       </body>
     </html>
