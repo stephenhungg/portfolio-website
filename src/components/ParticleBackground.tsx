@@ -44,7 +44,6 @@ class PropsArray {
 // Utility functions
 const TAU = Math.PI * 2
 const rand = (n: number) => Math.random() * n
-const randRange = (n: number) => rand(n) - n * 0.5
 const randIn = (min: number, max: number) => rand(max - min) + min
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 const cos = Math.cos
@@ -70,7 +69,7 @@ export default function ParticleBackground() {
   const noiseSteps = 8
 
   const createParticle = (): number[] => {
-    const { width, height, centerx, centery } = dimensionsRef.current
+    const { width, height } = dimensionsRef.current
     
     // Spawn particles from edges of screen
     const edge = Math.floor(rand(4)) // 0=top, 1=right, 2=bottom, 3=left
@@ -99,10 +98,36 @@ export default function ParticleBackground() {
     const l = 0
     const ttl = 150 + rand(300)
     const vc = randIn(3, 20)
-    const grayValue = (100 + rand(100)) | 0
-    const r = grayValue
-    const g = grayValue
-    const b = grayValue
+    // Create diverse color gradients based on spawn edge and position
+    const centerx = dimensionsRef.current.centerx
+    const centery = dimensionsRef.current.centery
+    const distFromCenter = Math.sqrt((x - centerx) * (x - centerx) + (y - centery) * (y - centery))
+    const maxDist = Math.sqrt(width * width + height * height) * 0.5
+    const normalizedDist = Math.min(distFromCenter / maxDist, 1)
+    
+    // Different color schemes for each edge
+    let r, g, b
+    switch(edge) {
+      case 0: // Top edge - Cool blues to warm purples
+        r = Math.floor(60 + normalizedDist * 140 + rand(50))   // 60-250
+        g = Math.floor(80 + normalizedDist * 100 + rand(40))   // 80-220  
+        b = Math.floor(180 + normalizedDist * 75)              // 180-255
+        break
+      case 1: // Right edge - Warm oranges to hot pinks
+        r = Math.floor(200 + normalizedDist * 55)              // 200-255
+        g = Math.floor(100 + normalizedDist * 120 + rand(35))  // 100-255
+        b = Math.floor(60 + normalizedDist * 140 + rand(30))   // 60-230
+        break
+      case 2: // Bottom edge - Deep purples to bright cyans
+        r = Math.floor(120 + normalizedDist * 80 + rand(40))   // 120-240
+        g = Math.floor(60 + normalizedDist * 150 + rand(45))   // 60-255
+        b = Math.floor(200 + normalizedDist * 55)              // 200-255
+        break
+      default: // Left edge - Forest greens to golden yellows
+        r = Math.floor(80 + normalizedDist * 150 + rand(25))   // 80-255
+        g = Math.floor(160 + normalizedDist * 95)              // 160-255
+        b = Math.floor(40 + normalizedDist * 80 + rand(35))    // 40-155
+    }
 
     return [x, y, vx, vy, 0, l, ttl, vc, r, g, b]
   }
@@ -118,7 +143,7 @@ export default function ParticleBackground() {
 
   const updatePixelCoords = (x: number, y: number, vx: number, vy: number, vc: number): [number, number, number, number] => {
     if (!noiseRef.current) return [x, y, vx, vy]
-    const { width, height, centerx, centery } = dimensionsRef.current
+    const { centerx, centery } = dimensionsRef.current
     
     // Distance from center for spiral calculation
     const dx = x - centerx
@@ -208,7 +233,27 @@ export default function ParticleBackground() {
         const pixelY = y | 0
         if (pixelX >= 0 && pixelX < width && pixelY >= 0 && pixelY < height) {
           const i = 4 * (pixelX + pixelY * width)
-          fillPixel(imageBuffer, i, [r, g, b, newA])
+          
+          // Dynamic color evolution based on lifetime and velocity
+          const lifeProgress = newL / ttl
+          const velocityMag = Math.sqrt(newVx * newVx + newVy * newVy)
+          const velocityInfluence = Math.min(velocityMag * 0.08, 1)
+          
+          // Color evolution: particles get more vibrant as they age and move faster
+          const saturationBoost = lifeProgress * 0.4 + velocityInfluence * 0.6
+          const brightnessShift = Math.sin(lifeProgress * Math.PI) * 30
+          
+          // Enhance colors dynamically
+          const evolvedR = Math.floor(r * (1 + saturationBoost * 0.3) + brightnessShift + velocityInfluence * 25)
+          const evolvedG = Math.floor(g * (1 + saturationBoost * 0.2) + brightnessShift + velocityInfluence * 20)
+          const evolvedB = Math.floor(b * (1 + saturationBoost * 0.4) + brightnessShift + velocityInfluence * 30)
+          
+          fillPixel(imageBuffer, i, [
+            Math.min(255, Math.max(0, evolvedR)),
+            Math.min(255, Math.max(0, evolvedG)), 
+            Math.min(255, Math.max(0, evolvedB)),
+            newA
+          ])
         }
       } else {
         resetParticle(index)
@@ -311,6 +356,7 @@ export default function ParticleBackground() {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('mousemove', handleMouseMove)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
