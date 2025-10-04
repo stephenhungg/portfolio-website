@@ -8,19 +8,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), var(--font-inter);
-  --font-mono: var(--font-geist-sans), var(--font-inter);
+  --font-sans: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono);
 }
 
 /* Explicit font fallback for debugging */
 * {
-  font-family: var(--font-geist-sans), var(--font-inter), 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: var(--font-geist-mono), 'Geist Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace !important;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), 'Geist Sans', sans-serif;
+  font-family: var(--font-mono), 'Geist Mono', monospace;
   position: relative;
   overflow-x: hidden;
 }

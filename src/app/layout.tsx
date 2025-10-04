@@ -1,22 +1,16 @@
 "use client";
 
-import { Inter } from "next/font/google";
-import { Geist } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
 import { useEffect } from "react";
 
-// Geist Sans font configuration
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Geist Mono font configuration
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-// Keep Inter as fallback
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  weight: ["300", "400"], // Light and regular weights for thinner appearance
 });
 
 export default function RootLayout({
@@ -105,7 +99,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${inter.variable} font-sans antialiased bg-black text-white`}
+        className={`${geistMono.variable} font-mono antialiased bg-black text-white`}
       >
         <Navigation />
         {children}

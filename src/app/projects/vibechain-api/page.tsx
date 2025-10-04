@@ -8,7 +8,7 @@ export default function VibeChainAPIProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">vibechain-api</h1>
+        <h1 className="text-4xl font-light mb-4">vibechain-api</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           ML-powered playlist recommendation API that predicts what song you want to hear next.
         </p>

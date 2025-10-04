@@ -10,7 +10,7 @@ export default function NgordnetProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">ngordnet</h1>
+        <h1 className="text-4xl font-light mb-4">ngordnet</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Ngram-based word frequency analyzer built using java replicating core features of google ngram viewer and princeton wordnet.
         </p>

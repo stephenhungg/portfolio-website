@@ -8,7 +8,7 @@ export default function FuzzySchoolProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">mybackpack</h1>
+        <h1 className="text-4xl font-light mb-4">mybackpack</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.
         </p>

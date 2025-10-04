@@ -8,7 +8,7 @@ export default function VendiProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Vendi</h1>
+        <h1 className="text-4xl font-light mb-4">Vendi</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Smart Vending Solutions - Interdisciplinary Engineering Project
         </p>

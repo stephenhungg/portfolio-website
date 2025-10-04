@@ -8,7 +8,7 @@ export default function ClarifaiProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Clarifai</h1>
+        <h1 className="text-4xl font-light mb-4">Clarifai</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           AI Research Paper Analysis and Video Generation
         </p>

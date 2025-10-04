@@ -8,7 +8,7 @@ export default function PortfolioWebsiteProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Portfolio Website</h1>
+        <h1 className="text-4xl font-light mb-4">Portfolio Website</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Modern, responsive portfolio website showcasing my projects and skills
         </p>

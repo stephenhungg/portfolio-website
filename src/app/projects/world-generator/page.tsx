@@ -10,7 +10,7 @@ export default function WorldGeneratorProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">2d world generator</h1>
+        <h1 className="text-4xl font-light mb-4">2d world generator</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Simple 2d world generator built using java&apos;s stddraw library, with ray tracing based lighting and saving/loading functionality.
         </p>

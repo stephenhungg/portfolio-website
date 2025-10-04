@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <main className={`flex flex-col items-center justify-center min-h-[70vh] text-left transition-opacity duration-800 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       <div className="max-w-3xl w-full mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4 fade-in">about</h1>
+        <h1 className="text-4xl sm:text-5xl font-light mb-4 fade-in">about</h1>
         <div className="mt-2 flex items-start gap-6 fade-in">
           <div className="relative w-28 h-28 aspect-square rounded-full overflow-hidden border border-white/10 shrink-0">
             <Image

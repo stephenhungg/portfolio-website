@@ -1,7 +1,7 @@
 export default function Contact() {
   return (
     <main className="max-w-lg mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center fade-in">Contact</h1>
+      <h1 className="text-3xl font-light mb-8 text-center fade-in">Contact</h1>
       <div className="space-y-4">
         <div className="p-6 border border-gray-800 rounded-lg hover:border-gray-700 hover:bg-gray-900/50 transition-all duration-300 transform hover:scale-[1.02] text-center fade-in">
           <a href="https://www.linkedin.com/in/stephen-h-hung/" className="flex items-center justify-center gap-3 text-sm hover:text-gray-400 transition-colors group">

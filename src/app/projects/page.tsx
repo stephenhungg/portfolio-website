@@ -3,7 +3,7 @@
 export default function Projects() {
   return (
     <main className="max-w-4xl mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-4 text-center fade-in">Projects</h1>
+      <h1 className="text-3xl font-light mb-4 text-center fade-in">Projects</h1>
       <p className="text-gray-400 text-center mb-12 fade-in">
         Some of the projects are from school and some are on my own time.
       </p>

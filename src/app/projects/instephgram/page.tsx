@@ -8,7 +8,7 @@ export default function InstephgramProject() {
       </div>
       
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">instephgram</h1>
+        <h1 className="text-4xl font-light mb-4">instephgram</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Competition based instagram-style full-stack web app built using react.js, express.js, node.js, mongodb, and aws s3.
         </p>
