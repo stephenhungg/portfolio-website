@@ -1,6 +1,6 @@
 export default function InstephgramProject() {
   return (
-    <main className="max-w-4xl mx-auto py-12 px-4">
+    <main className="max-w-4xl mx-auto pt-20 pb-12 px-4">
       <div className="mb-8">
         <a href="/projects" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           ← Back to Projects
@@ -18,7 +18,7 @@ export default function InstephgramProject() {
         <a href="https://github.com/stephenhungg/InStephGram" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           GitHub →
         </a>
-        <a href="https://instephgram.onrender.com" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
+        <a href="https://instephgram.vercel.app" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           Website →
         </a>
       </div>

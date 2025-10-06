@@ -28,11 +28,11 @@ export default function Home() {
           />
         </h1>
         <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed fade-in">
-          Sophomore studying <strong>EECS at UC Berkeley</strong>. Passionate about <strong>full-stack development</strong>, <strong>machine learning</strong>, and <strong>artificial intelligence</strong>.
+          Sophomore studying <strong className="text-blue">EECS at UC Berkeley</strong>. Passionate about <strong className="text-green">full-stack development</strong>, <strong className="text-mauve">machine learning</strong>, and <strong className="text-pink">artificial intelligence</strong>.
         </p>
         <div className="flex gap-6 justify-center fade-in">
-          <a href="/projects" className="text-sm hover:text-gray-400 transition-colors">Projects</a>
-          <a href="/contact" className="text-sm hover:text-gray-400 transition-colors">Contact</a>
+          <a href="/projects" className="text-sm text-teal hover:opacity-80 transition-colors">Projects</a>
+          <a href="/contact" className="text-sm text-peach hover:opacity-80 transition-colors">Contact</a>
         </div>
         <div className="mt-8 fade-in">
           <VisitorCount />

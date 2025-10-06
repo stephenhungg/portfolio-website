@@ -7,15 +7,15 @@ export default function Navigation() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: "Home", color: "text-blue" },
+    { href: "/about", label: "About", color: "text-pink" },
+    { href: "/projects", label: "Projects", color: "text-green" },
+    { href: "/contact", label: "Contact", color: "text-peach" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center py-6">
-      <div className="glassmorphic-nav flex gap-2 text-sm px-6 py-3 rounded-2xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center py-4">
+      <div className="glassmorphic-nav flex items-center gap-2 text-sm px-6 py-3 rounded-2xl">
         {navItems.map((item) => {
           const isActive = pathname === item.href || 
             (item.href === "/projects" && pathname.startsWith("/projects"));
@@ -26,8 +26,8 @@ export default function Navigation() {
               href={item.href}
               className={`relative px-4 py-2 rounded-xl transition-all duration-300 ${
                 isActive
-                  ? "text-white active-nav-item"
-                  : "text-gray-200 hover:text-white"
+                  ? `${item.color} active-nav-item font-semibold`
+                  : `${item.color} hover:opacity-80`
               }`}
             >
               {item.label}

@@ -3,6 +3,7 @@
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
+import { ThemeProvider } from "../contexts/ThemeContext";
 import { useEffect } from "react";
 
 // Geist Mono font configuration
@@ -99,10 +100,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistMono.variable} font-mono antialiased bg-black text-white`}
+        className={`${geistMono.variable} font-mono antialiased`}
       >
-        <Navigation />
-        {children}
+        <ThemeProvider>
+          <Navigation />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

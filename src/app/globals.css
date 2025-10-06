@@ -3,6 +3,56 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  
+  /* Default Theme - Standard White/Gray Colors */
+  --rosewater: #ffffff;
+  --flamingo: #ffffff;
+  --pink: #ffffff;
+  --mauve: #ffffff;
+  --red: #ffffff;
+  --maroon: #ffffff;
+  --peach: #ffffff;
+  --yellow: #ffffff;
+  --green: #ffffff;
+  --teal: #ffffff;
+  --sky: #ffffff;
+  --sapphire: #ffffff;
+  --blue: #ffffff;
+  --lavender: #ffffff;
+}
+
+/* Catppuccin Macchiato Theme */
+[data-theme="catppuccin"] {
+  --background: #24273a;
+  --foreground: #cad3f5;
+  --gray-300: #b8c0e0;
+  --gray-400: #a5adcb;
+  --gray-500: #939ab7;
+  --gray-700: #494d64;
+  --gray-800: #363a4f;
+  --gray-900: #1e2030;
+  
+  /* Catppuccin Macchiato Accent Colors */
+  --rosewater: #f4dbd6;
+  --flamingo: #f0c6c6;
+  --pink: #f5bde6;
+  --mauve: #c6a0f6;
+  --red: #ed8796;
+  --maroon: #ee99a0;
+  --peach: #f5a97f;
+  --yellow: #eed49f;
+  --green: #a6da95;
+  --teal: #8bd5ca;
+  --sky: #91d7e3;
+  --sapphire: #7dc4e4;
+  --blue: #8aadf4;
+  --lavender: #b7bdf8;
 }
 
 @theme inline {
@@ -11,6 +61,85 @@
   --font-sans: var(--font-geist-mono);
   --font-mono: var(--font-geist-mono);
 }
+
+/* Custom utility classes for theme-aware colors */
+.bg-theme {
+  background-color: var(--background);
+}
+
+.text-theme {
+  color: var(--foreground);
+}
+
+.text-gray-300-theme {
+  color: var(--gray-300);
+}
+
+.text-gray-400-theme {
+  color: var(--gray-400);
+}
+
+.text-gray-500-theme {
+  color: var(--gray-500);
+}
+
+.border-gray-700-theme {
+  border-color: var(--gray-700);
+}
+
+.border-gray-800-theme {
+  border-color: var(--gray-800);
+}
+
+.bg-gray-900-theme {
+  background-color: var(--gray-900);
+}
+
+/* Catppuccin Accent Color Utilities */
+.text-rosewater { color: var(--rosewater); }
+.text-flamingo { color: var(--flamingo); }
+.text-pink { color: var(--pink); }
+.text-mauve { color: var(--mauve); }
+.text-red { color: var(--red); }
+.text-maroon { color: var(--maroon); }
+.text-peach { color: var(--peach); }
+.text-yellow { color: var(--yellow); }
+.text-green { color: var(--green); }
+.text-teal { color: var(--teal); }
+.text-sky { color: var(--sky); }
+.text-sapphire { color: var(--sapphire); }
+.text-blue { color: var(--blue); }
+.text-lavender { color: var(--lavender); }
+
+.bg-rosewater { background-color: var(--rosewater); }
+.bg-flamingo { background-color: var(--flamingo); }
+.bg-pink { background-color: var(--pink); }
+.bg-mauve { background-color: var(--mauve); }
+.bg-red { background-color: var(--red); }
+.bg-maroon { background-color: var(--maroon); }
+.bg-peach { background-color: var(--peach); }
+.bg-yellow { background-color: var(--yellow); }
+.bg-green { background-color: var(--green); }
+.bg-teal { background-color: var(--teal); }
+.bg-sky { background-color: var(--sky); }
+.bg-sapphire { background-color: var(--sapphire); }
+.bg-blue { background-color: var(--blue); }
+.bg-lavender { background-color: var(--lavender); }
+
+.border-rosewater { border-color: var(--rosewater); }
+.border-flamingo { border-color: var(--flamingo); }
+.border-pink { border-color: var(--pink); }
+.border-mauve { border-color: var(--mauve); }
+.border-red { border-color: var(--red); }
+.border-maroon { border-color: var(--maroon); }
+.border-peach { border-color: var(--peach); }
+.border-yellow { border-color: var(--yellow); }
+.border-green { border-color: var(--green); }
+.border-teal { border-color: var(--teal); }
+.border-sky { border-color: var(--sky); }
+.border-sapphire { border-color: var(--sapphire); }
+.border-blue { border-color: var(--blue); }
+.border-lavender { border-color: var(--lavender); }
 
 /* Explicit font fallback for debugging */
 * {
@@ -23,6 +152,7 @@ body {
   font-family: var(--font-mono), 'Geist Mono', monospace;
   position: relative;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Mouse gradient effect */
