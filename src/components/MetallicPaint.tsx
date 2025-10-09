@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 type ShaderParams = {
   patternScale: number;
@@ -376,7 +376,7 @@ export default function MetallicPaint({
   const totalAnimationTime = useRef(0);
   const lastRenderTime = useRef(0);
 
-  function updateUniforms() {
+  const updateUniforms = useCallback(() => {
     if (!gl || !uniforms) return;
     gl.uniform1f(uniforms.u_edge, params.edge);
     gl.uniform1f(uniforms.u_patternBlur, params.patternBlur);
@@ -384,7 +384,7 @@ export default function MetallicPaint({
     gl.uniform1f(uniforms.u_patternScale, params.patternScale);
     gl.uniform1f(uniforms.u_refraction, params.refraction);
     gl.uniform1f(uniforms.u_liquid, params.liquid);
-  }
+  }, [gl, uniforms, params]);
 
   useEffect(() => {
     function initShader() {
