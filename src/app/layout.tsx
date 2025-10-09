@@ -36,8 +36,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Primary Meta Tags */}
-        <title>Stephen Hung - EECS Student at UC Berkeley | Full-Stack Developer & ML/AI Enthusiast</title>
-        <meta name="title" content="Stephen Hung - EECS Student at UC Berkeley | Full-Stack Developer & ML/AI Enthusiast" />
+        <title>Stephen Hung's Portfolio</title>
+        <meta name="title" content="Stephen Hung's Portfolio" />
         <meta name="description" content="Stephen Hung is a sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects and technical work." />
         <meta name="keywords" content="Stephen Hung, UC Berkeley, EECS, computer science, full-stack developer, machine learning, AI, portfolio, software engineer, Berkeley" />
         <meta name="author" content="Stephen Hung" />
@@ -48,7 +48,7 @@ export default function RootLayout({
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stephenhung.me/" />
-        <meta property="og:title" content="Stephen Hung - EECS Student at UC Berkeley | Full-Stack Developer" />
+        <meta property="og:title" content="Stephen Hung's Portfolio" />
         <meta property="og:description" content="Sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects." />
         <meta property="og:image" content="https://stephenhung.me/og-image.png" />
         <meta property="og:site_name" content="Stephen Hung Portfolio" />
@@ -57,7 +57,7 @@ export default function RootLayout({
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://stephenhung.me/" />
-        <meta property="twitter:title" content="Stephen Hung - EECS Student at UC Berkeley" />
+        <meta property="twitter:title" content="Stephen Hung's Portfolio" />
         <meta property="twitter:description" content="Full-stack developer and ML/AI enthusiast. Explore my portfolio of innovative projects and technical work." />
         <meta property="twitter:image" content="https://stephenhung.me/og-image.png" />
         

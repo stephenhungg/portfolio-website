@@ -9,6 +9,41 @@ export default function Projects() {
       </p>
       
       <div className="grid gap-6">
+
+      <div className="p-6 border border-white rounded-lg hover:border-white/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">october 2025</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold text-white">calhacks 12.0</h2>
+               </div>
+                 <p className="text-gray-400 mb-2 leading-relaxed">
+                  gonna make something cool with my team.
+                 </p>
+              <span className="text-sm text-gray-500 italic">
+                Coming soon...
+              </span>
+            </div>
+          </div>
+        </div>
+
+      <div className="p-6 border border-yellow rounded-lg hover:border-green/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
+          <div className="flex gap-4">
+            <div className="text-sm text-gray-500 w-20 flex-shrink-0">october 2025</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold text-yellow">clearpath medical ai agent</h2>
+               </div>
+                 <p className="text-gray-400 mb-2 leading-relaxed">
+                  pfmea analysis agent for clearpath medical. in collaboration with theta tau professional engineering fraternity.
+                 </p>
+              <span className="text-sm text-gray-500 italic">
+                In progress...
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div className="p-6 border border-green rounded-lg hover:border-green/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">october 2025</div>
@@ -20,11 +55,13 @@ export default function Projects() {
                   mobile app for food rescue partners to instantly log donation data, replacing manual pen-and-paper systems. built with cal blueprint.
                  </p>
               <span className="text-sm text-gray-500 italic">
-                Coming soon...
+                In progress...
               </span>
             </div>
           </div>
         </div>
+
+        
 
         <div className="p-6 border border-red rounded-lg hover:border-red/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in">
           <div className="flex gap-4">
