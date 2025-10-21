@@ -1,0 +1,26 @@
+{
+  "images": [
+    {
+      "id": "gallery_1761076775831",
+      "filename": "gallery_1761076775831.JPG",
+      "title": "Taco Bell",
+      "description": "pbros",
+      "uploadDate": "2025-10-21",
+      "dimensions": "800x600",
+      "uploadedBy": "admin"
+    },
+    {
+      "id": "gallery_1761076797828",
+      "filename": "gallery_1761076797828.jpg",
+      "title": "santa barbara",
+      "description": "im tuff",
+      "uploadDate": "2025-10-21",
+      "dimensions": "800x600",
+      "uploadedBy": "admin"
+    }
+  ],
+  "metadata": {
+    "totalImages": 2,
+    "lastUpdated": "2025-10-21T19:59:57.833Z"
+  }
+}

@@ -10,6 +10,7 @@ export default function Navigation() {
     { href: "/", label: "Home", color: "text-blue" },
     { href: "/about", label: "About", color: "text-pink" },
     { href: "/projects", label: "Projects", color: "text-green" },
+    { href: "/gallery", label: "Gallery", color: "text-yellow" },
     { href: "/contact", label: "Contact", color: "text-peach" },
   ];
 
