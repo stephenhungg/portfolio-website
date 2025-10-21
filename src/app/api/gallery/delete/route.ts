@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile, writeFile, unlink } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { del } from '@vercel/blob';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,13 +15,22 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Image ID is required' }, { status: 400 });
     }
 
-    // Read current gallery.json
-    const galleryJsonPath = join(process.cwd(), 'src', 'data', 'gallery.json');
+    if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+      return NextResponse.json({
+        error: 'Gallery delete is not available. Redis storage not configured.'
+      }, { status: 503 });
+    }
 
+    // Get current gallery data
     let galleryData;
     try {
-      const jsonData = await readFile(galleryJsonPath, 'utf8');
-      galleryData = JSON.parse(jsonData);
+      galleryData = await redis.get('gallery-data') as {
+        images: Array<{ id: string; blobUrl: string }>;
+        metadata: { totalImages: number; lastUpdated: string };
+      };
+      if (!galleryData) {
+        return NextResponse.json({ error: 'Gallery data not found' }, { status: 404 });
+      }
     } catch {
       return NextResponse.json({ error: 'Gallery data not found' }, { status: 404 });
     }
@@ -30,18 +43,13 @@ export async function POST(request: NextRequest) {
     }
 
     const imageToDelete = galleryData.images[imageIndex];
-    const filename = imageToDelete.filename;
 
-    // Delete the physical file
-    const filePath = join(process.cwd(), 'public', 'images', 'gallery', filename);
-
-    if (existsSync(filePath)) {
-      try {
-        await unlink(filePath);
-      } catch (error) {
-        console.error('Error deleting file:', error);
-        return NextResponse.json({ error: 'Failed to delete image file' }, { status: 500 });
-      }
+    // Delete the image from Vercel Blob
+    try {
+      await del(imageToDelete.blobUrl);
+    } catch (error) {
+      console.error('Error deleting image from Vercel Blob:', error);
+      return NextResponse.json({ error: 'Failed to delete image file' }, { status: 500 });
     }
 
     // Remove image from gallery data
@@ -51,8 +59,8 @@ export async function POST(request: NextRequest) {
     galleryData.metadata.totalImages = galleryData.images.length;
     galleryData.metadata.lastUpdated = new Date().toISOString();
 
-    // Write updated gallery.json
-    await writeFile(galleryJsonPath, JSON.stringify(galleryData, null, 2));
+    // Save updated gallery data
+    await redis.set('gallery-data', galleryData);
 
     return NextResponse.json({
       success: true,

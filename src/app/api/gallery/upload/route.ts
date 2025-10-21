@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, readFile } from 'fs/promises';
-import { join } from 'path';
-import { existsSync, mkdirSync } from 'fs';
+import { put } from '@vercel/blob';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
+});
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Redis is configured for metadata storage
+    if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+      return NextResponse.json({
+        error: 'Gallery upload is not available. Redis storage not configured.'
+      }, { status: 503 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const title = formData.get('title') as string;
@@ -19,57 +30,69 @@ export async function POST(request: NextRequest) {
     const fileExtension = file.name.split('.').pop();
     const filename = `gallery_${timestamp}.${fileExtension}`;
 
-    // Convert file to buffer
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Upload to Vercel Blob
+    const blob = await put(filename, file, {
+      access: 'public',
+    });
 
-    // Ensure gallery directory exists
-    const galleryDir = join(process.cwd(), 'public', 'images', 'gallery');
-    if (!existsSync(galleryDir)) {
-      mkdirSync(galleryDir, { recursive: true });
-    }
-
-    // Write file to gallery directory
-    const filePath = join(galleryDir, filename);
-    await writeFile(filePath, buffer);
-
-    // Read existing gallery.json
-    const galleryJsonPath = join(process.cwd(), 'src', 'data', 'gallery.json');
-    let galleryData;
-
+    // Get existing gallery data from Redis
+    let galleryData: {
+      images: Array<{
+        id: string;
+        title: string;
+        description: string;
+        uploadDate: string;
+        blobUrl: string;
+        uploadedBy: string;
+      }>;
+      metadata: { totalImages: number; lastUpdated: string };
+    };
     try {
-      const jsonData = await readFile(galleryJsonPath, 'utf8');
-      galleryData = JSON.parse(jsonData);
+      const existingData = await redis.get('gallery-data') as {
+        images: Array<{
+          id: string;
+          title: string;
+          description: string;
+          uploadDate: string;
+          blobUrl: string;
+          uploadedBy: string;
+        }>;
+        metadata: { totalImages: number; lastUpdated: string };
+      } | null;
+      galleryData = existingData || {
+        images: [],
+        metadata: { totalImages: 0, lastUpdated: new Date().toISOString() }
+      };
     } catch {
-      // If file doesn't exist, create new structure
       galleryData = {
         images: [],
         metadata: { totalImages: 0, lastUpdated: new Date().toISOString() }
       };
     }
 
-    // Add new image data
-    const newImage = {
+    // Store image metadata
+    const imageData = {
       id: `gallery_${timestamp}`,
-      filename,
       title: title || `Photo ${timestamp}`,
       description: description || '',
       uploadDate: new Date().toISOString().split('T')[0],
-      dimensions: '800x600', // You could implement actual dimension detection here
+      blobUrl: blob.url,
       uploadedBy: 'admin'
     };
 
-    galleryData.images.push(newImage);
+    // Add to gallery data
+    galleryData.images.push(imageData);
     galleryData.metadata.totalImages = galleryData.images.length;
     galleryData.metadata.lastUpdated = new Date().toISOString();
 
-    // Write updated gallery.json
-    await writeFile(galleryJsonPath, JSON.stringify(galleryData, null, 2));
+    // Save updated gallery data to Redis
+    await redis.set('gallery-data', galleryData);
 
     return NextResponse.json({
       success: true,
       message: 'File uploaded successfully',
-      filename
+      imageId: imageData.id,
+      blobUrl: blob.url
     });
 
   } catch (error) {

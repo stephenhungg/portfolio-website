@@ -1,23 +1,63 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Masonry from '../../components/Masonry';
 import Lightbox from '../../components/Lightbox';
-import galleryData from '../../data/gallery.json';
-
-// Convert gallery data to masonry format
-const galleryItems = galleryData.images.map((image, index) => ({
-  id: image.id,
-  img: `/images/gallery/${image.filename}`,
-  url: `/images/gallery/${image.filename}`, // Click to view full size
-  height: 300 + (index % 4) * 100, // Vary heights for masonry effect
-  title: image.title,
-  description: image.description
-}));
 
 export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [galleryData, setGalleryData] = useState<{
+    images: Array<{
+      id: string;
+      title?: string;
+      description?: string;
+      blobUrl?: string;
+      filename?: string;
+    }>;
+    metadata: { totalImages: number };
+  }>({ images: [], metadata: { totalImages: 0 } });
+  const [galleryItems, setGalleryItems] = useState<Array<{
+    id: string;
+    img: string;
+    url: string;
+    height: number;
+    title?: string;
+    description?: string;
+  }>>([]);
+
+  useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        const response = await fetch('/api/gallery/list');
+        if (response.ok) {
+          const data = await response.json();
+          setGalleryData(data);
+
+          // Convert to masonry format with Blob URLs or fallback to local images
+          const items = data.images.map((image: {
+            id: string;
+            title?: string;
+            description?: string;
+            blobUrl?: string;
+            filename?: string;
+          }, index: number) => ({
+            id: image.id,
+            img: image.blobUrl || `/images/gallery/${image.filename}`,
+            url: image.blobUrl || `/images/gallery/${image.filename}`,
+            height: 300 + (index % 4) * 100,
+            title: image.title,
+            description: image.description
+          }));
+          setGalleryItems(items);
+        }
+      } catch (error) {
+        console.error('Error fetching gallery data:', error);
+      }
+    };
+
+    fetchGalleryData();
+  }, []);
 
   const handleImageClick = (item: { id: string; img: string; title?: string; description?: string }) => {
     const index = galleryItems.findIndex(img => img.id === item.id);

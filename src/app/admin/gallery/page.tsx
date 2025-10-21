@@ -16,7 +16,8 @@ export default function AdminGallery() {
   });
   const [galleryImages, setGalleryImages] = useState<Array<{
     id: string;
-    filename: string;
+    filename?: string;
+    blobUrl?: string;
     title?: string;
     description?: string;
     uploadDate: string;
@@ -303,7 +304,7 @@ export default function AdminGallery() {
               {galleryImages.map((image) => (
                 <div key={image.id} className="bg-black border border-white rounded-lg p-4">
                   <img
-                    src={`/images/gallery/${image.filename}`}
+                    src={image.blobUrl || `/images/gallery/${image.filename}`}
                     alt={image.title || 'Gallery image'}
                     className="w-full h-32 object-cover rounded border border-white mb-3"
                   />
