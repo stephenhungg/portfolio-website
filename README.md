@@ -7,6 +7,7 @@ My personal portfolio built with Next.js, TypeScript, and Tailwind CSS.
 ## What's here
 
 - Project showcase with details about each one
+- Photo gallery with full CRUD functionality
 - Contact info and social links
 - Responsive design that works on mobile
 - Clean dark theme with some smooth animations
@@ -21,6 +22,8 @@ My personal portfolio built with Next.js, TypeScript, and Tailwind CSS.
 ## Projects
 
 **2025:**
+
+- crakd.co - ai/ml system for talent identification
 - Clarifai - AI research paper analyzer with video generation
 - VibeChain API - ML playlist recommendation API
 - SpotifyTUI - Terminal interface for Spotify
