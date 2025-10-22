@@ -84,11 +84,8 @@ interface MasonryProps {
 
 const Masonry: React.FC<MasonryProps> = ({
   items,
-  duration = 0.6,
   stagger = 0.05,
   animateFrom = 'bottom',
-  blurToFocus = true,
-  colorShiftOnHover = false,
   onImageClick
 }) => {
   const columns = useMedia(
