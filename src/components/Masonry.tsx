@@ -135,36 +135,33 @@ const Masonry: React.FC<MasonryProps> = ({
   }, [imagesReady]);
 
   const getItemStyle = (item: GridItem, index: number) => {
+    const isHovered = hoveredId === item.id;
     return {
       left: `${item.x}px`,
       top: `${item.y}px`,
       width: `${item.w}px`,
       height: `${item.h}px`,
       transitionDelay: animationStarted ? '0s' : `${index * stagger}s`,
-      transitionDuration: hoveredId !== null ? '0.4s' : `${duration}s`,
+      transitionDuration: '0.3s',
       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      willChange: 'transform, opacity, filter'
+      willChange: isHovered ? 'transform' : 'auto'
     };
   };
 
   const getItemClasses = (item: GridItem) => {
     const isHovered = hoveredId === item.id;
-    const hasHoveredItem = hoveredId !== null;
-    const shouldShrink = hasHoveredItem && !isHovered;
 
-    let classes = 'absolute transition-all cursor-pointer ';
+    let classes = 'absolute transition-transform transition-opacity cursor-pointer ';
 
     if (animationStarted) {
       classes += 'opacity-100 ';
     } else {
-      classes += `opacity-0 ${animateFrom === 'bottom' ? 'translate-y-20' : ''} ${blurToFocus ? 'blur-sm' : ''} `;
+      classes += `opacity-0 ${animateFrom === 'bottom' ? 'translate-y-8' : ''} `;
     }
 
-    // Add scale and z-index classes
+    // Simplified hover scaling
     if (isHovered) {
-      classes += 'scale-150 z-50 ';
-    } else if (shouldShrink) {
-      classes += 'scale-75 z-0 ';
+      classes += 'scale-110 z-50 ';
     } else {
       classes += 'scale-100 z-10 ';
     }
@@ -184,32 +181,13 @@ const Masonry: React.FC<MasonryProps> = ({
           onMouseLeave={() => setHoveredId(null)}
         >
           <div
-            className="relative w-full h-full bg-cover bg-center rounded-xl overflow-hidden group border border-white/10 hover:border-white/40 transition-all duration-400"
+            className="relative w-full h-full bg-cover bg-center rounded-xl overflow-hidden border border-white/10 hover:border-white/30 transition-colors duration-200"
             style={{ backgroundImage: `url(${item.img})` }}
           >
-            {colorShiftOnHover && (
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/30 to-sky-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            )}
-
-            {/* Dynamic overlay based on hover state */}
-            <div className={`absolute inset-0 transition-all duration-400 ${
-              hoveredId === item.id
-                ? 'bg-black/5'
-                : hoveredId !== null
-                  ? 'bg-black/60'
-                  : 'bg-black/20'
+            {/* Single optimized overlay */}
+            <div className={`absolute inset-0 bg-gradient-to-t from-black/40 to-transparent transition-opacity duration-200 ${
+              hoveredId === item.id ? 'opacity-30' : 'opacity-60'
             }`} />
-
-            {/* Enhanced brightness for hovered item */}
-            {hoveredId === item.id && (
-              <div className="absolute inset-0 bg-white/10 transition-all duration-400" />
-            )}
-
-            {/* Subtle gradient overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-400 ${
-              hoveredId === item.id ? 'opacity-20' : 'opacity-60'
-            }`} />
-
           </div>
         </div>
       ))}
