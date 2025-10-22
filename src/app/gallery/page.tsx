@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import Masonry from '../../components/Masonry';
 import Lightbox from '../../components/Lightbox';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function Gallery() {
+  const { theme } = useTheme();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [galleryData, setGalleryData] = useState<{
@@ -86,15 +88,19 @@ export default function Gallery() {
   return (
     <main className="max-w-7xl mx-auto pt-20 pb-12 px-4">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-3xl font-light text-center fade-in text-pink flex-1">Gallery</h1>
+        <h1 className={`text-3xl font-light text-center fade-in flex-1 ${theme === 'catppuccin' ? 'text-pink' : 'text-pink'}`}>Gallery</h1>
         <a
           href="/admin/gallery"
-          className="text-xs text-gray-500 hover:text-white transition-colors px-3 py-1 rounded border border-gray-600/30 hover:border-white"
+          className={`text-xs transition-colors px-3 py-1 rounded border ${
+            theme === 'catppuccin'
+              ? 'text-gray-400-theme hover:text-theme border-gray-700-theme hover:border-mauve'
+              : 'text-gray-500 hover:text-white border-gray-600/30 hover:border-white'
+          }`}
         >
           Admin
         </a>
       </div>
-      <p className="text-gray-400 text-center mb-12 fade-in">
+      <p className={`text-center mb-12 fade-in ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
         A collection of photos and moments. ({galleryData.metadata.totalImages} photos)
       </p>
 

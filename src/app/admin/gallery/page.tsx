@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function AdminGallery() {
+  const { theme } = useTheme();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [password, setPassword] = useState('');
@@ -253,35 +255,47 @@ export default function AdminGallery() {
 
   if (isAuthLoading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-black">
-        <div className="text-white">Loading...</div>
+      <main className={`min-h-screen flex items-center justify-center ${theme === 'catppuccin' ? 'bg-theme' : 'bg-black'}`}>
+        <div className={theme === 'catppuccin' ? 'text-theme' : 'text-white'}>Loading...</div>
       </main>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-black">
-        <div className="bg-black border border-white rounded-xl p-8 w-full max-w-md">
-          <h1 className="text-2xl font-light mb-6 text-center text-white">Gallery Admin</h1>
+      <main className={`min-h-screen flex items-center justify-center ${theme === 'catppuccin' ? 'bg-theme' : 'bg-black'}`}>
+        <div className={`rounded-xl p-8 w-full max-w-md border ${
+          theme === 'catppuccin'
+            ? 'bg-gray-900-theme border-gray-700-theme'
+            : 'bg-black border-white'
+        }`}>
+          <h1 className={`text-2xl font-light mb-6 text-center ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Gallery Admin</h1>
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm text-white mb-2">Password</label>
+              <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-black border border-white rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none transition-colors ${
+                  theme === 'catppuccin'
+                    ? 'bg-gray-800-theme border-gray-700-theme text-theme placeholder-gray-400-theme focus:border-mauve'
+                    : 'bg-black border-white text-white placeholder-gray-400 focus:border-white'
+                }`}
                 placeholder="Enter admin password"
                 required
               />
             </div>
             {message && (
-              <p className="text-red-400 text-sm">{message}</p>
+              <p className={theme === 'catppuccin' ? 'text-red text-sm' : 'text-red-400 text-sm'}>{message}</p>
             )}
             <button
               type="submit"
-              className="w-full bg-black hover:bg-gray-900 text-white border border-white px-6 py-3 rounded-lg transition-colors duration-200"
+              className={`w-full px-6 py-3 rounded-lg border transition-colors duration-200 ${
+                theme === 'catppuccin'
+                  ? 'bg-gray-800-theme hover:bg-gray-700-theme text-theme border-gray-700-theme hover:border-mauve'
+                  : 'bg-black hover:bg-gray-900 text-white border-white'
+              }`}
             >
               Access Gallery Admin
             </button>
@@ -292,62 +306,82 @@ export default function AdminGallery() {
   }
 
   return (
-    <main className="min-h-screen bg-black pt-20 pb-12 px-4">
+    <main className={`min-h-screen pt-20 pb-12 px-4 ${theme === 'catppuccin' ? 'bg-theme' : 'bg-black'}`}>
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-light text-white">Gallery Admin</h1>
+          <h1 className={`text-3xl font-light ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Gallery Admin</h1>
           <button
             onClick={handleLogout}
-            className="text-white hover:text-gray-300 transition-colors"
+            className={`transition-colors ${
+              theme === 'catppuccin'
+                ? 'text-theme hover:text-gray-300-theme'
+                : 'text-white hover:text-gray-300'
+            }`}
           >
             Logout
           </button>
         </div>
 
-        <div className="bg-black border border-white rounded-xl p-6">
-          <h2 className="text-xl font-light text-white mb-6">Upload New Photo</h2>
+        <div className={`rounded-xl p-6 border ${
+          theme === 'catppuccin'
+            ? 'bg-gray-900-theme border-gray-700-theme'
+            : 'bg-black border-white'
+        }`}>
+          <h2 className={`text-xl font-light mb-6 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Upload New Photo</h2>
 
           <form onSubmit={handleUpload} className="space-y-6">
             <div>
-              <label className="block text-sm text-white mb-2">Select Photo</label>
+              <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Select Photo</label>
               <input
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 onChange={handleFileSelect}
-                className="w-full px-4 py-3 bg-black border border-white rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-white file:text-black hover:file:bg-gray-200 file:transition-colors"
+                className={`w-full px-4 py-3 rounded-lg border file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:transition-colors ${
+                  theme === 'catppuccin'
+                    ? 'bg-gray-800-theme border-gray-700-theme text-theme file:bg-mauve file:text-black hover:file:bg-pink'
+                    : 'bg-black border-white text-white file:bg-white file:text-black hover:file:bg-gray-200'
+                }`}
                 required
               />
             </div>
 
             {preview && (
               <div className="relative">
-                <label className="block text-sm text-white mb-2">Preview</label>
+                <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Preview</label>
                 <img
                   src={preview}
                   alt="Preview"
-                  className="w-full max-w-sm rounded-lg border border-white"
+                  className={`w-full max-w-sm rounded-lg border ${theme === 'catppuccin' ? 'border-gray-700-theme' : 'border-white'}`}
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-sm text-white mb-2">Title (optional)</label>
+              <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Title (optional)</label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-4 py-3 bg-black border border-white rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none transition-colors ${
+                  theme === 'catppuccin'
+                    ? 'bg-gray-800-theme border-gray-700-theme text-theme placeholder-gray-400-theme focus:border-mauve'
+                    : 'bg-black border-white text-white placeholder-gray-400 focus:border-white'
+                }`}
                 placeholder="Photo title"
               />
             </div>
 
             <div>
-              <label className="block text-sm text-white mb-2">Description (optional)</label>
+              <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Description (optional)</label>
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-3 bg-black border border-white rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white h-24 resize-none"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none h-24 resize-none transition-colors ${
+                  theme === 'catppuccin'
+                    ? 'bg-gray-800-theme border-gray-700-theme text-theme placeholder-gray-400-theme focus:border-mauve'
+                    : 'bg-black border-white text-white placeholder-gray-400 focus:border-white'
+                }`}
                 placeholder="Photo description"
               />
             </div>
@@ -362,7 +396,11 @@ export default function AdminGallery() {
             <button
               type="submit"
               disabled={uploading}
-              className="w-full bg-black hover:bg-gray-900 text-white border border-white px-6 py-3 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full px-6 py-3 rounded-lg border transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+                theme === 'catppuccin'
+                  ? 'bg-gray-800-theme hover:bg-gray-700-theme text-theme border-gray-700-theme hover:border-mauve'
+                  : 'bg-black hover:bg-gray-900 text-white border-white'
+              }`}
             >
               {uploading ? 'Uploading...' : 'Upload Photo'}
             </button>
@@ -371,33 +409,53 @@ export default function AdminGallery() {
 
         {/* Gallery Management Section */}
         {galleryImages.length > 0 && (
-          <div className="bg-black border border-white rounded-xl p-6 mt-8">
-            <h2 className="text-xl font-light text-white mb-6">Manage Gallery Images</h2>
+          <div className={`rounded-xl p-6 mt-8 border ${
+            theme === 'catppuccin'
+              ? 'bg-gray-900-theme border-gray-700-theme'
+              : 'bg-black border-white'
+          }`}>
+            <h2 className={`text-xl font-light mb-6 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Manage Gallery Images</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {galleryImages.map((image) => (
-                <div key={image.id} className="bg-black border border-white rounded-lg p-4">
+                <div key={image.id} className={`rounded-lg p-4 border ${
+                  theme === 'catppuccin'
+                    ? 'bg-gray-800-theme border-gray-700-theme'
+                    : 'bg-black border-white'
+                }`}>
                   <img
                     src={image.blobUrl || `/images/gallery/${image.filename}`}
                     alt={image.title || 'Gallery image'}
-                    className="w-full h-32 object-cover rounded border border-white mb-3"
+                    className={`w-full h-32 object-cover rounded mb-3 border ${
+                      theme === 'catppuccin' ? 'border-gray-700-theme' : 'border-white'
+                    }`}
                   />
                   <div className="space-y-2">
-                    <h3 className="text-white text-sm font-medium">
+                    <h3 className={`text-sm font-medium ${
+                      theme === 'catppuccin' ? 'text-theme' : 'text-white'
+                    }`}>
                       {image.title || 'Untitled'}
                     </h3>
-                    <p className="text-gray-400 text-xs">
+                    <p className={`text-xs ${
+                      theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'
+                    }`}>
                       {new Date(image.uploadDate).toLocaleDateString()}
                     </p>
                     {image.description && (
-                      <p className="text-gray-300 text-xs line-clamp-2">
+                      <p className={`text-xs line-clamp-2 ${
+                        theme === 'catppuccin' ? 'text-gray-300-theme' : 'text-gray-300'
+                      }`}>
                         {image.description}
                       </p>
                     )}
                     <button
                       onClick={() => setDeleteConfirmId(image.id)}
                       disabled={deleting === image.id}
-                      className="w-full bg-red-900 hover:bg-red-800 text-red-300 border border-red-700 px-3 py-2 rounded text-xs transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-full px-3 py-2 rounded text-xs transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed border ${
+                        theme === 'catppuccin'
+                          ? 'bg-red hover:bg-red text-mantle border-red'
+                          : 'bg-red-900 hover:bg-red-800 text-red-300 border-red-700'
+                      }`}
                     >
                       {deleting === image.id ? 'Deleting...' : 'Delete Image'}
                     </button>
@@ -410,23 +468,39 @@ export default function AdminGallery() {
 
         {/* Delete Confirmation Modal */}
         {deleteConfirmId && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-            <div className="bg-black border border-white rounded-xl p-6 w-full max-w-md mx-4">
-              <h3 className="text-lg font-light text-white mb-4">Confirm Deletion</h3>
-              <p className="text-gray-300 text-sm mb-6">
+          <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm ${
+            theme === 'catppuccin' ? 'bg-gray-900-theme/80' : 'bg-black/80'
+          }`}>
+            <div className={`rounded-xl p-6 w-full max-w-md mx-4 border ${
+              theme === 'catppuccin'
+                ? 'bg-gray-900-theme border-gray-700-theme'
+                : 'bg-black border-white'
+            }`}>
+              <h3 className={`text-lg font-light mb-4 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Confirm Deletion</h3>
+              <p className={`text-sm mb-6 ${
+                theme === 'catppuccin' ? 'text-gray-300-theme' : 'text-gray-300'
+              }`}>
                 Are you sure you want to delete this image? This action cannot be undone.
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setDeleteConfirmId(null)}
-                  className="flex-1 bg-black hover:bg-gray-900 text-white border border-white px-4 py-2 rounded transition-colors duration-200"
+                  className={`flex-1 px-4 py-2 rounded transition-colors duration-200 border ${
+                    theme === 'catppuccin'
+                      ? 'bg-gray-800-theme hover:bg-gray-700-theme text-theme border-gray-700-theme hover:border-mauve'
+                      : 'bg-black hover:bg-gray-900 text-white border-white'
+                  }`}
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirmId)}
                   disabled={deleting === deleteConfirmId}
-                  className="flex-1 bg-red-900 hover:bg-red-800 text-red-300 border border-red-700 px-4 py-2 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`flex-1 px-4 py-2 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed border ${
+                    theme === 'catppuccin'
+                      ? 'bg-red hover:bg-red text-mantle border-red'
+                      : 'bg-red-900 hover:bg-red-800 text-red-300 border-red-700'
+                  }`}
                 >
                   {deleting === deleteConfirmId ? 'Deleting...' : 'Delete'}
                 </button>
@@ -438,7 +512,11 @@ export default function AdminGallery() {
         <div className="mt-8 text-center">
           <a
             href="/gallery"
-            className="text-white hover:text-gray-300 transition-colors"
+            className={`transition-colors ${
+              theme === 'catppuccin'
+                ? 'text-theme hover:text-gray-300-theme'
+                : 'text-white hover:text-gray-300'
+            }`}
           >
             ← Back to Gallery
           </a>
