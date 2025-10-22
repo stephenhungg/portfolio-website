@@ -25,10 +25,12 @@ export default function Gallery() {
     title?: string;
     description?: string;
   }>>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchGalleryData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/gallery/list');
         if (response.ok) {
           const data = await response.json();
@@ -53,6 +55,8 @@ export default function Gallery() {
         }
       } catch (error) {
         console.error('Error fetching gallery data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -95,18 +99,33 @@ export default function Gallery() {
       </p>
 
       <div className="min-h-screen">
-        <Masonry
-          items={galleryItems}
-          ease="power3.out"
-          duration={0.6}
-          stagger={0.05}
-          animateFrom="bottom"
-          scaleOnHover={true}
-          hoverScale={1.5}
-          blurToFocus={true}
-          colorShiftOnHover={false}
-          onImageClick={handleImageClick}
-        />
+        {isLoading ? (
+          <div className="flex items-center justify-center h-64">
+            <div className={`text-center ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-current mx-auto mb-4"></div>
+              Loading gallery...
+            </div>
+          </div>
+        ) : galleryItems.length === 0 ? (
+          <div className="flex items-center justify-center h-64">
+            <div className={`text-center ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
+              No images in gallery yet.
+            </div>
+          </div>
+        ) : (
+          <Masonry
+            items={galleryItems}
+            ease="power3.out"
+            duration={0.6}
+            stagger={0.05}
+            animateFrom="bottom"
+            scaleOnHover={true}
+            hoverScale={1.5}
+            blurToFocus={true}
+            colorShiftOnHover={false}
+            onImageClick={handleImageClick}
+          />
+        )}
       </div>
 
       {/* Lightbox */}

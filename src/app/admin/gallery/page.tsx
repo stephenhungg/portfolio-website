@@ -25,6 +25,52 @@ export default function AdminGallery() {
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
 
+  // Image compression utility
+  const compressImage = async (file: File, maxWidth = 1920, maxHeight = 1080, quality = 0.8): Promise<File> => {
+    return new Promise((resolve) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d')!;
+      const img = new Image();
+
+      img.onload = () => {
+        // Calculate new dimensions while maintaining aspect ratio
+        let { width, height } = img;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = (width * maxHeight) / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        // Draw and compress
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(
+          (blob) => {
+            const compressedFile = new File([blob!], file.name, {
+              type: 'image/jpeg',
+              lastModified: Date.now(),
+            });
+            resolve(compressedFile);
+          },
+          'image/jpeg',
+          quality
+        );
+      };
+
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
   const fetchGalleryImages = async () => {
     try {
       const response = await fetch('/api/gallery/list');
@@ -131,14 +177,42 @@ export default function AdminGallery() {
     }
   };
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      setMessage('Processing image...');
+
+      try {
+        // Show original preview first
+        const reader = new FileReader();
+        reader.onload = () => {
+          setPreview(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+
+        // Show file size info
+        const originalSize = (file.size / 1024 / 1024).toFixed(2);
+        setMessage(`Original size: ${originalSize}MB - Compressing...`);
+
+        // Compress if file is larger than 2MB
+        if (file.size > 2 * 1024 * 1024) {
+          const compressedFile = await compressImage(file);
+          const compressedSize = (compressedFile.size / 1024 / 1024).toFixed(2);
+          setMessage(`Compressed: ${originalSize}MB → ${compressedSize}MB`);
+
+          // Replace the file input with compressed version
+          const dt = new DataTransfer();
+          dt.items.add(compressedFile);
+          if (fileInputRef.current) {
+            fileInputRef.current.files = dt.files;
+          }
+        } else {
+          setMessage(`File size: ${originalSize}MB (no compression needed)`);
+        }
+      } catch (error) {
+        console.error('Error processing image:', error);
+        setMessage('Error processing image. Please try again.');
+      }
     }
   };
 
