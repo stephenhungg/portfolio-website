@@ -15,10 +15,13 @@ export default function CrakdProject() {
       </div>
 
       <div className="flex gap-4 mb-8">
-        <a href="https://github.com/qtzx06/crakd" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
+        <a href="https://crakd.co" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
+          Live Demo →
+        </a>
+        <a href="https://github.com/qtzx06/crakd" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           GitHub →
         </a>
-        <a href="https://docs.google.com/presentation/d/1BpHcg1xGJRs0n8QMZO2NZ-OzX1LANCFfSVIV0zRcYII/edit?usp=sharing" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
+        <a href="https://docs.google.com/presentation/d/1BpHcg1xGJRs0n8QMZO2NZ-OzX1LANCFfSVIV0zRcYII/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
           Slideshow →
         </a>
       </div>

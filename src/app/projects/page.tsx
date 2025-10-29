@@ -15,14 +15,14 @@ export default function Projects() {
             <div className="text-sm text-gray-500 w-20 flex-shrink-0">october 2025</div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <h2 className="text-xl font-semibold text-white">calhacks 12.0</h2>
+                <h2 className="text-xl font-semibold text-white">darwin</h2>
                </div>
                  <p className="text-gray-400 mb-2 leading-relaxed">
-                  gonna make something cool with my team.
+                  interactive platform where four specialized ai agents compete to complete tasks in real-time, with blockchain-based voting on sui network. built for calhacks 12.0.
                  </p>
-              <span className="text-sm text-gray-500 italic">
-                Coming soon...
-              </span>
+              <a href="/projects/darwin" className="text-sm text-gray-500 hover:text-gray-400 transition-colors group">
+                Read more <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+              </a>
             </div>
           </div>
         </div>

@@ -11,13 +11,37 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Safe localStorage helpers that work in both SSR and client
+const safeLocalStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      if (typeof window === "undefined") return null;
+      if (typeof localStorage === "undefined") return null;
+      if (typeof localStorage.getItem !== "function") return null;
+      return localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      if (typeof window === "undefined") return;
+      if (typeof localStorage === "undefined") return;
+      if (typeof localStorage.setItem !== "function") return;
+      localStorage.setItem(key, value);
+    } catch {
+      // Silently fail
+    }
+  }
+};
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Get theme from localStorage or default to dark
-    const savedTheme = localStorage.getItem("theme") as Theme;
+    const savedTheme = safeLocalStorage.getItem("theme") as Theme;
     if (savedTheme && (savedTheme === "dark" || savedTheme === "catppuccin")) {
       setTheme(savedTheme);
     }
@@ -28,7 +52,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (mounted) {
       // Apply theme to document
       document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
+      safeLocalStorage.setItem("theme", theme);
     }
   }, [theme, mounted]);
 

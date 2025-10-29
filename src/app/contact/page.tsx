@@ -51,6 +51,14 @@ export default function Contact() {
             <span>@stephen</span>
           </a>
         </div>
+        <div className="p-6 border border-red rounded-lg hover:border-red/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] text-center fade-in">
+          <a href="https://devpost.com/stephenhungg" className="flex items-center justify-center gap-3 text-sm text-red hover:opacity-80 transition-colors group">
+            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.002 1.61L0 12.004 6.002 22.39h11.996L24 12.004 17.998 1.61H6.002zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31 0 4.436-3.21 6.302-6.456 6.302H7.595V5.694zm3.468 2.647v7.326h.716c4.168 0 4.168-7.326 0-7.326h-.716z"/>
+            </svg>
+            <span>stephenhungg</span>
+          </a>
+        </div>
       </div>
     </main>
   );

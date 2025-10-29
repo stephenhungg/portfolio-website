@@ -100,6 +100,7 @@ export default function AboutPage() {
           <a href="/contact" className="text-peach underline underline-offset-4 hover:opacity-80">Contact</a>
           <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="text-mauve underline underline-offset-4 hover:opacity-80">GitHub</a>
           <a href="https://www.linkedin.com/in/stephen-h-hung/" target="_blank" rel="noreferrer" className="text-blue underline underline-offset-4 hover:opacity-80">LinkedIn</a>
+          <a href="https://devpost.com/stephenhungg" target="_blank" rel="noreferrer" className="text-red underline underline-offset-4 hover:opacity-80">Devpost</a>
           <a href="https://x.com/stpnhh" target="_blank" rel="noreferrer" className="text-sky underline underline-offset-4 hover:opacity-80">Twitter</a>
           <a href="mailto:stephenhung@berkeley.edu" className="text-teal underline underline-offset-4 hover:opacity-80">Email</a>
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="text-yellow underline underline-offset-4 hover:opacity-80">Resume (PDF)</a>

@@ -114,21 +114,23 @@ export default function AdminGallery() {
   useEffect(() => {
     const checkAuth = () => {
       try {
-        const authStatus = localStorage.getItem('gallery_admin_auth');
-        const authTimestamp = localStorage.getItem('gallery_admin_auth_time');
+        if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.getItem === "function") {
+          const authStatus = localStorage.getItem('gallery_admin_auth');
+          const authTimestamp = localStorage.getItem('gallery_admin_auth_time');
 
-        if (authStatus === 'true' && authTimestamp) {
-          const now = Date.now();
-          const authTime = parseInt(authTimestamp);
-          const EIGHT_HOURS = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+          if (authStatus === 'true' && authTimestamp) {
+            const now = Date.now();
+            const authTime = parseInt(authTimestamp);
+            const EIGHT_HOURS = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
 
-          // Check if authentication is still valid (within 8 hours)
-          if (now - authTime < EIGHT_HOURS) {
-            setIsAuthenticated(true);
-          } else {
-            // Clear expired authentication
-            localStorage.removeItem('gallery_admin_auth');
-            localStorage.removeItem('gallery_admin_auth_time');
+            // Check if authentication is still valid (within 8 hours)
+            if (now - authTime < EIGHT_HOURS) {
+              setIsAuthenticated(true);
+            } else {
+              // Clear expired authentication
+              localStorage.removeItem('gallery_admin_auth');
+              localStorage.removeItem('gallery_admin_auth_time');
+            }
           }
         }
       } catch (error) {
@@ -155,8 +157,10 @@ export default function AdminGallery() {
 
       // Store authentication in localStorage with timestamp
       try {
-        localStorage.setItem('gallery_admin_auth', 'true');
-        localStorage.setItem('gallery_admin_auth_time', Date.now().toString());
+        if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.setItem === "function") {
+          localStorage.setItem('gallery_admin_auth', 'true');
+          localStorage.setItem('gallery_admin_auth_time', Date.now().toString());
+        }
       } catch (error) {
         console.error('Error storing authentication:', error);
       }
@@ -172,8 +176,10 @@ export default function AdminGallery() {
 
     // Clear authentication from localStorage
     try {
-      localStorage.removeItem('gallery_admin_auth');
-      localStorage.removeItem('gallery_admin_auth_time');
+      if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.removeItem === "function") {
+        localStorage.removeItem('gallery_admin_auth');
+        localStorage.removeItem('gallery_admin_auth_time');
+      }
     } catch (error) {
       console.error('Error clearing authentication:', error);
     }
