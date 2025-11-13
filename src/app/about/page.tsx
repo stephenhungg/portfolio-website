@@ -28,10 +28,33 @@ export default function AboutPage() {
               priority
             />
           </div>
-          <p className="text-gray-400 leading-relaxed">
-            eecs @ uc berkeley • full‑stack & ml/ai developer • chino hills → berkeley. currently building with AI agents, scalable web apps, and whatever catches my interest.
-          </p>
+          <div className="text-gray-400 leading-relaxed space-y-3">
+            <p>
+              hey! i&apos;m stephen, a sophomore at uc berkeley studying eecs. i grew up in chino hills and moved to berkeley to chase the intersection of code, ml/ai, and building things that actually matter.
+            </p>
+            <p>
+              my journey into tech started with curiosity—wanting to understand how things work under the hood. now i&apos;m deep into full-stack development and machine learning, building everything from ai agents that compete in real-time to food donation apps that help nonprofits scale their impact.
+            </p>
+            <p>
+              what excites me most is <span className="text-green">rapid prototyping</span>—taking an idea from concept to deployed product, learning new frameworks on the fly, and iterating fast. whether it&apos;s integrating blockchain voting systems for hackathons or training models for clinical data extraction, i love projects that push me to learn something new.
+            </p>
+          </div>
         </div>
+
+        <section className="mt-8 fade-in">
+          <h2 className="text-lg font-semibold mb-2">Currently</h2>
+          <div className="text-gray-400 leading-relaxed space-y-2">
+            <p>
+              <span className="text-sapphire">building:</span> replate with cal blueprint—a mobile app helping food rescue partners digitize their donation tracking. also working on an ai agent for clearpath medical to automate pfmea analysis.
+            </p>
+            <p>
+              <span className="text-mauve">learning:</span> diving deeper into llm fine-tuning, agent orchestration frameworks, and exploring how to make ai systems more reliable in production environments.
+            </p>
+            <p>
+              <span className="text-pink">exploring:</span> sf tech culture, attending meetups, and connecting with builders who are shipping real products. always looking for interesting projects to collaborate on.
+            </p>
+          </div>
+        </section>
 
 
         <section className="mt-8 fade-in">
@@ -76,15 +99,20 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-8 fade-in">
+          <h2 className="text-lg font-semibold mb-2">Philosophy</h2>
+          <p className="text-gray-400 leading-relaxed">
+            i believe the best way to learn is by building. every project is an opportunity to solve real problems, experiment with new technologies, and push beyond my comfort zone. i value <span className="text-green">shipping over perfection</span>—getting something out into the world, gathering feedback, and iterating is how you build products people actually use.
+          </p>
+        </section>
+
+        <section className="mt-8 fade-in">
           <h2 className="text-lg font-semibold mb-2">when I&apos;m not coding</h2>
-          <div className="text-sm flex flex-wrap gap-2">
-            <span className="text-pink">league of legends</span> •
-            <span className="text-peach">fashion</span> •
-            <span className="text-blue">sf tech culture</span> •
-            <span className="text-mauve">llms</span> •
-            <span className="text-lavender">edm</span> •
-            <span className="text-green">matcha</span>
-          </div>
+          <p className="text-gray-400 text-sm leading-relaxed mb-2">
+            you&apos;ll find me grinding ranked in <span className="text-pink">league of legends</span>, exploring <span className="text-peach">streetwear and fashion</span>, discovering new <span className="text-lavender">edm</span> artists, or hunting for the best <span className="text-green">matcha</span> spots around berkeley and sf.
+          </p>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            i&apos;m also deeply interested in <span className="text-mauve">llms and ai</span> beyond just the code—following the latest research, thinking about alignment and safety, and discussing where this technology is headed with anyone who&apos;ll talk about it.
+          </p>
         </section>
 
         <section className="mt-8 fade-in">
@@ -95,20 +123,22 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <div className="mt-10 flex flex-wrap gap-4 text-sm fade-in">
-          <a href="/projects" className="text-green underline underline-offset-4 hover:opacity-80">Projects</a>
-          <a href="/contact" className="text-peach underline underline-offset-4 hover:opacity-80">Contact</a>
-          <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="text-mauve underline underline-offset-4 hover:opacity-80">GitHub</a>
-          <a href="https://www.linkedin.com/in/stephen-h-hung/" target="_blank" rel="noreferrer" className="text-blue underline underline-offset-4 hover:opacity-80">LinkedIn</a>
-          <a href="https://devpost.com/stephenhungg" target="_blank" rel="noreferrer" className="text-red underline underline-offset-4 hover:opacity-80">Devpost</a>
-          <a href="https://x.com/stpnhh" target="_blank" rel="noreferrer" className="text-sky underline underline-offset-4 hover:opacity-80">Twitter</a>
-          <a href="mailto:stephenhung@berkeley.edu" className="text-teal underline underline-offset-4 hover:opacity-80">Email</a>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="text-yellow underline underline-offset-4 hover:opacity-80">Resume (PDF)</a>
-        </div>
-
-        <div className="mt-12 text-sm text-gray-500 fade-in">
-          always down to collaborate on cool projects or chat about tech.
-        </div>
+        <section className="mt-10 fade-in">
+          <h2 className="text-lg font-semibold mb-3">Let&apos;s connect</h2>
+          <p className="text-gray-400 text-sm leading-relaxed mb-4">
+            i&apos;m always down to collaborate on interesting projects, chat about ai/ml, or just talk tech over coffee (or matcha). if you&apos;re working on something cool or want to bounce ideas around, don&apos;t hesitate to reach out.
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <a href="/projects" className="text-green underline underline-offset-4 hover:opacity-80">Projects</a>
+            <a href="/contact" className="text-peach underline underline-offset-4 hover:opacity-80">Contact</a>
+            <a href="https://github.com/stephenhungg" target="_blank" rel="noreferrer" className="text-mauve underline underline-offset-4 hover:opacity-80">GitHub</a>
+            <a href="https://www.linkedin.com/in/stephen-h-hung/" target="_blank" rel="noreferrer" className="text-blue underline underline-offset-4 hover:opacity-80">LinkedIn</a>
+            <a href="https://devpost.com/stephenhungg" target="_blank" rel="noreferrer" className="text-red underline underline-offset-4 hover:opacity-80">Devpost</a>
+            <a href="https://x.com/stpnhh" target="_blank" rel="noreferrer" className="text-sky underline underline-offset-4 hover:opacity-80">Twitter</a>
+            <a href="mailto:stephenhung@berkeley.edu" className="text-teal underline underline-offset-4 hover:opacity-80">Email</a>
+            <a href="/resume.pdf" target="_blank" rel="noreferrer" className="text-yellow underline underline-offset-4 hover:opacity-80">Resume (PDF)</a>
+          </div>
+        </section>
 
         <div className="mt-6 fade-in">
           <Link href="/" className="text-sm hover:text-gray-300">← Back to Home</Link>
