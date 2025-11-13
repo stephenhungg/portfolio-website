@@ -30,13 +30,13 @@ export default function AboutPage() {
           </div>
           <div className="text-gray-400 leading-relaxed space-y-3">
             <p>
-              hey! i'm stephen, a sophomore at uc berkeley studying eecs. i grew up in chino hills and moved to berkeley to chase the intersection of code, ml/ai, and building things that actually matter.
+              hey! i&apos;m stephen, a sophomore at uc berkeley studying eecs. i grew up in chino hills and moved to berkeley to chase the intersection of code, ml/ai, and building things that actually matter.
             </p>
             <p>
-              my journey into tech started with curiosity—wanting to understand how things work under the hood. now i'm deep into full-stack development and machine learning, building everything from ai agents that compete in real-time to food donation apps that help nonprofits scale their impact.
+              my journey into tech started with curiosity—wanting to understand how things work under the hood. now i&apos;m deep into full-stack development and machine learning, building everything from ai agents that compete in real-time to food donation apps that help nonprofits scale their impact.
             </p>
             <p>
-              what excites me most is <span className="text-green">rapid prototyping</span>—taking an idea from concept to deployed product, learning new frameworks on the fly, and iterating fast. whether it's integrating blockchain voting systems for hackathons or training models for clinical data extraction, i love projects that push me to learn something new.
+              what excites me most is <span className="text-green">rapid prototyping</span>—taking an idea from concept to deployed product, learning new frameworks on the fly, and iterating fast. whether it&apos;s integrating blockchain voting systems for hackathons or training models for clinical data extraction, i love projects that push me to learn something new.
             </p>
           </div>
         </div>
@@ -108,10 +108,10 @@ export default function AboutPage() {
         <section className="mt-8 fade-in">
           <h2 className="text-lg font-semibold mb-2">when I&apos;m not coding</h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-2">
-            you'll find me grinding ranked in <span className="text-pink">league of legends</span>, exploring <span className="text-peach">streetwear and fashion</span>, discovering new <span className="text-lavender">edm</span> artists, or hunting for the best <span className="text-green">matcha</span> spots around berkeley and sf.
+            you&apos;ll find me grinding ranked in <span className="text-pink">league of legends</span>, exploring <span className="text-peach">streetwear and fashion</span>, discovering new <span className="text-lavender">edm</span> artists, or hunting for the best <span className="text-green">matcha</span> spots around berkeley and sf.
           </p>
           <p className="text-gray-400 text-sm leading-relaxed">
-            i'm also deeply interested in <span className="text-mauve">llms and ai</span> beyond just the code—following the latest research, thinking about alignment and safety, and discussing where this technology is headed with anyone who'll talk about it.
+            i&apos;m also deeply interested in <span className="text-mauve">llms and ai</span> beyond just the code—following the latest research, thinking about alignment and safety, and discussing where this technology is headed with anyone who&apos;ll talk about it.
           </p>
         </section>
 
@@ -126,7 +126,7 @@ export default function AboutPage() {
         <section className="mt-10 fade-in">
           <h2 className="text-lg font-semibold mb-3">Let&apos;s connect</h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            i'm always down to collaborate on interesting projects, chat about ai/ml, or just talk tech over coffee (or matcha). if you're working on something cool or want to bounce ideas around, don't hesitate to reach out.
+            i&apos;m always down to collaborate on interesting projects, chat about ai/ml, or just talk tech over coffee (or matcha). if you&apos;re working on something cool or want to bounce ideas around, don&apos;t hesitate to reach out.
           </p>
           <div className="flex flex-wrap gap-4 text-sm">
             <a href="/projects" className="text-green underline underline-offset-4 hover:opacity-80">Projects</a>
