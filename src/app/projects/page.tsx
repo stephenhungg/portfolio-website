@@ -13,6 +13,7 @@ interface Project {
   link?: string;
   inProgress?: boolean;
   image?: string;
+  tech?: string[];
 }
 
 const projects: Project[] = [
@@ -24,6 +25,7 @@ const projects: Project[] = [
     color: "white",
     link: "/projects/darwin",
     image: "/images/darwin.png",
+    tech: ["React", "TypeScript", "Sui", "AI Agents", "Blockchain"],
   },
   {
     id: "clearpath",
@@ -33,6 +35,7 @@ const projects: Project[] = [
     color: "yellow",
     inProgress: true,
     image: "/images/clearpath.png",
+    tech: ["Python", "LLMs", "AI Agents"],
   },
   {
     id: "replate",
@@ -42,6 +45,7 @@ const projects: Project[] = [
     color: "green",
     inProgress: true,
     image: "/images/replate.png",
+    tech: ["React Native", "TypeScript", "Mobile"],
   },
   {
     id: "crakd",
@@ -51,6 +55,7 @@ const projects: Project[] = [
     color: "red",
     link: "/projects/crakd",
     image: "/images/crackd.png",
+    tech: ["Python", "ML", "Ensemble Models"],
   },
   {
     id: "clarifai",
@@ -60,6 +65,7 @@ const projects: Project[] = [
     color: "blue",
     link: "/projects/clarifai",
     image: "/images/clarifai.png",
+    tech: ["Next.js", "Python", "OpenAI", "AI"],
   },
   {
     id: "vibechain-api",
@@ -69,6 +75,7 @@ const projects: Project[] = [
     color: "mauve",
     link: "/projects/vibechain-api",
     image: "/images/vibechain.png",
+    tech: ["TypeScript", "Express", "TensorFlow.js", "Node.js"],
   },
   {
     id: "spotifytui",
@@ -78,6 +85,7 @@ const projects: Project[] = [
     color: "peach",
     link: "/projects/spotifytui",
     image: "/images/spotifytui.JPG",
+    tech: ["Python", "Textual", "Spotify API"],
   },
   {
     id: "portfolio-website",
@@ -87,6 +95,7 @@ const projects: Project[] = [
     color: "pink",
     link: "/projects/portfolio-website",
     image: "/images/portfolio.png",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
   },
   {
     id: "instephgram",
@@ -96,6 +105,7 @@ const projects: Project[] = [
     color: "lavender",
     link: "/projects/instephgram",
     image: "/images/instephgram.png",
+    tech: ["React", "Express", "Node.js", "MongoDB", "AWS S3"],
   },
   {
     id: "world-generator",
@@ -105,6 +115,7 @@ const projects: Project[] = [
     color: "teal",
     link: "/projects/world-generator",
     image: "/images/world-generator.png",
+    tech: ["Java", "StdDraw"],
   },
   {
     id: "ngordnet",
@@ -114,6 +125,7 @@ const projects: Project[] = [
     color: "sapphire",
     link: "/projects/ngordnet",
     image: "/images/ngordnet.png",
+    tech: ["Java", "Data Structures", "Algorithms"],
   },
   {
     id: "vendi",
@@ -123,6 +135,7 @@ const projects: Project[] = [
     color: "yellow",
     link: "/projects/vendi",
     image: "/images/vendi.JPG",
+    tech: ["Arduino", "C++", "Hardware", "IoT"],
   },
   {
     id: "mybackpack",
@@ -132,6 +145,7 @@ const projects: Project[] = [
     color: "maroon",
     link: "/projects/fuzzy-school",
     image: "/images/mybackpack.png",
+    tech: ["Java", "XML", "Android", "AI"],
   },
 ];
 
@@ -275,6 +289,20 @@ export default function Projects() {
             </div>
           </div>
                 <p className="text-gray-400 mb-3 leading-relaxed">{project.description}</p>
+
+                {/* Tech Stack Badges */}
+                {project.tech && project.tech.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 text-xs rounded-md bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 {project.inProgress ? (
                   <span className="text-sm text-gray-500 italic">In progress...</span>
