@@ -242,7 +242,7 @@ export default function Projects() {
             key={project.id}
             className={`group p-6 border border-${project.color} rounded-lg hover:border-${project.color}/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in relative z-0`}
           >
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               {/* Project Image */}
               {project.image ? (
                 <div 
