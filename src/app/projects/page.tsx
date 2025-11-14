@@ -25,7 +25,7 @@ const projects: Project[] = [
     color: "white",
     link: "/projects/darwin",
     image: "/images/darwin.png",
-    tech: ["React", "TypeScript", "Sui", "AI Agents", "Blockchain"],
+    tech: ["React + Vite", "Tailwind CSS", "WebGL", "Sui", "AI Agents", "Letta"],
   },
   {
     id: "clearpath",
@@ -45,7 +45,7 @@ const projects: Project[] = [
     color: "green",
     inProgress: true,
     image: "/images/replate.png",
-    tech: ["React Native", "TypeScript", "Mobile"],
+    tech: ["React Native", "Expo", "Ruby on Rails", "Mobile"],
   },
   {
     id: "crakd",
@@ -55,7 +55,7 @@ const projects: Project[] = [
     color: "red",
     link: "/projects/crakd",
     image: "/images/crackd.png",
-    tech: ["Python", "ML", "Ensemble Models"],
+    tech: ["Python", "ML", "Ensemble Models", "Google Gemini API", "GitHub GraphQL"],
   },
   {
     id: "clarifai",
@@ -65,7 +65,7 @@ const projects: Project[] = [
     color: "blue",
     link: "/projects/clarifai",
     image: "/images/clarifai.png",
-    tech: ["Next.js", "Python", "OpenAI", "AI"],
+    tech: ["Next.js", "Python", "Manim", "ffmpeg", "Google Gemini API", "LangChain"],
   },
   {
     id: "vibechain-api",
@@ -75,7 +75,7 @@ const projects: Project[] = [
     color: "mauve",
     link: "/projects/vibechain-api",
     image: "/images/vibechain.png",
-    tech: ["TypeScript", "Express", "TensorFlow.js", "Node.js"],
+    tech: ["TypeScript", "Express", "TensorFlow.js", "Spotify API"],
   },
   {
     id: "spotifytui",
@@ -85,7 +85,7 @@ const projects: Project[] = [
     color: "peach",
     link: "/projects/spotifytui",
     image: "/images/spotifytui.JPG",
-    tech: ["Python", "Textual", "Spotify API"],
+    tech: ["Python", "Textual", "Spotify API", "Genius API"],
   },
   {
     id: "portfolio-website",
@@ -95,7 +95,7 @@ const projects: Project[] = [
     color: "pink",
     link: "/projects/portfolio-website",
     image: "/images/portfolio.png",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "React", "Vercel"],
   },
   {
     id: "instephgram",
@@ -145,7 +145,7 @@ const projects: Project[] = [
     color: "maroon",
     link: "/projects/fuzzy-school",
     image: "/images/mybackpack.png",
-    tech: ["Java", "XML", "Android", "AI"],
+    tech: ["Java", "XML", "Android", "ChatGPT API", "Firebase"],
   },
 ];
 
