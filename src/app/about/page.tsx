@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "../../components/ThemeToggle";
+import GitHubActivity from "../../components/GitHubActivity";
 
 export default function AboutPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -96,6 +97,10 @@ export default function AboutPage() {
             </div>
             
           </div>
+        </section>
+
+        <section className="mt-8 fade-in">
+          <GitHubActivity />
         </section>
 
         <section className="mt-8 fade-in">
