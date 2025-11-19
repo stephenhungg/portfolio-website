@@ -11,9 +11,9 @@ export async function POST(request: NextRequest) {
   try {
     // **AUTHENTICATION CHECK** - Verify auth token from headers
     const authToken = request.headers.get('x-gallery-auth-token');
-    const serverToken = process.env.GALLERY_AUTH_TOKEN;
+    const adminPassword = process.env.GALLERY_ADMIN_PASSWORD;
     
-    if (!authToken || !serverToken || authToken !== serverToken) {
+    if (!authToken || !adminPassword || authToken !== adminPassword) {
       return NextResponse.json({ 
         error: 'Unauthorized. Valid authentication required.' 
       }, { status: 401 });

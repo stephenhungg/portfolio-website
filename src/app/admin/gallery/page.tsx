@@ -124,15 +124,14 @@ export default function AdminGallery() {
   const handleClearAll = async () => {
     setClearingAll(true);
     try {
-      // Generate auth token from stored password
+      // Send stored password as auth token
       const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
-      const authToken = storedPassword ? await hashPassword(storedPassword) : '';
       
       const response = await fetch('/api/gallery/clear-all', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-gallery-auth-token': authToken,
+          'x-gallery-auth-token': storedPassword || '',
         },
       });
 
@@ -279,14 +278,13 @@ export default function AdminGallery() {
     uploadFormData.append('description', formData.description);
 
     try {
-      // Generate auth token from stored password
+      // Send stored password as auth token
       const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
-      const authToken = storedPassword ? await hashPassword(storedPassword) : '';
       
       const response = await fetch('/api/gallery/upload', {
         method: 'POST',
         headers: {
-          'x-gallery-auth-token': authToken,
+          'x-gallery-auth-token': storedPassword || '',
         },
         body: uploadFormData,
       });
