@@ -16,7 +16,18 @@ export async function POST(request: NextRequest) {
       }, { status: 503 });
     }
 
+    // **AUTHENTICATION CHECK** - Verify auth token from headers
+    const authToken = request.headers.get('x-gallery-auth-token');
+    const serverToken = process.env.GALLERY_AUTH_TOKEN;
+    
+    if (!authToken || !serverToken || authToken !== serverToken) {
+      return NextResponse.json({ 
+        error: 'Unauthorized. Valid authentication required.' 
+      }, { status: 401 });
+    }
+    
     const formData = await request.formData();
+    
     const file = formData.get('file') as File;
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;

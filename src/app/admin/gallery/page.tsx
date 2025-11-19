@@ -3,6 +3,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
+// Simple hash function for generating auth token
+async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 export default function AdminGallery() {
   const { theme } = useTheme();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,6 +35,8 @@ export default function AdminGallery() {
   }>>([]);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [showClearAllConfirm, setShowClearAllConfirm] = useState(false);
+  const [clearingAll, setClearingAll] = useState(false);
 
   // Image compression utility
   const compressImage = async (file: File, maxWidth = 1920, maxHeight = 1080, quality = 0.8): Promise<File> => {
@@ -110,6 +121,35 @@ export default function AdminGallery() {
     setDeleting(null);
   };
 
+  const handleClearAll = async () => {
+    setClearingAll(true);
+    try {
+      // Generate auth token from stored password
+      const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
+      const authToken = storedPassword ? await hashPassword(storedPassword) : '';
+      
+      const response = await fetch('/api/gallery/clear-all', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-gallery-auth-token': authToken,
+        },
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setMessage(`Successfully deleted ${result.deletedCount} images!`);
+        setShowClearAllConfirm(false);
+        setGalleryImages([]);
+      } else {
+        setMessage('Failed to clear gallery. Please try again.');
+      }
+    } catch {
+      setMessage('Failed to clear gallery. Please try again.');
+    }
+    setClearingAll(false);
+  };
+
   // Check for existing authentication on component mount
   useEffect(() => {
     const checkAuth = () => {
@@ -148,18 +188,19 @@ export default function AdminGallery() {
     }
   }, [isAuthenticated, isAuthLoading]);
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const adminPassword = process.env.NEXT_PUBLIC_GALLERY_PASSWORD || 'gallery2025';
     if (password === adminPassword) {
       setIsAuthenticated(true);
       setMessage('');
 
-      // Store authentication in localStorage with timestamp
+      // Store authentication in localStorage with timestamp and password for token generation
       try {
         if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.setItem === "function") {
           localStorage.setItem('gallery_admin_auth', 'true');
           localStorage.setItem('gallery_admin_auth_time', Date.now().toString());
+          localStorage.setItem('gallery_admin_password', password);
         }
       } catch (error) {
         console.error('Error storing authentication:', error);
@@ -179,6 +220,7 @@ export default function AdminGallery() {
       if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.removeItem === "function") {
         localStorage.removeItem('gallery_admin_auth');
         localStorage.removeItem('gallery_admin_auth_time');
+        localStorage.removeItem('gallery_admin_password');
       }
     } catch (error) {
       console.error('Error clearing authentication:', error);
@@ -237,8 +279,15 @@ export default function AdminGallery() {
     uploadFormData.append('description', formData.description);
 
     try {
+      // Generate auth token from stored password
+      const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
+      const authToken = storedPassword ? await hashPassword(storedPassword) : '';
+      
       const response = await fetch('/api/gallery/upload', {
         method: 'POST',
+        headers: {
+          'x-gallery-auth-token': authToken,
+        },
         body: uploadFormData,
       });
 
@@ -420,7 +469,19 @@ export default function AdminGallery() {
               ? 'bg-gray-900-theme border-gray-700-theme'
               : 'bg-black border-white'
           }`}>
-            <h2 className={`text-xl font-light mb-6 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Manage Gallery Images</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className={`text-xl font-light ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Manage Gallery Images</h2>
+              <button
+                onClick={() => setShowClearAllConfirm(true)}
+                className={`px-4 py-2 rounded text-sm transition-colors duration-200 border ${
+                  theme === 'catppuccin'
+                    ? 'bg-red hover:bg-red text-mantle border-red'
+                    : 'bg-red-900 hover:bg-red-800 text-red-300 border-red-700'
+                }`}
+              >
+                🗑️ Clear All Images
+              </button>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {galleryImages.map((image) => (
@@ -509,6 +570,51 @@ export default function AdminGallery() {
                   }`}
                 >
                   {deleting === deleteConfirmId ? 'Deleting...' : 'Delete'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Clear All Confirmation Modal */}
+        {showClearAllConfirm && (
+          <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm ${
+            theme === 'catppuccin' ? 'bg-gray-900-theme/80' : 'bg-black/80'
+          }`}>
+            <div className={`rounded-xl p-6 w-full max-w-md mx-4 border ${
+              theme === 'catppuccin'
+                ? 'bg-gray-900-theme border-gray-700-theme'
+                : 'bg-black border-white'
+            }`}>
+              <h3 className={`text-lg font-light mb-4 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>⚠️ Clear All Images</h3>
+              <p className={`text-sm mb-6 ${
+                theme === 'catppuccin' ? 'text-gray-300-theme' : 'text-gray-300'
+              }`}>
+                Are you sure you want to delete <strong>ALL {galleryImages.length} images</strong> from the gallery? 
+                This will permanently delete all images from Vercel Blob storage and cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowClearAllConfirm(false)}
+                  disabled={clearingAll}
+                  className={`flex-1 px-4 py-2 rounded transition-colors duration-200 border disabled:opacity-50 disabled:cursor-not-allowed ${
+                    theme === 'catppuccin'
+                      ? 'bg-gray-800-theme hover:bg-gray-700-theme text-theme border-gray-700-theme hover:border-mauve'
+                      : 'bg-black hover:bg-gray-900 text-white border-white'
+                  }`}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleClearAll}
+                  disabled={clearingAll}
+                  className={`flex-1 px-4 py-2 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed border ${
+                    theme === 'catppuccin'
+                      ? 'bg-red hover:bg-red text-mantle border-red'
+                      : 'bg-red-900 hover:bg-red-800 text-red-300 border-red-700'
+                  }`}
+                >
+                  {clearingAll ? 'Clearing...' : 'Delete All'}
                 </button>
               </div>
             </div>
