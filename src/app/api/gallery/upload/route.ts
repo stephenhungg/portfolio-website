@@ -16,13 +16,22 @@ export async function POST(request: NextRequest) {
       }, { status: 503 });
     }
 
-    // **AUTHENTICATION CHECK** - Verify auth token from headers
-    const authToken = request.headers.get('x-gallery-auth-token');
-    const adminPassword = process.env.GALLERY_ADMIN_PASSWORD;
+    // **AUTHENTICATION CHECK** - Verify session token
+    const sessionToken = request.headers.get('x-session-token');
     
-    if (!authToken || !adminPassword || authToken !== adminPassword) {
+    if (!sessionToken) {
       return NextResponse.json({ 
-        error: 'Unauthorized. Valid authentication required.' 
+        error: 'Unauthorized. No session token provided.' 
+      }, { status: 401 });
+    }
+    
+    // Validate session exists in Redis
+    const sessionKey = `gallery-session:${sessionToken}`;
+    const session = await redis.get(sessionKey);
+    
+    if (!session) {
+      return NextResponse.json({ 
+        error: 'Unauthorized. Invalid or expired session.' 
       }, { status: 401 });
     }
     

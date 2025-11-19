@@ -115,14 +115,21 @@ export default function AdminGallery() {
   const handleClearAll = async () => {
     setClearingAll(true);
     try {
-      // Send stored password as auth token
-      const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
+      // Get session token from localStorage
+      const sessionToken = typeof window !== "undefined" && localStorage.getItem('gallery_session_token');
+      
+      if (!sessionToken) {
+        setMessage('Session expired. Please log in again.');
+        setIsAuthenticated(false);
+        setClearingAll(false);
+        return;
+      }
       
       const response = await fetch('/api/gallery/clear-all', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-gallery-auth-token': storedPassword || '',
+          'x-session-token': sessionToken,
         },
       });
 
@@ -140,31 +147,30 @@ export default function AdminGallery() {
     setClearingAll(false);
   };
 
-  // Check for existing authentication on component mount
+  // Check for existing session on component mount
   useEffect(() => {
     const checkAuth = () => {
       try {
         if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.getItem === "function") {
-          const authStatus = localStorage.getItem('gallery_admin_auth');
-          const authTimestamp = localStorage.getItem('gallery_admin_auth_time');
+          const sessionToken = localStorage.getItem('gallery_session_token');
+          const sessionExpires = localStorage.getItem('gallery_session_expires');
 
-          if (authStatus === 'true' && authTimestamp) {
+          if (sessionToken && sessionExpires) {
             const now = Date.now();
-            const authTime = parseInt(authTimestamp);
-            const EIGHT_HOURS = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+            const expiresAt = parseInt(sessionExpires);
 
-            // Check if authentication is still valid (within 8 hours)
-            if (now - authTime < EIGHT_HOURS) {
+            // Check if session is still valid
+            if (now < expiresAt) {
               setIsAuthenticated(true);
             } else {
-              // Clear expired authentication
-              localStorage.removeItem('gallery_admin_auth');
-              localStorage.removeItem('gallery_admin_auth_time');
+              // Clear expired session
+              localStorage.removeItem('gallery_session_token');
+              localStorage.removeItem('gallery_session_expires');
             }
           }
         }
       } catch (error) {
-        console.error('Error checking authentication:', error);
+        console.error('Error checking session:', error);
       }
       setIsAuthLoading(false);
     };
@@ -180,40 +186,65 @@ export default function AdminGallery() {
 
   const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const adminPassword = process.env.NEXT_PUBLIC_GALLERY_PASSWORD || 'gallery2025';
-    if (password === adminPassword) {
-      setIsAuthenticated(true);
-      setMessage('');
-
-      // Store authentication in localStorage with timestamp and password for token generation
-      try {
+    setMessage('');
+    
+    try {
+      // Call login API to get session token
+      const response = await fetch('/api/gallery/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setIsAuthenticated(true);
+        
+        // Store session token (not password!) in localStorage
         if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.setItem === "function") {
-          localStorage.setItem('gallery_admin_auth', 'true');
-          localStorage.setItem('gallery_admin_auth_time', Date.now().toString());
-          localStorage.setItem('gallery_admin_password', password);
+          localStorage.setItem('gallery_session_token', data.sessionToken);
+          localStorage.setItem('gallery_session_expires', (Date.now() + data.expiresIn).toString());
         }
-      } catch (error) {
-        console.error('Error storing authentication:', error);
+      } else {
+        const error = await response.json();
+        setMessage(error.error || 'Invalid password');
       }
-    } else {
-      setMessage('Invalid password');
+    } catch (error) {
+      console.error('Error during login:', error);
+      setMessage('Login failed. Please try again.');
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      // Call logout API to invalidate session
+      const sessionToken = typeof window !== "undefined" && localStorage.getItem('gallery_session_token');
+      if (sessionToken) {
+        await fetch('/api/gallery/auth/logout', {
+          method: 'POST',
+          headers: {
+            'x-session-token': sessionToken,
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+    
     setIsAuthenticated(false);
     setPassword('');
     setMessage('');
 
-    // Clear authentication from localStorage
+    // Clear session from localStorage
     try {
       if (typeof window !== "undefined" && typeof localStorage !== "undefined" && typeof localStorage.removeItem === "function") {
-        localStorage.removeItem('gallery_admin_auth');
-        localStorage.removeItem('gallery_admin_auth_time');
-        localStorage.removeItem('gallery_admin_password');
+        localStorage.removeItem('gallery_session_token');
+        localStorage.removeItem('gallery_session_expires');
       }
     } catch (error) {
-      console.error('Error clearing authentication:', error);
+      console.error('Error clearing session:', error);
     }
   };
 
@@ -269,13 +300,20 @@ export default function AdminGallery() {
     uploadFormData.append('description', formData.description);
 
     try {
-      // Send stored password as auth token
-      const storedPassword = typeof window !== "undefined" && localStorage.getItem('gallery_admin_password');
+      // Get session token from localStorage
+      const sessionToken = typeof window !== "undefined" && localStorage.getItem('gallery_session_token');
+      
+      if (!sessionToken) {
+        setMessage('Session expired. Please log in again.');
+        setIsAuthenticated(false);
+        setUploading(false);
+        return;
+      }
       
       const response = await fetch('/api/gallery/upload', {
         method: 'POST',
         headers: {
-          'x-gallery-auth-token': storedPassword || '',
+          'x-session-token': sessionToken,
         },
         body: uploadFormData,
       });
