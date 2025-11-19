@@ -24,7 +24,11 @@ export async function GET() {
           metadata: { totalImages: number; lastUpdated: string };
         };
         if (galleryData) {
-          return NextResponse.json(galleryData);
+          return NextResponse.json(galleryData, {
+            headers: {
+              'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+            },
+          });
         }
       } catch (error) {
         console.error('Error reading from Redis:', error);
@@ -36,13 +40,22 @@ export async function GET() {
       const galleryJsonPath = join(process.cwd(), 'src', 'data', 'gallery.json');
       const jsonData = await readFile(galleryJsonPath, 'utf8');
       const galleryData = JSON.parse(jsonData);
-      return NextResponse.json(galleryData);
+      return NextResponse.json(galleryData, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
+      });
     } catch {
       // If no data source available, return empty
       return NextResponse.json({
         images: [],
         metadata: { totalImages: 0, lastUpdated: new Date().toISOString() }
-      }, { status: 200 });
+      }, { 
+        status: 200,
+        headers: {
+          'Cache-Control': 'public, s-maxage=60',
+        },
+      });
     }
   } catch (error) {
     console.error('Error reading gallery data:', error);
