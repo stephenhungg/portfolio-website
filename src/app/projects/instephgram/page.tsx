@@ -1,52 +1,119 @@
 export default function InstephgramProject() {
   return (
-    <main className="max-w-4xl mx-auto pt-20 pb-12 px-4">
-      <div className="mb-8">
-        <a href="/projects" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
-          ← Back to Projects
-        </a>
-      </div>
-      
-      <div className="mb-8">
-        <h1 className="text-4xl font-light mb-4">instephgram</h1>
-        <p className="text-lg text-gray-400 leading-relaxed">
-          Competition based instagram-style full-stack web app built using react.js, express.js, node.js, mongodb, and aws s3.
-        </p>
-      </div>
-
-      <div className="flex gap-4 mb-8">
-        <a href="https://github.com/stephenhungg/InStephGram" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
-          GitHub →
-        </a>
-        <a href="https://instephgram.vercel.app" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">
-          Website →
-        </a>
-      </div>
-
-      <div className="prose prose-invert max-w-none">
-        <p className="text-gray-400 leading-relaxed">
-          Instephgram is a full-stack social media application inspired by Instagram, built with modern web technologies. 
-          The platform features user authentication, photo sharing, likes and comments, user profiles, and a feed system.
-          Try to gain dislikes instead of likes, and compete on a leaderboard.
-        </p>
+    <main className="min-h-screen pt-24 pb-20">
+      {/* Hero Section */}
+      <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
+        <div className="mb-6">
+          <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
+            ← Back to Projects
+          </a>
+        </div>
         
-        <h2 className="text-xl font-semibold mt-8 mb-4">Key Features</h2>
-        <ul className="text-gray-400 space-y-2">
-          <li>• User authentication and profile management</li>
-          <li>• Photo upload and sharing with AWS S3 integration</li>
-          <li>• Real-time likes and comments system</li>
-          <li>• Responsive design for mobile and desktop</li>
-          <li>• MongoDB database for data persistence</li>
-        </ul>
+        <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">InStephGram</h1>
+        <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
+          Competition-based Instagram-style full-stack web application
+        </p>
+      </section>
 
-        <h2 className="text-xl font-semibold mt-8 mb-4">Tech Stack</h2>
-        <ul className="text-gray-400 space-y-2">
-          <li>• Frontend: React.js with ChakraUI</li>
-          <li>• Backend: Express.js with Node.js</li>
-          <li>• Database: MongoDB</li>
-          <li>• Storage: AWS S3 for image uploads</li>
-        </ul>
+      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
+        
+        {/* Main Content */}
+        <div className="space-y-12 fade-in" style={{ animationDelay: '200ms' }}>
+          
+          {/* Overview */}
+          <section>
+            <h2 className="text-2xl font-light text-lavender mb-4">Overview</h2>
+            <p className="text-gray-300 leading-relaxed text-lg font-light">
+              Instephgram is a full-stack social media application inspired by Instagram, built with modern web technologies. 
+              The platform features user authentication, photo sharing, likes and comments, user profiles, and a feed system.
+              Try to gain dislikes instead of likes, and compete on a leaderboard.
+            </p>
+          </section>
+
+          {/* Features */}
+          <section>
+            <h2 className="text-2xl font-light text-green mb-4">Key Features</h2>
+            <ul className="space-y-3 text-gray-300">
+              <FeatureItem text="User authentication and profile management" />
+              <FeatureItem text="Photo upload and sharing with AWS S3 integration" />
+              <FeatureItem text="Real-time likes and comments system" />
+              <FeatureItem text="Responsive design for mobile and desktop" />
+              <FeatureItem text="MongoDB database for data persistence" />
+            </ul>
+          </section>
+
+        </div>
+
+        {/* Sidebar */}
+        <aside className="fade-in space-y-8 lg:sticky lg:top-24 h-fit" style={{ animationDelay: '400ms' }}>
+          
+          {/* Links */}
+          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Links</h3>
+            <div className="flex flex-col gap-3">
+              <ProjectLink href="https://github.com/stephenhungg/InStephGram" label="GitHub Repo" primary />
+              <ProjectLink href="https://instephgram.vercel.app" label="Live Website" />
+            </div>
+          </div>
+
+          {/* Tech Stack */}
+          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Tech Stack</h3>
+            <div className="space-y-4">
+              <TechSection title="Frontend" items={["React.js", "ChakraUI"]} />
+              <TechSection title="Backend" items={["Express.js", "Node.js"]} />
+              <TechSection title="Database" items={["MongoDB"]} />
+              <TechSection title="Storage" items={["AWS S3"]} />
+            </div>
+          </div>
+
+        </aside>
+
       </div>
     </main>
   );
-} 
+}
+
+// Helper Components
+
+function FeatureItem({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-3">
+      <span className="text-green mt-1.5 text-xs">●</span>
+      <span>{text}</span>
+    </li>
+  );
+}
+
+function ProjectLink({ href, label, primary }: { href: string, label: string, primary?: boolean }) {
+  return (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-300 font-medium ${
+        primary 
+          ? 'bg-white text-black hover:bg-gray-200 hover:scale-[1.02]' 
+          : 'bg-black/20 text-gray-300 hover:bg-black/40 hover:text-white border border-white/10 hover:border-white/20'
+      }`}
+    >
+      <span>{label}</span>
+      {!primary && <span className="ml-auto text-gray-600 text-sm">↗</span>}
+    </a>
+  );
+}
+
+function TechSection({ title, items }: { title: string, items: string[] }) {
+  return (
+    <div>
+      <div className="text-xs text-gray-500 mb-2">{title}</div>
+      <div className="flex flex-wrap gap-2">
+        {items.map(item => (
+          <span key={item} className="text-xs px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/5">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}

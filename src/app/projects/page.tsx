@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { createPortal } from "react-dom";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useState } from "react";
 
 interface Project {
   id: string;
@@ -19,100 +19,100 @@ interface Project {
 const projects: Project[] = [
   {
     id: "darwin",
-    title: "darwin",
+    title: "darwin.",
     date: "october 2025",
     description: "interactive platform where four specialized ai agents compete to complete tasks in real-time, with blockchain-based voting on sui network. built for calhacks 12.0.",
-    color: "white",
+    color: "text-pink",
     link: "/projects/darwin",
     image: "/images/darwin.png",
-    tech: ["React + Vite", "Tailwind CSS", "WebGL", "Sui", "AI Agents", "Letta"],
+    tech: ["React", "Three.js", "Sui", "AI Agents"],
   },
   {
     id: "clearpath",
-    title: "clearpath medical ai agent",
+    title: "ClearPath Medical AI",
     date: "october 2025",
     description: "pfmea analysis agent for clearpath medical. in collaboration with theta tau professional engineering fraternity.",
-    color: "yellow",
+    color: "text-yellow",
     inProgress: true,
     image: "/images/clearpath.png",
     tech: ["Python", "LLMs", "AI Agents"],
   },
   {
     id: "replate",
-    title: "replate",
+    title: "Replate",
     date: "october 2025",
     description: "mobile app for food rescue partners to instantly log donation data, replacing manual pen-and-paper systems. built with cal blueprint.",
-    color: "green",
+    color: "text-green",
     inProgress: true,
     image: "/images/replate.png",
-    tech: ["React Native", "Expo", "Ruby on Rails", "Mobile"],
+    tech: ["React Native", "Ruby on Rails"],
   },
   {
     id: "crakd",
-    title: "crakd",
+    title: "crakd.co",
     date: "september 2025",
     description: "ensemble model-powered ai/ml system for talent identification, designed to identify \"cracked\" developers using hybrid quantitative and qualitative analysis.",
-    color: "red",
+    color: "text-red",
     link: "/projects/crakd",
     image: "/images/crackd.png",
-    tech: ["Python", "ML", "Ensemble Models", "Google Gemini API", "GitHub GraphQL"],
+    tech: ["Python", "ML", "Gemini API"],
   },
   {
     id: "clarifai",
-    title: "clarifai",
+    title: "ClarifAI",
     date: "august 2025",
     description: "web app that breaks down complex research papers into easy-to-understand concepts and creates 3blue1brown-style video explanations using ai.",
-    color: "blue",
+    color: "text-blue",
     link: "/projects/clarifai",
     image: "/images/clarifai.png",
-    tech: ["Next.js", "Python", "Manim", "ffmpeg", "Google Gemini API", "LangChain"],
+    tech: ["Next.js", "Python", "Manim", "LangChain"],
   },
   {
     id: "vibechain-api",
     title: "vibechain-api",
     date: "august 2025",
     description: "ml-powered playlist recommendation api built with typescript, express, and tensorflow.js; predicts next track vibes from spotify features.",
-    color: "mauve",
+    color: "text-mauve",
     link: "/projects/vibechain-api",
     image: "/images/vibechain.png",
-    tech: ["TypeScript", "Express", "TensorFlow.js", "Spotify API"],
+    tech: ["TypeScript", "TensorFlow.js", "Spotify API"],
   },
   {
     id: "spotifytui",
     title: "spotifytui",
     date: "august 2025",
     description: "beautiful and feature-rich terminal user interface for spotify built with python and textual, featuring playback control, playlist management, and lyrics display.",
-    color: "peach",
+    color: "text-peach",
     link: "/projects/spotifytui",
     image: "/images/spotifytui.JPG",
-    tech: ["Python", "Textual", "Spotify API", "Genius API"],
+    tech: ["Python", "Textual", "Spotify API"],
   },
   {
     id: "portfolio-website",
     title: "portfolio website",
     date: "june 2025",
     description: "modern, responsive portfolio website built with next.js and tailwind css, featuring project showcases, contact information, and clean design.",
-    color: "pink",
+    color: "text-pink",
     link: "/projects/portfolio-website",
     image: "/images/portfolio.png",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "React", "Vercel"],
+    tech: ["Next.js", "Tailwind CSS"],
   },
   {
     id: "instephgram",
-    title: "instephgram",
+    title: "InStephGram",
     date: "april 2025",
     description: "competition based instagram-style full-stack web app built using react.js, express.js, node.js, mongodb, and aws s3.",
-    color: "lavender",
+    color: "text-lavender",
     link: "/projects/instephgram",
     image: "/images/instephgram.png",
-    tech: ["React", "Express", "Node.js", "MongoDB", "AWS S3"],
+    tech: ["MERN Stack", "AWS S3"],
   },
   {
     id: "world-generator",
-    title: "2d world generator",
+    title: "2D World Generator",
     date: "april 2025",
     description: "simple 2d world generator built using java's stddraw library, with ray tracing based lighting and saving/loading functionality.",
-    color: "teal",
+    color: "text-teal",
     link: "/projects/world-generator",
     image: "/images/world-generator.png",
     tech: ["Java", "StdDraw"],
@@ -122,206 +122,114 @@ const projects: Project[] = [
     title: "ngordnet",
     date: "march 2025",
     description: "ngram-based word frequency analyzer built using java replicating core features of google ngram viewer and princeton wordnet.",
-    color: "sapphire",
+    color: "text-sapphire",
     link: "/projects/ngordnet",
     image: "/images/ngordnet.png",
-    tech: ["Java", "Data Structures", "Algorithms"],
+    tech: ["Java", "Algorithms"],
   },
   {
     id: "vendi",
-    title: "vendi",
+    title: "Vendi",
     date: "february 2025",
-    description: "smart vending machine project for uc berkeley theta tau professional engineering fraternity alpha lambda class, integrating mechanical, electrical, and software systems with arduino control.",
-    color: "yellow",
+    description: "smart vending machine project for uc berkeley theta tau professional engineering fraternity alpha lambda class.",
+    color: "text-yellow",
     link: "/projects/vendi",
     image: "/images/vendi.JPG",
-    tech: ["Arduino", "C++", "Hardware", "IoT"],
+    tech: ["Arduino", "C++", "IoT"],
   },
   {
     id: "mybackpack",
-    title: "mybackpack",
+    title: "MyBackpack",
     date: "april 2024",
-    description: "professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities, with ai powered feedback and resume building. built using java and xml.",
-    color: "maroon",
+    description: "professional networking mobile app helping high schoolers track and manage their academic and extracurricular activities.",
+    color: "text-maroon",
     link: "/projects/fuzzy-school",
     image: "/images/mybackpack.png",
-    tech: ["Java", "XML", "Android", "ChatGPT API", "Firebase"],
+    tech: ["Java", "Android", "Firebase"],
   },
 ];
 
-function ImagePreview({ image, title, isHovered }: { image: string; title: string; isHovered: boolean }) {
-  const [mounted, setMounted] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (isHovered) {
-      // Add a small delay before showing the preview for smoother animation
-      const timer = setTimeout(() => {
-        setShowPreview(true);
-      }, 150);
-      return () => clearTimeout(timer);
-    } else {
-      // Start fade-out animation immediately
-      setShowPreview(false);
-    }
-  }, [isHovered]);
-
-  if (!mounted) return null;
-
-  const previewContent = (
-    <>
-      {/* Backdrop overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/80 transition-opacity duration-300 pointer-events-none hidden lg:block ${
-          showPreview ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ zIndex: 99998 }}
-      />
-      {/* Expanded Preview */}
-      <div 
-        className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl h-[80vh] max-h-[600px] transition-all duration-300 pointer-events-none transform hidden lg:block ${
-          showPreview ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
-        style={{ zIndex: 99999 }}
-      >
-        <div className="relative w-full h-full rounded-lg overflow-hidden">
-          <Image
-            src={image}
-            alt={`${title} screenshot - expanded`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 1024px) 90vw, 768px"
-          />
-        </div>
-      </div>
-    </>
-  );
-
-  return createPortal(previewContent, document.body);
-}
-
 export default function Projects() {
-  const [hoveredImage, setHoveredImage] = useState<{ image: string; title: string } | null>(null);
-  const [previewImage, setPreviewImage] = useState<{ image: string; title: string } | null>(null);
-
-  // Keep preview mounted during fade-out animation
-  useEffect(() => {
-    if (hoveredImage) {
-      setPreviewImage(hoveredImage);
-    } else {
-      // Delay unmounting to allow fade-out animation
-      const timer = setTimeout(() => {
-        setPreviewImage(null);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [hoveredImage]);
-
   return (
-    <main className="max-w-4xl mx-auto pt-20 pb-12 px-4">
-      <h1 className="text-3xl font-light mb-4 text-center fade-in text-green">Projects</h1>
-      <p className="text-gray-400 text-center mb-12 fade-in">
-        Some of the projects are from school and some are on my own time.
-      </p>
+    <main className="max-w-6xl mx-auto pt-24 pb-16 px-6">
+      <div className="text-center mb-16 fade-in">
+        <h1 className="text-4xl sm:text-5xl font-light mb-6 text-green tracking-tight">projects</h1>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          A collection of my work, ranging from hackathon winners to long-term engineering projects.
+        </p>
+      </div>
 
-      {previewImage && (
-        <ImagePreview 
-          image={previewImage.image} 
-          title={previewImage.title} 
-          isHovered={!!hoveredImage}
-        />
-      )}
-
-      <div className="grid gap-6">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className={`group p-6 border border-${project.color} rounded-lg hover:border-${project.color}/80 hover:bg-gray-900-theme/50 transition-all duration-300 transform hover:scale-[1.02] fade-in relative z-0`}
-          >
-            <div className="flex gap-6 items-center">
-              {/* Project Image */}
-              {project.image ? (
-                <div 
-                  className="relative w-48 h-32 flex-shrink-0"
-                  onMouseEnter={() => setHoveredImage({ image: project.image!, title: project.title })}
-                  onMouseLeave={() => setHoveredImage(null)}
-                >
-                  <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/10 flex items-center justify-center cursor-pointer bg-gray-900-theme/30">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} screenshot`}
-                      fill
-                      className="object-contain transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, 192px"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="relative w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-gray-900-theme/30 hidden sm:flex items-center justify-center">
-                  <svg
-                    className="w-12 h-12 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-               </div>
-              )}
-
-              {/* Project Content */}
-              <div className="flex-1 min-w-0">
-                <div className="flex gap-4 mb-3">
-                  <div className="text-sm text-gray-500 w-24 flex-shrink-0">{project.date}</div>
-            <div className="flex-1">
-                    <h2 className={`text-xl font-semibold text-${project.color} mb-2`}>
-                      {project.title}
-                    </h2>
-            </div>
-          </div>
-                <p className="text-gray-400 mb-3 leading-relaxed">{project.description}</p>
-
-                {/* Tech Stack Badges */}
-                {project.tech && project.tech.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs rounded-md bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-colors"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {project.inProgress ? (
-                  <span className="text-sm text-gray-500 italic">In progress...</span>
-                ) : project.link ? (
-                  <a
-                    href={project.link}
-                    className="text-sm text-gray-500 hover:text-gray-400 transition-colors group/link"
-                  >
-                    Read more{" "}
-                    <span className="group-hover/link:translate-x-1 inline-block transition-transform">
-                      →
-                    </span>
-                  </a>
-                ) : null}
-              </div>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </div>
     </main>
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project, index: number }) {
+  const Wrapper = project.link ? Link : 'div';
+  const props = project.link ? { href: project.link } : {};
+
+  return (
+    // @ts-ignore
+    <Wrapper
+      {...props}
+      className="group relative flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-300 fade-in"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      {/* Image Container */}
+      <div className="relative w-full aspect-video overflow-hidden bg-gray-900">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-gray-700">
+             <span className="text-4xl">⚡</span>
+          </div>
+        )}
+        
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6">
+        <div className="flex items-start justify-between mb-3">
+          <h2 className={`text-xl font-medium ${project.color} group-hover:underline decoration-1 underline-offset-4`}>
+            {project.title}
+          </h2>
+          {project.inProgress && (
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-yellow/10 text-yellow px-2 py-1 rounded-full border border-yellow/20">
+              WIP
+            </span>
+          )}
+        </div>
+        
+        <div className="text-xs text-gray-500 font-mono mb-3 uppercase tracking-wide">{project.date}</div>
+        
+        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1 line-clamp-3 group-hover:line-clamp-none transition-all">
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.tech?.slice(0, 3).map((t) => (
+            <span key={t} className="text-xs px-2.5 py-1 rounded-md bg-black/20 border border-white/5 text-gray-400 group-hover:border-white/10 transition-colors">
+              {t}
+            </span>
+          ))}
+          {project.tech && project.tech.length > 3 && (
+             <span className="text-xs px-2 py-1 text-gray-600">+{project.tech.length - 3}</span>
+          )}
+        </div>
+      </div>
+    </Wrapper>
   );
 }

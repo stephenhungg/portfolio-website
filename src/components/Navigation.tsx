@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const navItems = [
     { href: "/", label: "Home", color: "text-blue" },
@@ -16,7 +17,9 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center py-4">
-      <div className="glassmorphic-nav flex items-center gap-2 text-sm px-6 py-3 rounded-2xl">
+      <div className={`glassmorphic-nav flex items-center gap-2 text-sm px-6 py-3 rounded-2xl transition-all duration-500 ${
+        isHomePage ? 'nav-glow' : ''
+      }`}>
         {navItems.map((item) => {
           const isActive = pathname === item.href || 
             (item.href === "/projects" && pathname.startsWith("/projects"));
