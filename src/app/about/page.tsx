@@ -231,11 +231,10 @@ export default function AboutPage() {
 
 function ProjectCard({ title, href, color, description, tech }: { title: string, href?: string, color: string, description: string, tech: string[] }) {
   const Wrapper = href ? Link : 'div';
-  // @ts-ignore
-  const props = href ? { href, target: "_blank" } : {};
+  const props = href ? { href, target: "_blank" as const } : {};
 
   return (
-    // @ts-ignore
+    // @ts-expect-error - Link component type doesn't match div type
     <Wrapper {...props} className="block group p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 h-full flex flex-col">
       <div className="flex justify-between items-start mb-2">
         <h3 className={`text-base font-medium ${color} group-hover:underline decoration-1 underline-offset-4`}>{title}</h3>
