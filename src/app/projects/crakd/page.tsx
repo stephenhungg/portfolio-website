@@ -30,7 +30,7 @@ export default function CrakdProject() {
             </p>
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-xl">
               <p className="text-sm text-gray-400">
-                Built at <span className="text-white font-medium">B.E.L.L.E's SF AI hackathon</span> (September 2025).
+                Built at <span className="text-white font-medium">B.E.L.L.E&apos;s SF AI hackathon</span> (September 2025).
               </p>
             </div>
           </section>

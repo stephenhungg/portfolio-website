@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 interface Project {
   id: string;
@@ -173,7 +172,7 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
   const props = project.link ? { href: project.link } : {};
 
   return (
-    // @ts-ignore
+    // @ts-expect-error - Link component type doesn't match div type
     <Wrapper
       {...props}
       className="group relative flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-300 fade-in"

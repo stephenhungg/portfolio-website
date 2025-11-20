@@ -26,8 +26,8 @@ export default function NgordnetProject() {
           <section>
             <h2 className="text-2xl font-light text-sapphire mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Ngordnet is a sophisticated word frequency analysis tool that combines the power of Google's Ngram Viewer 
-              with Princeton's WordNet semantic database. The application allows users to analyze word usage patterns 
+              Ngordnet is a sophisticated word frequency analysis tool that combines the power of Google&apos;s Ngram Viewer 
+              with Princeton&apos;s WordNet semantic database. The application allows users to analyze word usage patterns 
               over time and explore semantic relationships between words.
             </p>
           </section>

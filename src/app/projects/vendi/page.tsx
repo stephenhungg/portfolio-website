@@ -24,7 +24,7 @@ export default function VendiProject() {
           <section>
             <h2 className="text-2xl font-light text-yellow mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Led the development of a comprehensive smart vending machine project for UC Berkeley's Alpha Lambda engineering class. 
+              Led the development of a comprehensive smart vending machine project for UC Berkeley&apos;s Alpha Lambda engineering class. 
               This interdisciplinary project integrated mechanical, electrical, and software engineering to create a custom vending machine 
               designed for campus use, complete with a portfolio website showcasing the entire development process.
             </p>
@@ -101,7 +101,7 @@ export default function VendiProject() {
             </p>
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-xl">
               <p className="text-sm text-gray-400">
-                <span className="text-white font-medium">Note:</span> This project was completed as part of UC Berkeley's Alpha Lambda engineering coursework, 
+                <span className="text-white font-medium">Note:</span> This project was completed as part of UC Berkeley&apos;s Alpha Lambda engineering coursework, 
                 demonstrating interdisciplinary collaboration and real-world engineering problem solving.
               </p>
             </div>
