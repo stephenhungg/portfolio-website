@@ -5,10 +5,10 @@ export default function CrakdProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">crakd.co</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           AI-Powered Talent Identification for Developers
@@ -24,14 +24,14 @@ export default function CrakdProject() {
           <section>
             <h2 className="text-2xl font-light text-red mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Crakd identifies talented developers by combining GitHub metrics with LLM analysis. 
-              The system uses ensemble models to score developers based on natural language queries, 
-              balancing quantitative code metrics with qualitative profile assessment.
-            </p>
+          Crakd identifies talented developers by combining GitHub metrics with LLM analysis. 
+          The system uses ensemble models to score developers based on natural language queries, 
+          balancing quantitative code metrics with qualitative profile assessment.
+        </p>
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-xl">
               <p className="text-sm text-gray-400">
                 Built at <span className="text-white font-medium">B.E.L.L.E&apos;s SF AI hackathon</span> (September 2025).
-              </p>
+        </p>
             </div>
           </section>
 
@@ -46,17 +46,17 @@ export default function CrakdProject() {
               <FeatureItem text="Semantic search enables descriptive developer queries" />
               <FeatureItem text="Real-time dashboard for ranking visualization" />
               <FeatureItem text="Local analysis tools for detailed profile examination" />
-            </ul>
+        </ul>
           </section>
 
           {/* Impact */}
           <section>
             <h2 className="text-2xl font-light text-green mb-4">Impact</h2>
-            <p className="text-gray-400 leading-relaxed">
-              Moves beyond resume screening by analyzing actual code contributions and GitHub activity. 
-              Natural language queries make technical talent search accessible to non-technical recruiters 
-              while maintaining analytical depth for accurate assessment.
-            </p>
+        <p className="text-gray-400 leading-relaxed">
+          Moves beyond resume screening by analyzing actual code contributions and GitHub activity. 
+          Natural language queries make technical talent search accessible to non-technical recruiters 
+          while maintaining analytical depth for accurate assessment.
+        </p>
           </section>
 
         </div>

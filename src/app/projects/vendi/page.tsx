@@ -5,10 +5,10 @@ export default function VendiProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">Vendi</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Smart Vending Solutions - Interdisciplinary Engineering Project
@@ -24,10 +24,10 @@ export default function VendiProject() {
           <section>
             <h2 className="text-2xl font-light text-yellow mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Led the development of a comprehensive smart vending machine project for UC Berkeley&apos;s Alpha Lambda engineering class. 
-              This interdisciplinary project integrated mechanical, electrical, and software engineering to create a custom vending machine 
-              designed for campus use, complete with a portfolio website showcasing the entire development process.
-            </p>
+          Led the development of a comprehensive smart vending machine project for UC Berkeley&apos;s Alpha Lambda engineering class. 
+          This interdisciplinary project integrated mechanical, electrical, and software engineering to create a custom vending machine 
+          designed for campus use, complete with a portfolio website showcasing the entire development process.
+        </p>
           </section>
 
           {/* Project Components */}
@@ -38,7 +38,7 @@ export default function VendiProject() {
               <FeatureItem text="Electrical Systems: Arduino control board, sensor integration, power distribution" />
               <FeatureItem text="Software Design: User interface, inventory tracking, motor control algorithms" />
               <FeatureItem text="Web Portfolio: Team documentation, project gallery, technical specifications" />
-            </ul>
+        </ul>
           </section>
 
           {/* Features */}
@@ -51,31 +51,31 @@ export default function VendiProject() {
               <FeatureItem text="User-friendly interface for product selection" />
               <FeatureItem text="Responsive web portfolio with project documentation" />
               <FeatureItem text="Team collaboration tools and development timeline" />
-            </ul>
+        </ul>
           </section>
 
           {/* Development Process */}
           <section>
             <h2 className="text-2xl font-light text-blue mb-4">Development Process</h2>
             <p className="text-gray-400 leading-relaxed mb-4">
-              As project lead, I coordinated a 15-week development cycle following agile methodology:
-            </p>
+          As project lead, I coordinated a 15-week development cycle following agile methodology:
+        </p>
             <ul className="space-y-3 text-gray-300">
               <FeatureItem text="Weeks 1-3: Planning & Research phase" />
               <FeatureItem text="Weeks 4-7: Design & Prototyping" />
               <FeatureItem text="Weeks 8-11: Implementation across all systems" />
               <FeatureItem text="Weeks 12-15: Testing & Refinement" />
-            </ul>
+        </ul>
           </section>
 
           {/* Team Leadership */}
           <section>
             <h2 className="text-2xl font-light text-sapphire mb-4">Team Leadership</h2>
-            <p className="text-gray-400 leading-relaxed">
-              Led a multidisciplinary team of UC Berkeley engineering students, coordinating across mechanical, 
-              electrical, and software disciplines. Managed weekly sprints, technical integration challenges, 
-              and ensured project deliverables were met on schedule.
-            </p>
+        <p className="text-gray-400 leading-relaxed">
+          Led a multidisciplinary team of UC Berkeley engineering students, coordinating across mechanical, 
+          electrical, and software disciplines. Managed weekly sprints, technical integration challenges, 
+          and ensured project deliverables were met on schedule.
+        </p>
           </section>
 
           {/* Web Portfolio Features */}
@@ -88,22 +88,22 @@ export default function VendiProject() {
               <FeatureItem text="Timeline view of the engineering development process" />
               <FeatureItem text="Team profiles and project documentation" />
               <FeatureItem text="Technical specifications and system architecture" />
-            </ul>
+        </ul>
           </section>
 
           {/* Impact */}
           <section>
             <h2 className="text-2xl font-light text-teal mb-4">Impact</h2>
-            <p className="text-gray-400 leading-relaxed">
-              Successfully delivered a fully functional smart vending machine prototype with comprehensive documentation. 
-              The project demonstrated practical application of engineering principles across multiple disciplines and 
-              showcased effective team leadership in a complex technical project.
-            </p>
+        <p className="text-gray-400 leading-relaxed">
+          Successfully delivered a fully functional smart vending machine prototype with comprehensive documentation. 
+          The project demonstrated practical application of engineering principles across multiple disciplines and 
+          showcased effective team leadership in a complex technical project.
+        </p>
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-xl">
               <p className="text-sm text-gray-400">
                 <span className="text-white font-medium">Note:</span> This project was completed as part of UC Berkeley&apos;s Alpha Lambda engineering coursework, 
-                demonstrating interdisciplinary collaboration and real-world engineering problem solving.
-              </p>
+            demonstrating interdisciplinary collaboration and real-world engineering problem solving.
+          </p>
             </div>
           </section>
 

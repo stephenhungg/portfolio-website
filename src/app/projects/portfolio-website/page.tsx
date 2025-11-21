@@ -5,10 +5,10 @@ export default function PortfolioWebsiteProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">Portfolio Website</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Modern, responsive portfolio website showcasing my projects and skills
@@ -24,10 +24,10 @@ export default function PortfolioWebsiteProject() {
           <section>
             <h2 className="text-2xl font-light text-pink mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              A modern, responsive portfolio website built with Next.js and Tailwind CSS. 
-              Features a clean design with project showcases, contact information, and smooth animations 
-              to create an engaging user experience that highlights my development skills and projects.
-            </p>
+          A modern, responsive portfolio website built with Next.js and Tailwind CSS. 
+          Features a clean design with project showcases, contact information, and smooth animations 
+          to create an engaging user experience that highlights my development skills and projects.
+        </p>
           </section>
 
           {/* Features */}
@@ -40,7 +40,7 @@ export default function PortfolioWebsiteProject() {
               <FeatureItem text="Smooth animations and hover effects" />
               <FeatureItem text="Clean, modern UI with dark theme" />
               <FeatureItem text="Fast loading with Next.js optimization" />
-            </ul>
+        </ul>
           </section>
 
           {/* Design Features */}
@@ -52,7 +52,7 @@ export default function PortfolioWebsiteProject() {
               <FeatureItem text="Consistent spacing and typography" />
               <FeatureItem text="Mobile-first responsive design" />
               <FeatureItem text="Dark theme with gray color palette" />
-            </ul>
+        </ul>
           </section>
 
           {/* Performance */}
@@ -63,18 +63,18 @@ export default function PortfolioWebsiteProject() {
               <FeatureItem text="Fast page loads with Next.js" />
               <FeatureItem text="SEO-friendly structure" />
               <FeatureItem text="Accessible design patterns" />
-            </ul>
+        </ul>
           </section>
 
           {/* Development Process */}
           <section>
             <h2 className="text-2xl font-light text-mauve mb-4">Development Process</h2>
-            <p className="text-gray-400 leading-relaxed">
-              Built with a focus on clean code, performance, and user experience. 
-              Used modern web development practices including component-based architecture, 
-              responsive design principles, and optimization techniques to create a fast, 
-              accessible, and visually appealing portfolio.
-            </p>
+        <p className="text-gray-400 leading-relaxed">
+          Built with a focus on clean code, performance, and user experience. 
+          Used modern web development practices including component-based architecture, 
+          responsive design principles, and optimization techniques to create a fast, 
+          accessible, and visually appealing portfolio.
+        </p>
           </section>
 
         </div>

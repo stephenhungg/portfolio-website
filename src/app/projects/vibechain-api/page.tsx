@@ -5,10 +5,10 @@ export default function VibeChainAPIProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">vibechain-api</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           ML-powered playlist recommendation API that predicts what song you want to hear next
@@ -24,9 +24,9 @@ export default function VibeChainAPIProject() {
           <section>
             <h2 className="text-2xl font-light text-mauve mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Built with TypeScript, Express, and TensorFlow.js, VibeChain analyzes Spotify track features—like danceability, energy, and valence—
-              to predict the vibe of the next track. Trained on 32K Spotify tracks for realistic recommendations.
-            </p>
+          Built with TypeScript, Express, and TensorFlow.js, VibeChain analyzes Spotify track features—like danceability, energy, and valence—
+          to predict the vibe of the next track. Trained on 32K Spotify tracks for realistic recommendations.
+        </p>
           </section>
 
           {/* Features */}
@@ -37,7 +37,7 @@ export default function VibeChainAPIProject() {
               <FeatureItem text="Health check endpoint" />
               <FeatureItem text="Model training and retraining scripts" />
               <FeatureItem text="Optional Spotify integration via environment variables" />
-            </ul>
+        </ul>
           </section>
 
           {/* API Examples */}
@@ -51,7 +51,7 @@ curl http://localhost:8080/health
 curl -X POST http://localhost:8080/analyze \\
   -H "Content-Type: application/json" \\
   -d '{"tracks":[{"danceability":0.8,"energy":0.9,"valence":0.7}]}'`}
-            </pre>
+        </pre>
           </section>
 
           {/* Scripts */}
@@ -62,7 +62,7 @@ curl -X POST http://localhost:8080/analyze \\
               <FeatureItem text="npm run start – production build + run" />
               <FeatureItem text="npm run train – retrain the model" />
               <FeatureItem text="npm run health – check if api is up" />
-            </ul>
+        </ul>
           </section>
 
           {/* Config */}
@@ -73,7 +73,7 @@ curl -X POST http://localhost:8080/analyze \\
 SPOTIFY_CLIENT_ID=your_client_id
 SPOTIFY_CLIENT_SECRET=your_secret
 PORT=8080`}
-            </pre>
+        </pre>
           </section>
 
         </div>

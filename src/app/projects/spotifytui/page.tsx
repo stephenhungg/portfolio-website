@@ -5,10 +5,10 @@ export default function SpotifyTUIProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">spotifytui</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Beautiful and feature-rich Terminal User Interface for Spotify
@@ -24,9 +24,9 @@ export default function SpotifyTUIProject() {
           <section>
             <h2 className="text-2xl font-light text-peach mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              A beautiful terminal user interface for Spotify built with Python and Textual. 
-              Control your music, manage playlists, and browse your library—all from the command line.
-            </p>
+          A beautiful terminal user interface for Spotify built with Python and Textual. 
+          Control your music, manage playlists, and browse your library—all from the command line.
+        </p>
           </section>
 
           {/* Features */}
@@ -38,7 +38,7 @@ export default function SpotifyTUIProject() {
               <FeatureItem text="Search tracks, artists, and albums" />
               <FeatureItem text="Lyrics display for current track" />
               <FeatureItem text="Volume control and device switching" />
-            </ul>
+        </ul>
           </section>
 
           {/* Quick Start */}
@@ -50,11 +50,11 @@ cd spotifytui
 pip install -r requirements.txt
 pip install -e .
 spotifytui`}
-            </pre>
+        </pre>
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-xl">
               <p className="text-sm text-gray-400">
                 <span className="text-white font-medium">Note:</span> Requires Spotify Premium account for full functionality.
-              </p>
+          </p>
             </div>
           </section>
 

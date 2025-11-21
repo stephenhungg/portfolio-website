@@ -26,7 +26,9 @@ export async function GET() {
         if (galleryData) {
           return NextResponse.json(galleryData, {
             headers: {
-              'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+              'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+              'CDN-Cache-Control': 'public, s-maxage=60',
+              'Vercel-CDN-Cache-Control': 'public, s-maxage=60',
             },
           });
         }

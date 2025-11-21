@@ -50,10 +50,27 @@ export async function POST(request: NextRequest) {
     const fileExtension = file.name.split('.').pop();
     const filename = `gallery_${timestamp}.${fileExtension}`;
 
+    // Check if Vercel Blob is configured
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json({
+        error: 'Vercel Blob storage is not configured. Please set BLOB_READ_WRITE_TOKEN in Vercel environment variables.',
+        details: 'This is required for file uploads in production.'
+      }, { status: 503 });
+    }
+
     // Upload to Vercel Blob
-    const blob = await put(filename, file, {
+    let blob;
+    try {
+      blob = await put(filename, file, {
       access: 'public',
     });
+    } catch (blobError) {
+      console.error('Vercel Blob upload error:', blobError);
+      return NextResponse.json({
+        error: 'Failed to upload file to Vercel Blob storage.',
+        details: blobError instanceof Error ? blobError.message : 'Unknown blob storage error'
+      }, { status: 500 });
+    }
 
     // Get existing gallery data from Redis
     let galleryData: {
@@ -106,17 +123,67 @@ export async function POST(request: NextRequest) {
     galleryData.metadata.lastUpdated = new Date().toISOString();
 
     // Save updated gallery data to Redis
+    try {
     await redis.set('gallery-data', galleryData);
+      
+      // Verify the save was successful by reading it back
+      const verifyData = await redis.get('gallery-data');
+      if (!verifyData || !Array.isArray((verifyData as any).images)) {
+        throw new Error('Failed to verify Redis save');
+      }
+    } catch (redisError) {
+      console.error('Redis save error:', redisError);
+      // Try to delete the blob we just uploaded since metadata save failed
+      try {
+        await import('@vercel/blob').then(({ del }) => del(blob.url));
+      } catch (deleteError) {
+        console.error('Failed to clean up blob after Redis error:', deleteError);
+      }
+      return NextResponse.json({ 
+        error: 'Failed to save image metadata. Upload may have partially succeeded.',
+        details: redisError instanceof Error ? redisError.message : 'Unknown error'
+      }, { status: 500 });
+    }
 
     return NextResponse.json({
       success: true,
       message: 'File uploaded successfully',
       imageId: imageData.id,
       blobUrl: blob.url
+    }, {
+      headers: {
+        // Invalidate cache for gallery list
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+        'CDN-Cache-Control': 'no-store',
+        'Vercel-CDN-Cache-Control': 'no-store',
+      }
     });
 
   } catch (error) {
     console.error('Upload error:', error);
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
+    // Log full error details for debugging in Vercel
+    console.error('Full error details:', {
+      message: errorMessage,
+      stack: errorStack,
+      env: {
+        hasRedis: !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN),
+        hasBlob: !!process.env.BLOB_READ_WRITE_TOKEN
+      }
+    });
+    
+    return NextResponse.json({ 
+      error: 'Upload failed',
+      details: errorMessage,
+      // Only include env info in development
+      ...(process.env.NODE_ENV === 'development' && {
+        debug: {
+          hasRedis: !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN),
+          hasBlob: !!process.env.BLOB_READ_WRITE_TOKEN
+        }
+      })
+    }, { status: 500 });
   }
 }

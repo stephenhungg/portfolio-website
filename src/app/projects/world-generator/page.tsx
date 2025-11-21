@@ -7,10 +7,10 @@ export default function WorldGeneratorProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">2D World Generator</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Procedural 2D world generation with ray tracing based lighting
@@ -26,22 +26,22 @@ export default function WorldGeneratorProject() {
           <section>
             <h2 className="text-2xl font-light text-teal mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              A procedural 2D world generator that creates unique landscapes using algorithmic generation techniques. 
-              The project features advanced lighting simulation using ray tracing principles and allows users to save 
-              and load generated worlds.
-            </p>
+          A procedural 2D world generator that creates unique landscapes using algorithmic generation techniques. 
+          The project features advanced lighting simulation using ray tracing principles and allows users to save 
+          and load generated worlds.
+        </p>
           </section>
-
+        
           {/* Project Image */}
           <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-gray-900">
-            <Image
-              src="/images/world-generator.png"
-              alt="2D World Generator Screenshot"
-              fill
-              className="object-contain p-4"
-              priority
-            />
-          </div>
+              <Image
+                src="/images/world-generator.png"
+                alt="2D World Generator Screenshot"
+                fill
+                className="object-contain p-4"
+                priority
+              />
+            </div>
 
           {/* Features */}
           <section>
@@ -76,15 +76,15 @@ export default function WorldGeneratorProject() {
               <TechSection title="Language" items={["Java"]} />
               <TechSection title="Graphics" items={["StdDraw"]} />
               <TechSection title="File I/O" items={["Custom Serialization"]} />
-            </div>
           </div>
-
+        </div>
+        
         </aside>
 
       </div>
     </main>
   );
-}
+} 
 
 // Helper Components
 

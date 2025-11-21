@@ -5,10 +5,10 @@ export default function FuzzySchoolProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">MyBackpack</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Professional networking mobile app for high school students
@@ -24,10 +24,10 @@ export default function FuzzySchoolProject() {
           <section>
             <h2 className="text-2xl font-light text-maroon mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              myBackpack is a comprehensive mobile application designed to help high school students manage their academic 
-              journey and build professional networks. The app combines activity tracking, AI-powered feedback, and resume 
-              building tools to prepare students for college and career success.
-            </p>
+          myBackpack is a comprehensive mobile application designed to help high school students manage their academic 
+          journey and build professional networks. The app combines activity tracking, AI-powered feedback, and resume 
+          building tools to prepare students for college and career success.
+        </p>
           </section>
 
           {/* Features */}
@@ -38,7 +38,7 @@ export default function FuzzySchoolProject() {
               <FeatureItem text="AI-powered feedback on activities and achievements" />
               <FeatureItem text="Professional resume builder with templates" />
               <FeatureItem text="Networking features for connecting with peers" />
-            </ul>
+        </ul>
           </section>
 
         </div>
@@ -70,7 +70,7 @@ export default function FuzzySchoolProject() {
       </div>
     </main>
   );
-}
+} 
 
 // Helper Components
 

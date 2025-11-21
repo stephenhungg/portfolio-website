@@ -77,13 +77,20 @@ export default function AdminGallery() {
 
   const fetchGalleryImages = async () => {
     try {
-      const response = await fetch('/api/gallery/list');
+      // Add cache-busting query parameter
+      const cacheBuster = `?t=${Date.now()}`;
+      const response = await fetch(`/api/gallery/list${cacheBuster}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+        }
+      });
       if (response.ok) {
         const galleryData = await response.json();
         setGalleryImages(galleryData.images || []);
       }
-    } catch {
-      console.error('Error fetching gallery images');
+    } catch (error) {
+      console.error('Error fetching gallery images:', error);
     }
   };
 
@@ -318,18 +325,29 @@ export default function AdminGallery() {
         body: uploadFormData,
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         setMessage('Photo uploaded successfully!');
         setFormData({ title: '', description: '' });
         setPreview(null);
         if (fileInputRef.current) fileInputRef.current.value = '';
-        // Refresh the gallery images
+        // Refresh the gallery images with cache busting
         await fetchGalleryImages();
+        // Force a second refresh after a short delay to ensure cache is cleared
+        setTimeout(async () => {
+          await fetchGalleryImages();
+        }, 500);
       } else {
-        setMessage('Upload failed. Please try again.');
+        const errorMsg = result.error || result.message || 'Upload failed. Please try again.';
+        const details = result.details ? ` (${result.details})` : '';
+        setMessage(`Upload failed: ${errorMsg}${details}`);
+        console.error('Upload error response:', result);
       }
-    } catch {
-      setMessage('Upload failed. Please try again.');
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Network error';
+      setMessage(`Upload failed: ${errorMsg}. Please try again.`);
+      console.error('Upload exception:', error);
     }
 
     setUploading(false);

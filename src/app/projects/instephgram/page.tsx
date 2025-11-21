@@ -5,10 +5,10 @@ export default function InstephgramProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">InStephGram</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Competition-based Instagram-style full-stack web application
@@ -24,10 +24,10 @@ export default function InstephgramProject() {
           <section>
             <h2 className="text-2xl font-light text-lavender mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Instephgram is a full-stack social media application inspired by Instagram, built with modern web technologies. 
-              The platform features user authentication, photo sharing, likes and comments, user profiles, and a feed system.
-              Try to gain dislikes instead of likes, and compete on a leaderboard.
-            </p>
+          Instephgram is a full-stack social media application inspired by Instagram, built with modern web technologies. 
+          The platform features user authentication, photo sharing, likes and comments, user profiles, and a feed system.
+          Try to gain dislikes instead of likes, and compete on a leaderboard.
+        </p>
           </section>
 
           {/* Features */}
@@ -39,7 +39,7 @@ export default function InstephgramProject() {
               <FeatureItem text="Real-time likes and comments system" />
               <FeatureItem text="Responsive design for mobile and desktop" />
               <FeatureItem text="MongoDB database for data persistence" />
-            </ul>
+        </ul>
           </section>
 
         </div>
@@ -72,7 +72,7 @@ export default function InstephgramProject() {
       </div>
     </main>
   );
-}
+} 
 
 // Helper Components
 

@@ -55,33 +55,39 @@ export default function AboutPage() {
 
             {/* Currently Building */}
             <section className="fade-in" style={{ animationDelay: '200ms' }}>
-              <h2 className="text-2xl font-light mb-6 text-pink">Currently Building</h2>
+              <h2 className="text-2xl font-light mb-6 text-pink">currently building</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <ProjectCard 
                   title="darwin."
                   href="https://darwin.qtzx.dev"
                   color="text-pink"
-                  description="Multi-agent AI coding platform with real-time blockchain voting."
+                  description="multi-agent AI coding platform with real-time blockchain voting."
                   tech={["React", "Gemini 2.5", "Sui", "Three.js"]}
                 />
                 <ProjectCard 
-                  title="Replate (Blueprint)"
+                  title="replate (blueprint)"
                   color="text-sapphire"
-                  description="Mobile app digitizing donation tracking for 50+ food rescue orgs."
+                  description="mobile app digitizing donation tracking for 50+ food rescue orgs."
                   tech={["React Native", "Ruby on Rails"]}
                 />
                 <ProjectCard 
-                  title="ClearPath Medical AI"
+                  title="clearpath medical ai"
                   color="text-mauve"
-                  description="AI agent to automate PFMEA analysis for medical device risk assessment."
+                  description="ai agent to automate PFMEA analysis for medical device risk assessment."
                   tech={["Python", "LangChain", "LLMs"]}
+                />
+                <ProjectCard 
+                  title="freelance website development"
+                  color="text-blue"
+                  description="freelance portfolio website development for college students to showcase their projects and skills."
+                  tech={["React", "Vite", "Tailwind", "TypeScript"]}
                 />
               </div>
             </section>
 
             {/* Experience */}
             <section className="fade-in" style={{ animationDelay: '300ms' }}>
-              <h2 className="text-2xl font-light mb-6 text-blue">Experience</h2>
+              <h2 className="text-2xl font-light mb-6 text-blue">experience</h2>
               <div className="space-y-8 border-l-2 border-white/5 pl-8 relative">
                 <ExperienceItem 
                   role="Software Developer"
@@ -124,7 +130,7 @@ export default function AboutPage() {
 
             {/* Recent Projects */}
             <section className="fade-in" style={{ animationDelay: '500ms' }}>
-              <h2 className="text-2xl font-light mb-6 text-green">Recent Projects</h2>
+              <h2 className="text-2xl font-light mb-6 text-green">recent projects</h2>
               <div className="grid gap-3">
                  <CompactProject 
                    name="darwin." 

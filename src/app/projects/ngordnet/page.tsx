@@ -7,10 +7,10 @@ export default function NgordnetProject() {
       <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
-            ← Back to Projects
-          </a>
-        </div>
-        
+          ← Back to Projects
+        </a>
+      </div>
+      
         <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">ngordnet</h1>
         <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Ngram-based word frequency analyzer replicating Google Ngram Viewer and Princeton WordNet
@@ -26,22 +26,22 @@ export default function NgordnetProject() {
           <section>
             <h2 className="text-2xl font-light text-sapphire mb-4">Overview</h2>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Ngordnet is a sophisticated word frequency analysis tool that combines the power of Google&apos;s Ngram Viewer 
-              with Princeton&apos;s WordNet semantic database. The application allows users to analyze word usage patterns 
-              over time and explore semantic relationships between words.
-            </p>
+          Ngordnet is a sophisticated word frequency analysis tool that combines the power of Google&apos;s Ngram Viewer 
+          with Princeton&apos;s WordNet semantic database. The application allows users to analyze word usage patterns 
+          over time and explore semantic relationships between words.
+        </p>
           </section>
-
+        
           {/* Project Image */}
           <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-gray-900">
-            <Image
-              src="/images/ngordnet.png"
-              alt="Ngordnet Word Frequency Analyzer Screenshot"
-              fill
-              className="object-contain p-4"
-              priority
-            />
-          </div>
+              <Image
+                src="/images/ngordnet.png"
+                alt="Ngordnet Word Frequency Analyzer Screenshot"
+                fill
+                className="object-contain p-4"
+                priority
+              />
+            </div>
 
           {/* Features */}
           <section>
@@ -75,15 +75,15 @@ export default function NgordnetProject() {
               <TechSection title="Language" items={["Java"]} />
               <TechSection title="Data Processing" items={["Custom Algorithms"]} />
               <TechSection title="Data Structures" items={["Graphs", "Trees"]} />
-            </div>
           </div>
-
+        </div>
+        
         </aside>
 
       </div>
     </main>
   );
-}
+} 
 
 // Helper Components
 

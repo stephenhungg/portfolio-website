@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { createPortal } from "react-dom";
+import { useState, useEffect } from "react";
 
 interface Project {
   id: string;
@@ -16,6 +18,16 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    id: "freelance-portfolios",
+    title: "Freelance Portfolio Development",
+    date: "November 2025",
+    description: "freelance portfolio website development for college students to showcase their projects and skills.",
+    color: "text-lavender",
+    inProgress: true,
+    image: "/images/freelance.png",
+    tech: ["React", "Vite", "Tailwind", "TypeScript"],
+  },
   {
     id: "darwin",
     title: "darwin.",
@@ -148,7 +160,72 @@ const projects: Project[] = [
   },
 ];
 
+function ImagePreview({ image, title, isHovered }: { image: string; title: string; isHovered: boolean }) {
+  const [mounted, setMounted] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isHovered) {
+      const timer = setTimeout(() => {
+        setShowPreview(true);
+      }, 150);
+      return () => clearTimeout(timer);
+    } else {
+      setShowPreview(false);
+    }
+  }, [isHovered]);
+
+  if (!mounted) return null;
+
+  const previewContent = (
+    <>
+      <div 
+        className={`fixed inset-0 bg-black/80 transition-opacity duration-300 pointer-events-none hidden lg:block ${
+          showPreview ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ zIndex: 99998 }}
+      />
+      <div 
+        className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl h-[80vh] max-h-[600px] transition-all duration-300 pointer-events-none transform hidden lg:block ${
+          showPreview ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}
+        style={{ zIndex: 99999 }}
+      >
+        <div className="relative w-full h-full rounded-lg overflow-hidden">
+          <Image
+            src={image}
+            alt={`${title} screenshot - expanded`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 1024px) 90vw, 768px"
+          />
+        </div>
+      </div>
+    </>
+  );
+
+  return createPortal(previewContent, document.body);
+}
+
 export default function Projects() {
+  const [hoveredImage, setHoveredImage] = useState<{ image: string; title: string } | null>(null);
+  const [previewImage, setPreviewImage] = useState<{ image: string; title: string } | null>(null);
+
+  useEffect(() => {
+    if (hoveredImage) {
+      setPreviewImage(hoveredImage);
+    } else {
+      const timer = setTimeout(() => {
+        setPreviewImage(null);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [hoveredImage]);
+
   return (
     <main className="max-w-6xl mx-auto pt-24 pb-16 px-6">
       <div className="text-center mb-16 fade-in">
@@ -156,18 +233,42 @@ export default function Projects() {
         <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
           A collection of my work, ranging from hackathon winners to long-term engineering projects.
         </p>
-      </div>
+        </div>
+
+      {previewImage && (
+        <ImagePreview 
+          image={previewImage.image} 
+          title={previewImage.title} 
+          isHovered={!!hoveredImage}
+        />
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProjectCard 
+            key={project.id} 
+            project={project} 
+            index={index}
+            onMouseEnter={project.image ? () => setHoveredImage({ image: project.image!, title: project.title }) : undefined}
+            onMouseLeave={project.image ? () => setHoveredImage(null) : undefined}
+          />
         ))}
       </div>
     </main>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project, index: number }) {
+function ProjectCard({ 
+  project, 
+  index, 
+  onMouseEnter, 
+  onMouseLeave 
+}: { 
+  project: Project, 
+  index: number,
+  onMouseEnter?: () => void,
+  onMouseLeave?: () => void
+}) {
   const Wrapper = project.link ? Link : 'div';
   const props = project.link ? { href: project.link } : {};
 
@@ -179,7 +280,11 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-video overflow-hidden bg-gray-900">
+      <div 
+        className="relative w-full aspect-video overflow-hidden bg-gray-900"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         {project.image ? (
           <Image
             src={project.image}
@@ -190,10 +295,10 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-700">
-             <span className="text-4xl">⚡</span>
+            <span className="text-4xl">⚡</span>
           </div>
         )}
-        
+
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
       </div>
@@ -202,14 +307,14 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
       <div className="flex flex-col flex-1 p-6">
         <div className="flex items-start justify-between mb-3">
           <h2 className={`text-xl font-medium ${project.color} group-hover:underline decoration-1 underline-offset-4`}>
-            {project.title}
-          </h2>
+                      {project.title}
+                    </h2>
           {project.inProgress && (
             <span className="text-[10px] font-bold uppercase tracking-wider bg-yellow/10 text-yellow px-2 py-1 rounded-full border border-yellow/20">
               WIP
             </span>
           )}
-        </div>
+            </div>
         
         <div className="text-xs text-gray-500 font-mono mb-3 uppercase tracking-wide">{project.date}</div>
         
@@ -222,12 +327,12 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
           {project.tech?.slice(0, 3).map((t) => (
             <span key={t} className="text-xs px-2.5 py-1 rounded-md bg-black/20 border border-white/5 text-gray-400 group-hover:border-white/10 transition-colors">
               {t}
-            </span>
-          ))}
+                      </span>
+                    ))}
           {project.tech && project.tech.length > 3 && (
              <span className="text-xs px-2 py-1 text-gray-600">+{project.tech.length - 3}</span>
           )}
-        </div>
+          </div>
       </div>
     </Wrapper>
   );
