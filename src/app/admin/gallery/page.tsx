@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function AdminGallery() {
@@ -451,7 +451,7 @@ export default function AdminGallery() {
               <div className="relative">
                 <label className={`block text-sm mb-2 ${theme === 'catppuccin' ? 'text-theme' : 'text-white'}`}>Preview</label>
                 <div className={`relative w-full max-w-sm rounded-lg border overflow-hidden ${theme === 'catppuccin' ? 'border-gray-700-theme' : 'border-white'}`} style={{ aspectRatio: '16/9' }}>
-                  <Image
+                  <NextImage
                     src={preview}
                     alt="Preview"
                     fill
@@ -543,7 +543,7 @@ export default function AdminGallery() {
                   <div className={`relative w-full h-32 rounded mb-3 border overflow-hidden ${
                       theme === 'catppuccin' ? 'border-gray-700-theme' : 'border-white'
                     }`}>
-                    <Image
+                    <NextImage
                       src={image.blobUrl || `/images/gallery/${image.filename}`}
                       alt={image.title || 'Gallery image'}
                       fill
