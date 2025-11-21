@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 interface LightboxProps {
   isOpen: boolean;
@@ -80,12 +81,18 @@ export default function Lightbox({
         <div className="max-w-7xl max-h-full flex flex-col lg:flex-row gap-6">
           {/* Image */}
           <div className="flex-1 flex items-center justify-center">
-            <img
-              src={imageSrc}
-              alt={imageTitle}
-              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
+            <div className="relative max-w-full max-h-[80vh] w-full h-full flex items-center justify-center">
+              <Image
+                src={imageSrc}
+                alt={imageTitle}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+                unoptimized
+                style={{ width: 'auto', height: 'auto' }}
+              />
+            </div>
           </div>
 
           {/* Metadata panel */}

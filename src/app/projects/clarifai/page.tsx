@@ -55,7 +55,7 @@ export default function ClarifaiProject() {
             <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Links</h3>
             <div className="flex flex-col gap-3">
               <ProjectLink href="https://clarif-ai-prod.vercel.app" label="Live Demo" primary />
-              <ProjectLink href="https://github.com/qtzx06/clarifai" label="GitHub Repo" />
+              <ProjectLink href="https://github.com/stephenhungg/clarifai" label="GitHub Repo" />
             </div>
           </div>
 

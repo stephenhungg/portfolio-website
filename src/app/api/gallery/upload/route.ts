@@ -127,8 +127,18 @@ export async function POST(request: NextRequest) {
     await redis.set('gallery-data', galleryData);
       
       // Verify the save was successful by reading it back
-      const verifyData = await redis.get('gallery-data');
-      if (!verifyData || !Array.isArray((verifyData as any).images)) {
+      const verifyData = await redis.get('gallery-data') as {
+        images: Array<{
+          id: string;
+          title: string;
+          description: string;
+          uploadDate: string;
+          blobUrl: string;
+          uploadedBy: string;
+        }>;
+        metadata: { totalImages: number; lastUpdated: string };
+      } | null;
+      if (!verifyData || !Array.isArray(verifyData.images)) {
         throw new Error('Failed to verify Redis save');
       }
     } catch (redisError) {
