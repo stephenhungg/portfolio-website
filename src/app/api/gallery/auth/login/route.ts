@@ -26,8 +26,18 @@ function getClientIP(request: NextRequest): string {
     return realIP;
   }
   
-  // Fallback to connection remote address (may not work in serverless)
-  return request.ip || 'unknown';
+  // Try CF-Connecting-IP (Cloudflare)
+  const cfIP = request.headers.get('cf-connecting-ip');
+  if (cfIP) {
+    return cfIP;
+  }
+  
+  // Fallback: use a hash of headers as identifier (for serverless environments)
+  // This is less ideal but better than 'unknown' for rate limiting
+  const userAgent = request.headers.get('user-agent') || '';
+  const accept = request.headers.get('accept') || '';
+  // Create a consistent identifier from headers (not perfect, but works in serverless)
+  return `header-${Buffer.from(userAgent + accept).toString('base64').substring(0, 16)}`;
 }
 
 async function getLockoutDuration(ip: string): Promise<number> {
