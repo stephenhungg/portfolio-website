@@ -45,14 +45,27 @@ export default function Gallery() {
             description?: string;
             blobUrl?: string;
             filename?: string;
-          }, index: number) => ({
-            id: image.id,
-            img: image.blobUrl || `/images/gallery/${image.filename}`,
-            url: image.blobUrl || `/images/gallery/${image.filename}`,
-            height: 300 + (index % 4) * 100,
-            title: image.title,
-            description: image.description
-          }));
+          }, index: number) => {
+            // Determine image URL - prefer blobUrl, then filename, fallback to id-based path
+            let imageUrl: string;
+            if (image.blobUrl) {
+              imageUrl = image.blobUrl;
+            } else if (image.filename) {
+              imageUrl = `/images/gallery/${image.filename}`;
+            } else {
+              // Fallback for old format
+              imageUrl = `/images/gallery/gallery_${image.id}.jpg`;
+            }
+            
+            return {
+              id: image.id,
+              img: imageUrl,
+              url: imageUrl,
+              height: 300 + (index % 4) * 100,
+              title: image.title,
+              description: image.description
+            };
+          });
           setGalleryItems(items);
         }
       } catch (error) {
@@ -87,18 +100,8 @@ export default function Gallery() {
 
   return (
     <main className="max-w-7xl mx-auto pt-20 pb-12 px-4">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className={`text-3xl font-light text-center fade-in flex-1 ${theme === 'catppuccin' ? 'text-pink' : 'text-pink'}`}>Gallery</h1>
-        <a
-          href="/admin/gallery"
-          className={`text-xs transition-colors px-3 py-1 rounded border ${
-            theme === 'catppuccin'
-              ? 'text-gray-400-theme hover:text-theme border-gray-700-theme hover:border-mauve'
-              : 'text-gray-500 hover:text-white border-gray-600/30 hover:border-white'
-          }`}
-        >
-          Admin
-        </a>
+      <div className="mb-4">
+        <h1 className={`text-3xl font-light text-center fade-in ${theme === 'catppuccin' ? 'text-pink' : 'text-pink'}`}>Gallery</h1>
       </div>
       <p className={`text-center mb-12 fade-in ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
         A collection of photos and moments. ({galleryData.metadata.totalImages} photos)
