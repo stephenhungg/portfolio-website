@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       const migrated = migratedImages.find(m => m.id === image.id);
       if (migrated && migrated.filename) {
         // Create new object without blobUrl, using filename instead
-        const { blobUrl, ...rest } = image as any;
+        const { blobUrl: _, ...rest } = image;
         return {
           ...rest,
           filename: migrated.filename,
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
       }
       // Keep images that already have filenames
       if ('filename' in image && image.filename) {
-        const { blobUrl, ...rest } = image as any;
+        const { blobUrl: _, ...rest } = image;
         return rest;
       }
       return image;
