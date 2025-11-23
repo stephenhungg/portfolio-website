@@ -31,7 +31,8 @@ export async function POST(request: NextRequest) {
         title: string;
         description: string;
         uploadDate: string;
-        blobUrl: string;
+        blobUrl?: string;
+        filename?: string;
         uploadedBy: string;
       }>;
       metadata: { totalImages: number; lastUpdated: string };
@@ -58,11 +59,12 @@ export async function POST(request: NextRequest) {
     for (const image of galleryData.images) {
       try {
         // Skip if already has a filename (already static)
-        if ('filename' in image && image.filename && !image.blobUrl) {
-          console.log(`Skipping ${image.id} - already static with filename: ${image.filename}`);
+        const staticFilename = image.filename;
+        if (staticFilename && typeof staticFilename === 'string' && !image.blobUrl) {
+          console.log(`Skipping ${image.id} - already static with filename: ${staticFilename}`);
           migratedImages.push({
             id: image.id,
-            filename: image.filename,
+            filename: staticFilename,
             blobUrl: ''
           });
           continue;
@@ -134,7 +136,8 @@ export async function POST(request: NextRequest) {
       const migrated = migratedImages.find(m => m.id === image.id);
       if (migrated && migrated.filename) {
         // Create new object without blobUrl, using filename instead
-        const { blobUrl: _, ...rest } = image;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { blobUrl, ...rest } = image;
         return {
           ...rest,
           filename: migrated.filename,
@@ -142,7 +145,8 @@ export async function POST(request: NextRequest) {
       }
       // Keep images that already have filenames
       if ('filename' in image && image.filename) {
-        const { blobUrl: _, ...rest } = image;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { blobUrl, ...rest } = image;
         return rest;
       }
       return image;
