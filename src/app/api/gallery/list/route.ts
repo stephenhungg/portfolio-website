@@ -18,7 +18,8 @@ export async function GET() {
             id: string;
             title?: string;
             description?: string;
-            blobUrl: string;
+            blobUrl?: string;
+            filename?: string;
             uploadDate: string;
           }>;
           metadata: { totalImages: number; lastUpdated: string };

@@ -52,7 +52,7 @@ export default function InstephgramProject() {
             <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Links</h3>
             <div className="flex flex-col gap-3">
               <ProjectLink href="https://github.com/stephenhungg/InStephGram" label="GitHub Repo" primary />
-              <ProjectLink href="https://instephgram.vercel.app" label="Live Website" />
+              <ProjectLink href="https://instephgram.stephenhung.me" label="Live Website" />
             </div>
           </div>
 

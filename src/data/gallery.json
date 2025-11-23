@@ -1,26 +1,112 @@
 {
   "images": [
     {
-      "id": "gallery_1761076775831",
-      "filename": "gallery_1761076775831.JPG",
-      "title": "Taco Bell",
-      "description": "pbros",
-      "uploadDate": "2025-10-21",
-      "dimensions": "800x600",
-      "uploadedBy": "admin"
+      "id": "gallery_1763537854316",
+      "title": "hello",
+      "description": "lmfao",
+      "uploadDate": "2025-11-19",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763537854316.jpeg"
     },
     {
-      "id": "gallery_1761076797828",
-      "filename": "gallery_1761076797828.jpg",
-      "title": "santa barbara",
-      "description": "im tuff",
-      "uploadDate": "2025-10-21",
-      "dimensions": "800x600",
-      "uploadedBy": "admin"
+      "id": "gallery_1763599442794",
+      "title": "calhacks",
+      "description": "I luv this shirt",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763599442794.jpg"
+    },
+    {
+      "id": "gallery_1763600045729",
+      "title": "niteharts",
+      "description": "I love edm",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600045729.png"
+    },
+    {
+      "id": "gallery_1763600077322",
+      "title": "NYC",
+      "description": "travels",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600077322.jpg"
+    },
+    {
+      "id": "gallery_1763600096442",
+      "title": "lake sonoma",
+      "description": "Sebastian!!",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600096442.jpg"
+    },
+    {
+      "id": "gallery_1763600135846",
+      "title": "taco belllll",
+      "description": "pbruzz",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600135846.jpg"
+    },
+    {
+      "id": "gallery_1763600164870",
+      "title": "LA",
+      "description": "SHAAN",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600164870.jpg"
+    },
+    {
+      "id": "gallery_1763600190257",
+      "title": "chino hills",
+      "description": "skies",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600190257.jpg"
+    },
+    {
+      "id": "gallery_1763600228818",
+      "title": "yosemite",
+      "description": "cold af",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763600228818.jpg"
+    },
+    {
+      "id": "gallery_1763680343103",
+      "title": "thrift",
+      "description": "NYC!!!",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763680343103.jpg"
+    },
+    {
+      "id": "gallery_1763680369361",
+      "title": "bears",
+      "description": "holy Jake",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763680369361.jpg"
+    },
+    {
+      "id": "gallery_1763680404530",
+      "title": "aestheticccc",
+      "description": "la jolla cliffs",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763680404530.jpg"
+    },
+    {
+      "id": "gallery_1763680499758",
+      "title": "hiking",
+      "description": "santa barbara\r\n",
+      "uploadDate": "2025-11-20",
+      "uploadedBy": "admin",
+      "filename": "gallery_gallery_1763680499758.jpg"
     }
   ],
   "metadata": {
-    "totalImages": 2,
-    "lastUpdated": "2025-10-21T19:59:57.833Z"
+    "totalImages": 13,
+    "lastUpdated": "2025-11-22T00:42:39.273Z"
   }
 }
