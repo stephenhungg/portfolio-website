@@ -58,17 +58,16 @@ export default function AboutPage() {
               <h2 className="text-2xl font-light mb-6 text-pink">currently building</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <ProjectCard 
-                  title="darwin."
-                  href="https://darwin.qtzx.dev"
+                  title="spike"
                   color="text-pink"
-                  description="multi-agent AI coding platform with real-time blockchain voting."
-                  tech={["React", "Gemini 2.5", "Sui", "Three.js"]}
+                  description="prediction market for short form content"
+                  tech={["React", "Python", "Blockchain"]}
                 />
                 <ProjectCard 
                   title="replate (blueprint)"
                   color="text-sapphire"
                   description="mobile app digitizing donation tracking for 50+ food rescue orgs."
-                  tech={["React Native", "Ruby on Rails"]}
+                  tech={["React Native", "Expo", "Ruby on Rails"]}
                 />
                 <ProjectCard 
                   title="clearpath medical ai"
@@ -95,7 +94,7 @@ export default function AboutPage() {
                   companyColor="text-sapphire"
                   period="Fall 2025 – Present"
                   bullets={[
-                    "Building mobile apps for social good with React Native and Ruby on Rails",
+                    "Building software for social good",
                     "Architected complete authentication system for Replate's food donation tracking app"
                   ]}
                 />

@@ -89,10 +89,21 @@ const Masonry: React.FC<MasonryProps> = ({
   onImageClick
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
+    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:640px)', '(min-width:400px)'],
     [5, 4, 3, 2],
     1
   );
+  
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const [containerRef, { width }] = useMeasure<HTMLDivElement>();
   const [imagesReady, setImagesReady] = useState(false);
@@ -106,7 +117,7 @@ const Masonry: React.FC<MasonryProps> = ({
   const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
-    const gap = 16;
+    const gap = isMobile ? 8 : 16;
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
 
@@ -119,7 +130,7 @@ const Masonry: React.FC<MasonryProps> = ({
       colHeights[col] += height + gap;
       return { ...child, x, y, w: columnWidth, h: height };
     });
-  }, [columns, items, width]);
+  }, [columns, items, width, isMobile]);
 
   useEffect(() => {
     if (!imagesReady) return;
@@ -148,7 +159,7 @@ const Masonry: React.FC<MasonryProps> = ({
   const getItemClasses = (item: GridItem) => {
     const isHovered = hoveredId === item.id;
 
-    let classes = 'absolute transition-transform transition-opacity cursor-pointer ';
+    let classes = 'absolute transition-transform transition-opacity cursor-pointer touch-manipulation ';
 
     if (animationStarted) {
       classes += 'opacity-100 ';
@@ -156,11 +167,16 @@ const Masonry: React.FC<MasonryProps> = ({
       classes += `opacity-0 ${animateFrom === 'bottom' ? 'translate-y-8' : ''} `;
     }
 
-    // Simplified hover scaling
-    if (isHovered) {
+    // Simplified hover scaling - only on non-touch devices
+    if (isHovered && !isMobile) {
       classes += 'scale-110 z-50 ';
     } else {
       classes += 'scale-100 z-10 ';
+    }
+
+    // Active state for mobile touch feedback
+    if (isMobile) {
+      classes += 'active:scale-95 ';
     }
 
     return classes;
@@ -178,12 +194,16 @@ const Masonry: React.FC<MasonryProps> = ({
           onMouseLeave={() => setHoveredId(null)}
         >
           <div
-            className="relative w-full h-full bg-cover bg-center rounded-xl overflow-hidden border border-white/10 hover:border-white/30 transition-colors duration-200"
+            className={`relative w-full h-full bg-cover bg-center overflow-hidden border transition-colors duration-200 ${
+              isMobile 
+                ? 'rounded-lg border-white/10 active:border-white/30' 
+                : 'rounded-xl border-white/10 hover:border-white/30'
+            }`}
             style={{ backgroundImage: `url(${item.img})` }}
           >
             {/* Single optimized overlay */}
             <div className={`absolute inset-0 bg-gradient-to-t from-black/40 to-transparent transition-opacity duration-200 ${
-              hoveredId === item.id ? 'opacity-30' : 'opacity-60'
+              hoveredId === item.id && !isMobile ? 'opacity-30' : 'opacity-60'
             }`} />
           </div>
         </div>

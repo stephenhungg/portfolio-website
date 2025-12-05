@@ -99,11 +99,11 @@ export default function Gallery() {
   const currentImage = galleryItems[currentImageIndex];
 
   return (
-    <main className="max-w-7xl mx-auto pt-20 pb-12 px-4">
-      <div className="mb-4">
-        <h1 className={`text-3xl font-light text-center fade-in ${theme === 'catppuccin' ? 'text-pink' : 'text-pink'}`}>Gallery</h1>
+    <main className="max-w-7xl mx-auto pt-20 sm:pt-24 pb-8 sm:pb-12 px-3 sm:px-4">
+      <div className="mb-3 sm:mb-4">
+        <h1 className={`text-2xl sm:text-3xl font-light text-center fade-in ${theme === 'catppuccin' ? 'text-pink' : 'text-pink'}`}>Gallery</h1>
       </div>
-      <p className={`text-center mb-12 fade-in ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
+      <p className={`text-center mb-8 sm:mb-12 fade-in text-sm sm:text-base ${theme === 'catppuccin' ? 'text-gray-400-theme' : 'text-gray-400'}`}>
         A collection of photos and moments. ({galleryData.metadata.totalImages} photos)
       </p>
 
