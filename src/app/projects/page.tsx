@@ -54,7 +54,7 @@ const projects: Project[] = [
     date: "october 2025",
     description: "mobile app for food rescue partners to instantly log donation data, replacing manual pen-and-paper systems. built with cal blueprint.",
     color: "text-green",
-    link: "/projects/replate",
+    inProgress: true,
     image: "/images/replate.png",
     tech: ["React Native", "Ruby on Rails"],
   },
@@ -253,7 +253,7 @@ export default function Projects() {
             onMouseLeave={project.image ? () => setHoveredImage(null) : undefined}
           />
         ))}
-      </div>
+               </div>
     </main>
   );
 }
@@ -301,7 +301,7 @@ function ProjectCard({
 
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-      </div>
+        </div>
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-6">
@@ -312,7 +312,7 @@ function ProjectCard({
           {project.inProgress && (
             <span className="text-[10px] font-bold uppercase tracking-wider bg-yellow/10 text-yellow px-2 py-1 rounded-full border border-yellow/20">
               WIP
-            </span>
+              </span>
           )}
             </div>
         
@@ -332,7 +332,7 @@ function ProjectCard({
           {project.tech && project.tech.length > 3 && (
              <span className="text-xs px-2 py-1 text-gray-600">+{project.tech.length - 3}</span>
           )}
-          </div>
+        </div>
       </div>
     </Wrapper>
   );

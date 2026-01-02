@@ -58,12 +58,6 @@ export default function AboutPage() {
               <h2 className="text-2xl font-light mb-6 text-pink">currently building</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <ProjectCard 
-                  title="spike"
-                  color="text-pink"
-                  description="prediction market for short form content"
-                  tech={["React", "Python", "Blockchain"]}
-                />
-                <ProjectCard 
                   title="replate (blueprint)"
                   color="text-sapphire"
                   description="mobile app digitizing donation tracking for 50+ food rescue orgs."
@@ -113,7 +107,7 @@ export default function AboutPage() {
                   role="Professional Development Chair"
                   company="Theta Tau"
                   companyColor="text-yellow"
-                  period="Spring 2025 – Present"
+                  period="Spring 2025 – Fall 2026"
                   bullets={[
                     "Organize technical workshops and career development programming for 50+ engineering students",
                     "Coordinate industry networking events and alumni mentorship opportunities"
