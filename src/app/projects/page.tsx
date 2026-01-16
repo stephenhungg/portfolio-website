@@ -19,6 +19,16 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: "flow",
+    title: "flow",
+    date: "january 2026",
+    description: "speak a concept, step inside it in 3d. voice-controlled spatial learning platform that converts speech into explorable 3d gaussian splat environments with educational overlays. sb hacks xii winner.",
+    color: "text-blue",
+    link: "/projects/flow",
+    image: "/images/flow.png",
+    tech: ["React", "Three.js", "Gaussian Splatting", "Gemini", "Deepgram", "ElevenLabs"],
+  },
+  {
     id: "freelance-portfolios",
     title: "Freelance Portfolio Development",
     date: "November 2025",
@@ -44,9 +54,9 @@ const projects: Project[] = [
     date: "october 2025",
     description: "pfmea analysis agent for clearpath medical. in collaboration with theta tau professional engineering fraternity.",
     color: "text-yellow",
-    inProgress: true,
+    link: "/projects/clearpath",
     image: "/images/clearpath.png",
-    tech: ["Python", "LLMs", "AI Agents"],
+    tech: ["Python", "FastAPI", "Ollama", "LLaMA"],
   },
   {
     id: "replate",
