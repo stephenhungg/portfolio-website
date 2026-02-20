@@ -19,6 +19,26 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: "yolodex",
+    title: "yolodex",
+    date: "february 2026",
+    description: "autonomous ml pipeline that turns any youtube video into a trained yolo model — no manual labeling. uses parallel codex subagents for frame labeling. openai codex hackathon 2026 winner.",
+    color: "text-green",
+    link: "/projects/yolodex",
+    image: "/images/yolodex.png",
+    tech: ["Python", "YOLOv8", "OpenAI Codex", "GPT-5-nano"],
+  },
+  {
+    id: "opal",
+    title: "opal",
+    date: "january 2026",
+    description: "discord ai agent that controls a real chrome browser via voice and text commands. features a planner/navigator split architecture with real-time vision and a tactical game mode for browser games.",
+    color: "text-peach",
+    link: "/projects/opal",
+    image: "/images/opal.png",
+    tech: ["React", "FastAPI", "Discord.py", "LiveKit", "WebRTC"],
+  },
+  {
     id: "flow",
     title: "flow",
     date: "january 2026",
@@ -237,10 +257,10 @@ export default function Projects() {
   }, [hoveredImage]);
 
   return (
-    <main className="max-w-6xl mx-auto pt-24 pb-16 px-6">
+    <main className="max-w-6xl mx-auto pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6">
       <div className="text-center mb-16 fade-in">
-        <h1 className="text-4xl sm:text-5xl font-light mb-6 text-green tracking-tight">projects</h1>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-light mb-4 sm:mb-6 text-green tracking-tight">projects</h1>
+        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
           A collection of my work, ranging from hackathon winners to long-term engineering projects.
         </p>
         </div>

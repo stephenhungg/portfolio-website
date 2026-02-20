@@ -1,10 +1,11 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import PageTransition from "../components/PageTransition";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import { useEffect } from "react";
+import MouseTracker from "../components/MouseTracker";
 
 // Geist Mono font configuration
 const geistMono = Geist_Mono({
@@ -14,58 +15,51 @@ const geistMono = Geist_Mono({
   weight: ["300", "400"], // Light and regular weights for thinner appearance
 });
 
+export const metadata: Metadata = {
+  title: "Stephen Hung's Portfolio",
+  description: "Stephen Hung is a sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects and technical work.",
+  keywords: ["Stephen Hung", "UC Berkeley", "EECS", "computer science", "full-stack developer", "machine learning", "AI", "portfolio", "software engineer", "Berkeley"],
+  authors: [{ name: "Stephen Hung" }],
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    url: "https://stephenhung.me/",
+    title: "Stephen Hung's Portfolio",
+    description: "Sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects.",
+    images: [{ url: "https://stephenhung.me/og-image.png" }],
+    siteName: "Stephen Hung Portfolio",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stephen Hung's Portfolio",
+    description: "Full-stack developer and ML/AI enthusiast. Explore my portfolio of innovative projects and technical work.",
+    images: ["https://stephenhung.me/og-image.png"],
+  },
+  metadataBase: new URL("https://stephenhung.me"),
+  alternates: {
+    canonical: "/",
+  },
+  other: {
+    "theme-color": "#000000",
+    "revisit-after": "7 days",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Primary Meta Tags */}
-        <title>Stephen Hung&apos;s Portfolio</title>
-        <meta name="title" content="Stephen Hung&apos;s Portfolio" />
-        <meta name="description" content="Stephen Hung is a sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects and technical work." />
-        <meta name="keywords" content="Stephen Hung, UC Berkeley, EECS, computer science, full-stack developer, machine learning, AI, portfolio, software engineer, Berkeley" />
-        <meta name="author" content="Stephen Hung" />
-        <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="7 days" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://stephenhung.me/" />
-        <meta property="og:title" content="Stephen Hung&apos;s Portfolio" />
-        <meta property="og:description" content="Sophomore studying EECS at UC Berkeley. Passionate about full-stack development, machine learning, and AI. Explore my portfolio of innovative projects." />
-        <meta property="og:image" content="https://stephenhung.me/og-image.png" />
-        <meta property="og:site_name" content="Stephen Hung Portfolio" />
-        <meta property="og:locale" content="en_US" />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://stephenhung.me/" />
-        <meta property="twitter:title" content="Stephen Hung&apos;s Portfolio" />
-        <meta property="twitter:description" content="Full-stack developer and ML/AI enthusiast. Explore my portfolio of innovative projects and technical work." />
-        <meta property="twitter:image" content="https://stephenhung.me/og-image.png" />
-        
-        {/* Additional SEO */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="canonical" href="https://stephenhung.me/" />
-        
+        {/* Inline theme script to prevent flash of incorrect theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='catppuccin'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}else{document.documentElement.setAttribute('data-theme','dark')}}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()`,
+          }}
+        />
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -102,9 +96,13 @@ export default function RootLayout({
       <body
         className={`${geistMono.variable} font-mono antialiased`}
       >
+        <MouseTracker />
         <ThemeProvider>
           <Navigation />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

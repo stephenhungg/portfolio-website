@@ -1,21 +1,36 @@
+import Image from "next/image";
+import { FeatureItem, ProjectLink, TechSection } from "../../../components/ProjectComponents";
+
 export default function InstephgramProject() {
   return (
     <main className="min-h-screen pt-24 pb-20">
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 mb-16 fade-in">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 mb-10 sm:mb-16 fade-in">
         <div className="mb-6">
           <a href="/projects" className="text-sm text-gray-500 hover:text-white transition-colors inline-flex items-center gap-1">
           ← Back to Projects
         </a>
       </div>
-      
-        <h1 className="text-5xl sm:text-6xl font-light mb-6 text-white tracking-tight">InStephGram</h1>
-        <p className="text-xl sm:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
+
+        <div className="relative w-full aspect-[16/10] sm:aspect-video rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 mb-8">
+          <Image
+            src="/images/instephgram.png"
+            alt="InStephGram screenshot"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        </div>
+
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light mb-4 sm:mb-6 text-white tracking-tight">InStephGram</h1>
+        <p className="text-base sm:text-xl md:text-2xl text-gray-400 leading-relaxed font-light max-w-3xl">
           Competition-based Instagram-style full-stack web application
         </p>
       </section>
 
-      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
         
         {/* Main Content */}
         <div className="space-y-12 fade-in" style={{ animationDelay: '200ms' }}>
@@ -73,47 +88,3 @@ export default function InstephgramProject() {
     </main>
   );
 } 
-
-// Helper Components
-
-function FeatureItem({ text }: { text: string }) {
-  return (
-    <li className="flex items-start gap-3">
-      <span className="text-green mt-1.5 text-xs">●</span>
-      <span>{text}</span>
-    </li>
-  );
-}
-
-function ProjectLink({ href, label, primary }: { href: string, label: string, primary?: boolean }) {
-  return (
-    <a 
-      href={href} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all duration-300 font-medium ${
-        primary 
-          ? 'bg-white text-black hover:bg-gray-200 hover:scale-[1.02]' 
-          : 'bg-black/20 text-gray-300 hover:bg-black/40 hover:text-white border border-white/10 hover:border-white/20'
-      }`}
-    >
-      <span>{label}</span>
-      {!primary && <span className="ml-auto text-gray-600 text-sm">↗</span>}
-    </a>
-  );
-}
-
-function TechSection({ title, items }: { title: string, items: string[] }) {
-  return (
-    <div>
-      <div className="text-xs text-gray-500 mb-2">{title}</div>
-      <div className="flex flex-wrap gap-2">
-        {items.map(item => (
-          <span key={item} className="text-xs px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/5">
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
